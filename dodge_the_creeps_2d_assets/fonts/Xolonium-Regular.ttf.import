@@ -15,7 +15,10 @@ dest_files=["res://.godot/imported/Xolonium-Regular.ttf-037c802a1de93f298e468e80
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+<<<<<<< HEAD
 disable_embedded_bitmaps=true
+=======
+>>>>>>> c286e57 (initial-commit)
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48
