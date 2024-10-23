@@ -33,11 +33,9 @@ curve = SubResource("Curve2D_isdsk")
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 
 [node name="Player" parent="." instance=ExtResource("4_bghvw")]
-<<<<<<< HEAD
+
 position = Vector2(244, 447)
-=======
-position = Vector2(240, 450)
->>>>>>> c286e57 (initial-commit)
+
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
