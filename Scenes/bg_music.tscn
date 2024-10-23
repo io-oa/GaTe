@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://l5rq3wkqvdnj"]
+
+[ext_resource type="AudioStream" uid="uid://bvfbq2dvlbcjn" path="res://Assets/Music/JDSherbert - Ambiences Music Pack - Bloodrat Sewers.wav" id="1_lcylj"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_lcylj")
+autoplay = true

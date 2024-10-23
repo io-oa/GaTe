@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtrqa16bdjo3n"]
+
+[ext_resource type="Script" path="res://Scenes/game_menu.gd" id="1_1xmvn"]
+[ext_resource type="FontFile" uid="uid://b370yyft42mdf" path="res://Assets/font/Ancient Medium.ttf" id="2_fewbg"]
+
+[node name="Game_Menu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1xmvn")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 649.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -16.0
+offset_right = 4.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[node name="GaTe" type="Label" parent="."]
+layout_mode = 0
+offset_left = 485.0
+offset_top = 129.0
+offset_right = 724.0
+offset_bottom = 285.0
+theme_override_fonts/font = ExtResource("2_fewbg")
+theme_override_font_sizes/font_size = 100
+text = "GaTe
+"
+
+[connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

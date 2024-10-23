@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7r3m0wql00cw"]
+
+[ext_resource type="Script" path="res://Scenes/options_menu.gd" id="1_d6342"]
+[ext_resource type="Script" path="res://Scenes/audio_control.gd" id="2_18tlk"]
+[ext_resource type="PackedScene" uid="uid://l5rq3wkqvdnj" path="res://Scenes/bg_music.tscn" id="3_74pqb"]
+
+[node name="Options_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 8.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d6342")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 273.0
+offset_bottom = 117.0
+
+[node name="AudioControl" type="Control" parent="MarginContainer"]
+layout_mode = 2
+script = ExtResource("2_18tlk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/AudioControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 296.0
+offset_top = 136.0
+offset_right = 574.0
+offset_bottom = 316.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Mu" type="Label" parent="MarginContainer/AudioControl/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 51
+text = "Music
+"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/AudioControl/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Confirm" type="Button" parent="MarginContainer/AudioControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 2.032
+anchor_right = 1.0
+anchor_bottom = 2.032
+offset_left = 222.0
+offset_top = 281.256
+offset_right = 356.0
+offset_bottom = 351.256
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 51
+text = "Confirm"
+
+[node name="Menu_music" type="Node" parent="."]
+
+[node name="AudioStreamPlayer2D" parent="Menu_music" instance=ExtResource("3_74pqb")]
+
+[connection signal="mouse_exited" from="MarginContainer/AudioControl/VBoxContainer/HSlider" to="MarginContainer/AudioControl" method="_on_h_slider_mouse_exited"]
+[connection signal="pressed" from="MarginContainer/AudioControl/Confirm" to="." method="_on_confirm_pressed"]

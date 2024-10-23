@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://dk2k5mb0h6o8v"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_jyrdh"]
+[ext_resource type="PackedScene" uid="uid://l5rq3wkqvdnj" path="res://Scenes/bg_music.tscn" id="2_nqaoa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cb1fg"]
+bg_color = Color(0.33576, 0.141681, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jyrdh")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1149.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 51
+theme_override_styles/normal = SubResource("StyleBoxFlat_cb1fg")
+text = "Play "
+icon_alignment = 1
+
+[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 51
+theme_override_styles/normal = SubResource("StyleBoxFlat_cb1fg")
+text = "Options "
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 51
+theme_override_styles/normal = SubResource("StyleBoxFlat_cb1fg")
+text = "Quit "
+
+[node name="Menu_music" type="Node" parent="."]
+
+[node name="AudioStreamPlayer2D" parent="Menu_music" instance=ExtResource("2_nqaoa")]
+position = Vector2(35, 622)
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
