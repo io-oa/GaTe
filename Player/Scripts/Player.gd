@@ -1,6 +1,6 @@
 class_name Player extends CharacterBody2D
 
-const MOTION_SPEED = 400 # Pixels/second.
+const MOTION_SPEED: float = 400 # Pixels/second.
 
 var screen_size: Vector2
 var last_direction = Vector2(1, 0)
