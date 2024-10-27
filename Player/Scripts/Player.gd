@@ -4,6 +4,7 @@ const MOTION_SPEED = 400 # Pixels/second.
 
 var screen_size: Vector2
 var last_direction = Vector2(1, 0)
+var weapon: Weapon
 
 var abilities = {
 	"dash": {
@@ -51,12 +52,18 @@ var anim_directions = {
 	
 func _ready():
 	screen_size = get_viewport_rect().size
+	weapon = $weapon.get_child(0)
+	weapon.connect("hit_enemy", _on_weapon_hit)
 	
 func _physics_process(_delta):
 	pass
 
 func _process(delta):
 	$Position.text = str([position.x, position.y])
+	
+	if Input.is_action_pressed("attack"):
+		$AnimationPlayer.play("attackAnimation")
+	
 	for ability in abilities:
 		abilities[ability]["cooldown_left"] = max(abilities[ability]["cooldown_left"] - delta, 0.0)
 	
@@ -66,3 +73,7 @@ func update_animation(anim_set):
 
 	$Sprite2D.play(anim_directions[anim_set][slice_dir][0])
 	$Sprite2D.flip_h = anim_directions[anim_set][slice_dir][1]
+	
+func _on_weapon_hit(mob: Mob) -> void:
+	mob.take_damage()
+		

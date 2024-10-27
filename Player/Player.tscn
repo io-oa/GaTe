@@ -1,4 +1,4 @@
-[gd_scene load_steps=269 format=3 uid="uid://bqpkxht3mx8l8"]
+[gd_scene load_steps=273 format=3 uid="uid://bqpkxht3mx8l8"]
 
 [ext_resource type="Texture2D" uid="uid://djajxdngayssf" path="res://Player/Assets/goblin.png" id="1"]
 [ext_resource type="Script" path="res://Player/Scripts/Player.gd" id="2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Player/Scripts/States/PlayerDash.gd" id="5_24ngb"]
 [ext_resource type="Script" path="res://Player/Scripts/States/PlayerIdle.gd" id="6_ukwmf"]
 [ext_resource type="Script" path="res://Player/Scripts/States/PlayerMove.gd" id="7_xkk1o"]
+[ext_resource type="PackedScene" uid="uid://nn0qfhcwf2ak" path="res://Utilities/Weapons/sword.tscn" id="8_yx8xx"]
 
 [sub_resource type="Gradient" id="662"]
 offsets = PackedFloat32Array(0.00558659, 0.441341, 0.659218)
@@ -1898,9 +1899,45 @@ size = Vector2(60, 40)
 [sub_resource type="OccluderPolygon2D" id="661"]
 polygon = PackedVector2Array(16.25, 18.75, 18.75, 36.25, 15, 38.75, 6.25, 42.5, -5, 42.5, -13.75, 41.25, -18.75, 37.5, -15, 20)
 
+[sub_resource type="Animation" id="Animation_2ucjo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.79253]
+}
+
+[sub_resource type="Animation" id="Animation_m7kkx"]
+resource_name = "attackAnimation"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-2.79253, -0.671952]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ofdf"]
+_data = {
+"RESET": SubResource("Animation_2ucjo"),
+"attackAnimation": SubResource("Animation_m7kkx")
+}
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("2")
-metadata/_edit_group_ = true
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0.129412, 0.0745098, 0.192157, 0.647059)
@@ -1947,3 +1984,14 @@ script = ExtResource("6_ukwmf")
 
 [node name="PlayerMove" type="Node" parent="StateMachine"]
 script = ExtResource("7_xkk1o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2ofdf")
+}
+
+[node name="weapon" type="Node2D" parent="."]
+rotation = -2.79253
+
+[node name="sword" parent="weapon" instance=ExtResource("8_yx8xx")]
+position = Vector2(-19.1257, 41.0147)

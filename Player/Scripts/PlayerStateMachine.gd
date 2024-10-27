@@ -17,12 +17,12 @@ func _ready():
 		current_state.enter()
 
 
-func _process(delta):
+func _process(delta) -> void:
 	if current_state:
 		current_state.process_state(delta)
 
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	if current_state:
 		current_state.physics_process_state(delta)
 
