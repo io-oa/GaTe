@@ -51,7 +51,7 @@ var anim_directions = {
 }
 	
 func _ready():
-	screen_size = get_viewport_rect().size
+	GameGlobals.SCREEN_SIZE = get_viewport_rect().size
 	weapon = $weapon.get_child(0)
 	weapon.connect("hit_enemy", _on_weapon_hit)
 	
@@ -74,6 +74,6 @@ func update_animation(anim_set):
 	$Sprite2D.play(anim_directions[anim_set][slice_dir][0])
 	$Sprite2D.flip_h = anim_directions[anim_set][slice_dir][1]
 	
-func _on_weapon_hit(mob: Mob) -> void:
-	mob.take_damage()
+func _on_weapon_hit(enemy: Enemy) -> void:
+	enemy.take_damage()
 		

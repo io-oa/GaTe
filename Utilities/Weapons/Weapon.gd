@@ -6,5 +6,5 @@ func _ready():
 	self.connect("body_entered", _on_body_entered)
 
 func _on_body_entered(body: Node):
-	if body is Mob:
+	if body is Enemy:
 		emit_signal("hit_enemy", body)

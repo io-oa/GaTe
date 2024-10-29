@@ -1,0 +1,86 @@
+[gd_scene load_steps=15 format=3 uid="uid://chvni70so1s7u"]
+
+[ext_resource type="Script" path="res://Enemy/Scripts/Enemy.gd" id="1_2q3mj"]
+[ext_resource type="Texture2D" uid="uid://by3e38tfku5p4" path="res://Enemy/Assets/enemyFlyingAlt_1.png" id="1_pmc1o"]
+[ext_resource type="Texture2D" uid="uid://e8hrltr74eum" path="res://Enemy/Assets/enemyFlyingAlt_2.png" id="2_mae1b"]
+[ext_resource type="Texture2D" uid="uid://dorjnwkom02pc" path="res://Enemy/Assets/enemySwimming_1.png" id="3_7qhyj"]
+[ext_resource type="Texture2D" uid="uid://3xvxurwfrf7d" path="res://Enemy/Assets/enemySwimming_2.png" id="4_6apnx"]
+[ext_resource type="Texture2D" uid="uid://wt5i0mjvtcan" path="res://Enemy/Assets/enemyWalking_1.png" id="5_alh3t"]
+[ext_resource type="Texture2D" uid="uid://bdudgjacn3r5x" path="res://Enemy/Assets/enemyWalking_2.png" id="6_8qnm6"]
+[ext_resource type="Script" path="res://Enemy/Scripts/EnemyStateMachine.gd" id="8_yfi56"]
+[ext_resource type="Script" path="res://Enemy/Scripts/States/EnemyState.gd" id="9_wukt8"]
+[ext_resource type="Script" path="res://Enemy/Scripts/States/EnemyIdle.gd" id="10_ukkvs"]
+[ext_resource type="Script" path="res://Enemy/Scripts/States/EnemyMove.gd" id="11_c0033"]
+[ext_resource type="Script" path="res://Enemy/Scripts/States/EnemyDash.gd" id="12_p8yis"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_loiu4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pmc1o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mae1b")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7qhyj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6apnx")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_alh3t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8qnm6")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ux088"]
+radius = 47.87
+height = 124.45
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_2q3mj")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_loiu4")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ux088")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("8_yfi56")
+initial_state = NodePath("EnemyMove")
+
+[node name="EnemyState" type="Node" parent="StateMachine"]
+script = ExtResource("9_wukt8")
+
+[node name="EnemyIdle" type="Node" parent="StateMachine"]
+script = ExtResource("10_ukkvs")
+
+[node name="EnemyMove" type="Node" parent="StateMachine"]
+script = ExtResource("11_c0033")
+
+[node name="EnemyDash" type="Node" parent="StateMachine"]
+script = ExtResource("12_p8yis")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

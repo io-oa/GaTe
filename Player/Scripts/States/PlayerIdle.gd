@@ -19,4 +19,4 @@ func process_state(delta):
 func physics_process_state(delta: float) -> void:
 	player.set_velocity(Vector2())
 	player.move_and_slide()
-	player.position = player.position.clamp(Vector2.ZERO, player.screen_size)
+	player.position = player.position.clamp(Vector2.ZERO, GameGlobals.SCREEN_SIZE)
