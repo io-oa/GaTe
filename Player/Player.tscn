@@ -1,13 +1,21 @@
-[gd_scene load_steps=273 format=3 uid="uid://bqpkxht3mx8l8"]
+[gd_scene load_steps=278 format=3 uid="uid://bqpkxht3mx8l8"]
 
 [ext_resource type="Texture2D" uid="uid://djajxdngayssf" path="res://Player/Assets/goblin.png" id="1"]
 [ext_resource type="Script" path="res://Player/Scripts/Player.gd" id="2"]
+[ext_resource type="Script" path="res://Player/Scripts/Info.gd" id="3_1iccv"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerStateMachine.gd" id="3_5kkwb"]
+[ext_resource type="PackedScene" uid="uid://b4821q1nhproh" path="res://Utilities/Components/Hurtbox.tscn" id="3_5pbo1"]
+[ext_resource type="PackedScene" uid="uid://dhve04b56rgnu" path="res://Utilities/Components/Health.tscn" id="4_3g4iy"]
 [ext_resource type="Script" path="res://Player/Scripts/States/PlayerState.gd" id="4_cedwf"]
 [ext_resource type="Script" path="res://Player/Scripts/States/PlayerDash.gd" id="5_24ngb"]
 [ext_resource type="Script" path="res://Player/Scripts/States/PlayerIdle.gd" id="6_ukwmf"]
 [ext_resource type="Script" path="res://Player/Scripts/States/PlayerMove.gd" id="7_xkk1o"]
 [ext_resource type="PackedScene" uid="uid://nn0qfhcwf2ak" path="res://Utilities/Weapons/Weapons/Sword.tscn" id="8_2yosf"]
+[ext_resource type="Animation" uid="uid://cgkxfttlemdo3" path="res://Utilities/Weapons/sword_attack.res" id="10_h7024"]
+[ext_resource type="PackedScene" uid="uid://bnefcgubiiwoa" path="res://lowpoly_duck_animated/scene.gltf" id="10_ybg7u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_131rb"]
+radius = 88.77
 
 [sub_resource type="Gradient" id="662"]
 offsets = PackedFloat32Array(0.00558659, 0.441341, 0.659218)
@@ -1893,51 +1901,26 @@ animations = [{
 "speed": 24.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8x3ac"]
-size = Vector2(60, 40)
+[sub_resource type="CircleShape2D" id="CircleShape2D_w3otc"]
+radius = 86.4
 
 [sub_resource type="OccluderPolygon2D" id="661"]
 polygon = PackedVector2Array(16.25, 18.75, 18.75, 36.25, 15, 38.75, 6.25, 42.5, -5, 42.5, -13.75, 41.25, -18.75, 37.5, -15, 20)
 
 [sub_resource type="Animation" id="Animation_2ucjo"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("weapon:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-2.79253]
-}
-
-[sub_resource type="Animation" id="Animation_m7kkx"]
-resource_name = "attackAnimation"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("weapon:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-2.79253, -0.671952]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2ofdf"]
 _data = {
 "RESET": SubResource("Animation_2ucjo"),
-"attackAnimation": SubResource("Animation_m7kkx")
+"swordAttack": ExtResource("10_h7024")
 }
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_131rb")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0.129412, 0.0745098, 0.192157, 0.647059)
@@ -1946,15 +1929,23 @@ scale = Vector2(0.78125, 0.362305)
 texture = SubResource("663")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(0, -35)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("260")
 animation = &"45back_left_idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -25)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_8x3ac")
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_5pbo1")]
+priority = 1
+health_component = NodePath("../Health")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_w3otc")
+one_way_collision_margin = 0.0
+debug_color = Color(0.494118, 0.529412, 0.67451, 1)
+
+[node name="Health" parent="." instance=ExtResource("4_3g4iy")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -1965,9 +1956,32 @@ position = Vector2(0, -31)
 scale = Vector2(0.8, 0.8)
 occluder = SubResource("661")
 
-[node name="Position" type="Label" parent="."]
+[node name="Info" type="Node2D" parent="."]
+script = ExtResource("3_1iccv")
+
+[node name="Position" type="Label" parent="Info"]
+offset_top = -120.0
 offset_right = 40.0
-offset_bottom = 23.0
+offset_bottom = -97.0
+text = "POS1"
+metadata/_edit_use_anchors_ = true
+
+[node name="Position2" type="Label" parent="Info"]
+offset_left = 144.0
+offset_top = -120.0
+offset_right = 185.0
+offset_bottom = -97.0
+text = "POS2"
+metadata/_edit_use_anchors_ = true
+
+[node name="Test" type="Label" parent="Info"]
+offset_left = -104.0
+offset_top = -104.0
+offset_right = -64.0
+offset_bottom = -81.0
+text = "!
+"
+metadata/_edit_use_anchors_ = true
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_5kkwb")
@@ -1985,13 +1999,58 @@ script = ExtResource("7_xkk1o")
 [node name="PlayerDash" type="Node" parent="StateMachine"]
 script = ExtResource("5_24ngb")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Held" type="Node2D" parent="."]
+
+[node name="Weapon" type="Node2D" parent="Held"]
+visible = false
+rotation = -1.5708
+
+[node name="sword" parent="Held/Weapon" instance=ExtResource("8_2yosf")]
+position = Vector2(80, -24)
+rotation = -1.5708
+scale = Vector2(2, 2)
+
+[node name="WeapAnimPlayer" type="AnimationPlayer" parent="Held/Weapon"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_2ofdf")
 }
 
-[node name="weapon" type="Node2D" parent="."]
-rotation = -2.79253
+[node name="View" type="Node2D" parent="."]
 
-[node name="sword" parent="weapon" instance=ExtResource("8_2yosf")]
-position = Vector2(-23.9071, 51.2684)
+[node name="SVContainer" type="SubViewportContainer" parent="View"]
+offset_left = -256.0
+offset_top = -200.0
+offset_right = 256.0
+offset_bottom = 312.0
+metadata/_edit_lock_ = true
+
+[node name="SV" type="SubViewport" parent="View/SVContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="View/SVContainer/SV"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 1.5, 1)
+
+[node name="Duck" parent="View/SVContainer/SV" instance=ExtResource("10_ybg7u")]
+
+[node name="Skeleton3D" parent="View/SVContainer/SV/Duck/Sketchfab_model/root/GLTF_SceneRootNode/Armature_11/GLTF_created_0" index="0"]
+bones/1/rotation = Quaternion(-0.00171694, -1.19209e-07, 2.04678e-10, 0.999999)
+bones/2/rotation = Quaternion(-0.0291175, 2.38116e-07, -6.93627e-09, 0.999576)
+bones/3/rotation = Quaternion(-0.406163, -0.0145252, -0.0204891, 0.913456)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(-0.0316575, -0.0111047, -0.0164102, 0.999302)
+bones/4/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(0.941835, -0.0180807, 0.016926, -0.335161)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(-0.6311, -0.00995909, 0.00907467, 0.775585)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(0.663365, -0.0366768, 0.026204, 0.746937)
+bones/10/rotation = Quaternion(1.93262e-07, 0.121595, 0.99258, 2.36754e-08)
+bones/10/scale = Vector3(1, 1, 1)
+
+[connection signal="animation_finished" from="Held/Weapon/WeapAnimPlayer" to="." method="_on_weap_anim_player_animation_finished"]
+
+[editable path="Hurtbox"]
+[editable path="View/SVContainer/SV/Duck"]

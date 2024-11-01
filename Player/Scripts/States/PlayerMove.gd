@@ -1,6 +1,6 @@
 extends PlayerState
 
-func physics_process_state(delta):
+func physics_process_state(_delta: float):
 	var motion = Vector2()
 	motion.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	motion.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
@@ -16,7 +16,9 @@ func physics_process_state(delta):
 		transitioned.emit(self, "PlayerDash")
 		
 	if motion.length() > 0:
-		player.last_direction = motion
-		player.update_animation("walk")
+		var angle = rad_to_deg(atan2(motion.y, motion.x)) + 90
+		player.character_model.rotation_degrees.y = -angle
+		player.character_anim_player.play("walkcycle_1")
+		player.last_direction = motion.normalized()
 	else:
 		transitioned.emit(self, "PlayerIdle")
