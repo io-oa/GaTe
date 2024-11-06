@@ -35,6 +35,8 @@ curve = SubResource("Curve2D_isdsk")
 [node name="Player" parent="." instance=ExtResource("4_bghvw")]
 position = Vector2(576, 328)
 
+[node name="Projectiles" type="Node" parent="."]
+
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

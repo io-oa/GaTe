@@ -25,4 +25,4 @@ func init_health() -> void:
 
 func damage(dmg: float) -> void:
 	self.current_health = current_health - dmg
-	print(self.get_parent().name, "Took %f dmg." % dmg)
+	#print(self.get_parent().name, "Took %f dmg." % dmg)

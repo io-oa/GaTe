@@ -1,12 +1,14 @@
-[gd_scene load_steps=278 format=3 uid="uid://bqpkxht3mx8l8"]
+[gd_scene load_steps=283 format=3 uid="uid://bqpkxht3mx8l8"]
 
 [ext_resource type="Texture2D" uid="uid://djajxdngayssf" path="res://Player/Assets/goblin.png" id="1"]
 [ext_resource type="Script" path="res://Player/Scripts/Player.gd" id="2"]
 [ext_resource type="Script" path="res://Player/Scripts/Info.gd" id="3_1iccv"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerStateMachine.gd" id="3_5kkwb"]
 [ext_resource type="PackedScene" uid="uid://b4821q1nhproh" path="res://Utilities/Components/Hurtbox.tscn" id="3_5pbo1"]
+[ext_resource type="PackedScene" uid="uid://c1hqnes8bhodl" path="res://Attacks/MeleeAttack.tscn" id="3_yxy5q"]
 [ext_resource type="PackedScene" uid="uid://dhve04b56rgnu" path="res://Utilities/Components/Health.tscn" id="4_3g4iy"]
 [ext_resource type="Script" path="res://Player/Scripts/States/PlayerState.gd" id="4_cedwf"]
+[ext_resource type="PackedScene" uid="uid://duhegav1hscke" path="res://Attacks/Projectiles/TestProjectile.tscn" id="4_wmmu1"]
 [ext_resource type="Script" path="res://Player/Scripts/States/PlayerDash.gd" id="5_24ngb"]
 [ext_resource type="Script" path="res://Player/Scripts/States/PlayerIdle.gd" id="6_ukwmf"]
 [ext_resource type="Script" path="res://Player/Scripts/States/PlayerMove.gd" id="7_xkk1o"]
@@ -1901,6 +1903,9 @@ animations = [{
 "speed": 24.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7amb"]
+size = Vector2(26, 322)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_w3otc"]
 radius = 86.4
 
@@ -1915,6 +1920,14 @@ _data = {
 "RESET": SubResource("Animation_2ucjo"),
 "swordAttack": ExtResource("10_h7024")
 }
+
+[sub_resource type="Sky" id="Sky_qsijo"]
+
+[sub_resource type="Environment" id="Environment_b8mk3"]
+background_mode = 1
+background_color = Color(0.647059, 0.643137, 0.439216, 0)
+sky = SubResource("Sky_qsijo")
+ambient_light_color = Color(1, 1, 1, 0)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("2")
@@ -1934,6 +1947,14 @@ position = Vector2(0, -35)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("260")
 animation = &"45back_left_idle"
+
+[node name="MeleeAttack" parent="." instance=ExtResource("3_yxy5q")]
+attack_timer = 0.5
+projectile_scene = ExtResource("4_wmmu1")
+
+[node name="CollisionShape2D" parent="MeleeAttack" index="0"]
+position = Vector2(0, -151)
+shape = SubResource("RectangleShape2D_g7amb")
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_5pbo1")]
 priority = 1
@@ -2032,12 +2053,13 @@ render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="View/SVContainer/SV"]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 1.5, 1)
+environment = SubResource("Environment_b8mk3")
 
 [node name="Duck" parent="View/SVContainer/SV" instance=ExtResource("10_ybg7u")]
 
 [node name="Skeleton3D" parent="View/SVContainer/SV/Duck/Sketchfab_model/root/GLTF_SceneRootNode/Armature_11/GLTF_created_0" index="0"]
 bones/1/rotation = Quaternion(-0.00171694, -1.19209e-07, 2.04678e-10, 0.999999)
-bones/2/rotation = Quaternion(-0.0291175, 2.38116e-07, -6.93627e-09, 0.999576)
+bones/2/rotation = Quaternion(-0.0291175, 2.38115e-07, -6.93627e-09, 0.999576)
 bones/3/rotation = Quaternion(-0.406163, -0.0145252, -0.0204891, 0.913456)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(-0.0316575, -0.0111047, -0.0164102, 0.999302)
@@ -2052,5 +2074,6 @@ bones/10/scale = Vector3(1, 1, 1)
 
 [connection signal="animation_finished" from="Held/Weapon/WeapAnimPlayer" to="." method="_on_weap_anim_player_animation_finished"]
 
+[editable path="MeleeAttack"]
 [editable path="Hurtbox"]
 [editable path="View/SVContainer/SV/Duck"]

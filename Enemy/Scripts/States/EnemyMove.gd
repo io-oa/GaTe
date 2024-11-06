@@ -12,8 +12,3 @@ func physics_process_state(_delta: float):
 	enemy.position = enemy.position.clamp(Vector2.ZERO, GameGlobals.SCREEN_SIZE)
 
 	var dir = enemy.velocity
-	
-	if dir.length() > 0:
-		pass
-	else:
-		transitioned.emit(self, "EnemyIdle")

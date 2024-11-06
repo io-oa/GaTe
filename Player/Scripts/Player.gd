@@ -9,6 +9,8 @@ var last_direction = Vector2(1, 0)
 @onready var character_model: Node3D = $View/SVContainer/SV/Duck
 @onready var weapon: Weapon = $Held/Weapon.get_child(0)
 @onready var weapon_anim_player = $Held/Weapon/WeapAnimPlayer
+@onready var attack = $MeleeAttack
+@onready var projectile_container = $ProjectileContainer
 
 var abilities = {
 	"dash": {
@@ -23,6 +25,7 @@ func _ready():
 	self.add_to_group("Player")
 	weapon.monitorable = false
 	GameGlobals.SCREEN_SIZE = get_viewport_rect().size
+	GameGlobals.PROJECTILES = get_node(^"/root/Main/Projectiles")
 	$Health.init_health()
 	
 func _physics_process(_delta):
@@ -34,20 +37,17 @@ func _process(delta: float):
 		
 	var direction: Vector2 = (self.position - get_global_mouse_position()).normalized()
 	var angle: float = rad_to_deg(atan2(direction.y, direction.x)) - 90
-	$Held.rotation_degrees = angle
+	attack.rotation_degrees = angle
 	
 	if Input.is_action_pressed("attack"):
-		weapon.monitorable = true
-		character_model.rotation_degrees.y = -angle
-		weapon_anim_player.play("swordAttack")
+		attack.fire()		
+		#weapon.monitorable = true
+		#character_model.rotation_degrees.y = -angle
+		#weapon_anim_player.play("swordAttack")
 		
 	for ability in abilities:
 		abilities[ability]["cooldown_left"] = max(abilities[ability]["cooldown_left"] - delta, 0.0)
-	
-func update_animation(anim_set):
-	var angle: float = rad_to_deg(last_direction.angle()) + 22.5
-	var slice_dir: float = floor(angle / 45)
-	
+		
 func _on_weapon_hit(enemy: Enemy) -> void:
 	enemy.take_damage()
 

@@ -15,8 +15,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float):
-	if self.health.dead:
-		queue_free()
+	pass
 		#var direction_vector = player_node.global_position - position
 		#var direction = direction_vector.normalized()
 		#rotation = direction.angle()
@@ -25,3 +24,9 @@ func _process(_delta: float):
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
+
+func _on_death() -> void:
+	queue_free()
+
+func _on_health_changed(previous_health: float, current_health: float, max_health: float) -> void:
+	print(self.name, "Took %f dmg" % (previous_health - current_health))
