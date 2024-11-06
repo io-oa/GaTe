@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqk6dt118qb7c"]
+[gd_scene load_steps=7 format=3 uid="uid://bqk6dt118qb7c"]
 
 [ext_resource type="PackedScene" uid="uid://di7m55dtwvubx" path="res://GUI/Settings_Menu_Scenes/hotkey_rebind_button.tscn" id="1_0vxuo"]
 [ext_resource type="PackedScene" uid="uid://cru0o6gppb2mo" path="res://GUI/Settings_Menu_Scenes/window_mode_button.tscn" id="1_1jhui"]
+[ext_resource type="PackedScene" uid="uid://dyuj0yvt2e04j" path="res://GUI/Settings_Menu_Scenes/audio_settings.tscn" id="1_8it33"]
 [ext_resource type="PackedScene" uid="uid://b5qy21mic8w46" path="res://GUI/Settings_Menu_Scenes/resolution_mode_button.tscn" id="2_6uwbh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bypph"]
@@ -28,10 +29,9 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 2
+current_tab = 0
 
 [node name="Sound" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -47,30 +47,23 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Sound/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer/ScrollContainer"]
 layout_mode = 2
 theme_override_constants/separation = 64
-alignment = 1
 
-[node name="Label" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+[node name="Audio_Settings" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_8it33")]
 layout_mode = 2
-text = "12345678"
 
-[node name="Label2" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+[node name="Audio_Settings2" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_8it33")]
 layout_mode = 2
-text = "12345678"
+bus_name = "Music"
 
-[node name="Label3" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+[node name="Audio_Settings3" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_8it33")]
 layout_mode = 2
-text = "12345678"
-
-[node name="Label4" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "12345678"
-
-[node name="Label5" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "12345678"
+bus_name = "Sfx"
 
 [node name="Graphics" type="TabBar" parent="TabContainer"]
 visible = false
@@ -103,6 +96,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Control" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
