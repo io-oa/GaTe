@@ -1,5 +1,6 @@
 class_name MeleeAttack extends Area2D
 
+@export var damage: float = 10.0
 @export var attack_timer: float = 0.1
 @export var lock_position_on_fire: bool = true
 @export var projectile_scenes: Array[PackedScene]

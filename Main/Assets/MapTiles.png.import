@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://carv27sjbo7br"
-path="res://.godot/imported/spritesheet.png-bc952e22510578e6b7cd6793ba53e9b1.ctex"
+uid="uid://bv4u7c4nasccu"
+path="res://.godot/imported/MapTiles.png-9f960c8a44022609acc0dcb2c76a0f9b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Attacks/Projectiles/Assets/pj2_shuriken_large_gray/spritesheet.png"
-dest_files=["res://.godot/imported/spritesheet.png-bc952e22510578e6b7cd6793ba53e9b1.ctex"]
+source_file="res://Main/Assets/MapTiles.png"
+dest_files=["res://.godot/imported/MapTiles.png-9f960c8a44022609acc0dcb2c76a0f9b.ctex"]
 
 [params]
 

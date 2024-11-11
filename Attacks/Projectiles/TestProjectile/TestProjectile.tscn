@@ -1,11 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://duhegav1hscke"]
+[gd_scene load_steps=16 format=3 uid="uid://duhegav1hscke"]
 
 [ext_resource type="Script" path="res://Attacks/Scripts/Projectile.gd" id="1_iastt"]
 [ext_resource type="PackedScene" uid="uid://dxilrpy122drq" path="res://Attacks/Projectiles/TestProjectile/TestProjectileImpact.tscn" id="2_ah4fp"]
-[ext_resource type="Texture2D" uid="uid://carv27sjbo7br" path="res://Attacks/Projectiles/Assets/super-pixel-projectiles-pack-2-pixel-art-animated-projectiles/Super Pixel Projectiles Pack 2/spritesheet/pj2_shuriken_large_gray/spritesheet.png" id="2_uo0wc"]
+[ext_resource type="Texture2D" uid="uid://carv27sjbo7br" path="res://Attacks/Projectiles/Assets/pj2_shuriken_large_gray/spritesheet.png" id="2_uo0wc"]
+[ext_resource type="PackedScene" uid="uid://dn7pr30nu7c1q" path="res://Utilities/Components/Velocity.tscn" id="4_a0l3o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5jd2y"]
 radius = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6vhwn"]
+radius = 19.85
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gwowj"]
 atlas = ExtResource("2_uo0wc")
@@ -71,16 +75,28 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="TestProjectile" type="Area2D"]
+[node name="TestProjectile" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 0
 script = ExtResource("1_iastt")
-time = 10.0
+max_hits = 2
 impact_scene = ExtResource("2_ah4fp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5jd2y")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_6vhwn")
+debug_color = Color(0.744847, 0.185992, 0.198257, 0.42)
+
+[node name="TravelAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pu2pr")
 animation = &"travelling"
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="Velocity" parent="." instance=ExtResource("4_a0l3o")]
+max_speed = 400.0
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

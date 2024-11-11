@@ -1,7 +1,8 @@
-[gd_scene load_steps=282 format=3 uid="uid://bqpkxht3mx8l8"]
+[gd_scene load_steps=284 format=3 uid="uid://bqpkxht3mx8l8"]
 
 [ext_resource type="Texture2D" uid="uid://djajxdngayssf" path="res://Player/Assets/goblin.png" id="1"]
 [ext_resource type="Script" path="res://Player/Scripts/Player.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://c8tm2e1vtnds5" path="res://Player/Assets/machine_gun_23.png" id="2_5yjjy"]
 [ext_resource type="Script" path="res://Player/Scripts/Info.gd" id="3_1iccv"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerStateMachine.gd" id="3_5kkwb"]
 [ext_resource type="PackedScene" uid="uid://b4821q1nhproh" path="res://Utilities/Components/Hurtbox.tscn" id="3_5pbo1"]
@@ -1904,7 +1905,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7amb"]
-size = Vector2(397, 16)
+size = Vector2(221, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m6pvm"]
+radius = 88.77
 
 [sub_resource type="OccluderPolygon2D" id="661"]
 polygon = PackedVector2Array(16.25, 18.75, 18.75, 36.25, 15, 38.75, 6.25, 42.5, -5, 42.5, -13.75, 41.25, -18.75, 37.5, -15, 20)
@@ -1932,6 +1936,13 @@ script = ExtResource("2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_131rb")
 
+[node name="Gun" type="Sprite2D" parent="."]
+top_level = true
+position = Vector2(48, 11)
+rotation = 0.37001
+scale = Vector2(0.201254, 0.134393)
+texture = ExtResource("2_5yjjy")
+
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0.129412, 0.0745098, 0.192157, 0.647059)
 position = Vector2(0, -0.406251)
@@ -1946,16 +1957,17 @@ sprite_frames = SubResource("260")
 animation = &"45back_left_idle"
 
 [node name="MeleeAttack" parent="." instance=ExtResource("3_yxy5q")]
-attack_timer = 0.5
+attack_timer = 0.2
 projectile_scenes = Array[PackedScene]([ExtResource("4_dq28x")])
 
 [node name="CollisionShape2D" parent="MeleeAttack" index="0"]
-position = Vector2(185.5, 0)
+position = Vector2(97.5, 0)
 shape = SubResource("RectangleShape2D_g7amb")
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_5pbo1")]
 priority = 1
 health_component = NodePath("../Health")
+hurtbox_shape = SubResource("CircleShape2D_m6pvm")
 metadata/_edit_lock_ = true
 
 [node name="Health" parent="." instance=ExtResource("4_3g4iy")]

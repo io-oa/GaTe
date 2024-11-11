@@ -37,7 +37,8 @@ func _process(delta: float):
 		
 	var mouse_direction: Vector2 = (get_global_mouse_position() - self.position).normalized()
 	attack.global_rotation = mouse_direction.angle()
-	
+	$Gun.global_rotation = mouse_direction.angle() + PI / 8
+	$Gun.global_position = self.global_position
 	if Input.is_action_pressed("attack"):
 		#var angle = rad_to_deg(atan2(mouse_direction.y, mouse_direction.x)) - 90.0
 		#self.character_model.rotation_degrees.y = -angle

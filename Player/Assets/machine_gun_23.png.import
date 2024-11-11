@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://carv27sjbo7br"
-path="res://.godot/imported/spritesheet.png-bc952e22510578e6b7cd6793ba53e9b1.ctex"
+uid="uid://c8tm2e1vtnds5"
+path="res://.godot/imported/machine_gun_23.png-8ab08dfa09c9c40c32cc02a968a91da2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Attacks/Projectiles/Assets/pj2_shuriken_large_gray/spritesheet.png"
-dest_files=["res://.godot/imported/spritesheet.png-bc952e22510578e6b7cd6793ba53e9b1.ctex"]
+source_file="res://Player/Assets/machine_gun_23.png"
+dest_files=["res://.godot/imported/machine_gun_23.png-8ab08dfa09c9c40c32cc02a968a91da2.ctex"]
 
 [params]
 

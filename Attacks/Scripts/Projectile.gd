@@ -1,38 +1,39 @@
-class_name Projectile extends Area2D
+class_name Projectile extends CharacterBody2D
 
-@export var time: float = 0.5
-@export var travel_range: float = 400
+@export var damage: float = 10.0
+@export var max_range: float = 1000.0
 @export var max_hits: int = 1
 @export var impact_scene: PackedScene
 
-@onready var hitbox: CollisionShape2D = $CollisionShape2D
-@onready var animations: AnimatedSprite2D = $AnimatedSprite2D
+@onready var hitbox: Area2D = $Area2D
+@onready var travel_animation: AnimatedSprite2D = $TravelAnimation
 @onready var hits_remaining: int = max_hits
-@onready var speed_coef: float = 1 / time
-
+@onready var velocity_component: Velocity = $Velocity
 	
 var start_position: Vector2
 var end_position: Vector2
-var t: float = 0.0
-var shooter: Node2D
+var attacker: Node2D
+var travelled: float = 0
 	
-func spawn(shooter: Node2D, projectile_rotation: float) -> void:
-	self.shooter = shooter
-	self.start_position = self.shooter.global_position
+func spawn(attacker: Node2D, projectile_rotation: float) -> void:
+	self.attacker = attacker
+	self.start_position = self.attacker.global_position
 	self.global_rotation = projectile_rotation
 	self.global_position = self.start_position
-	self.end_position = self.start_position + Vector2(travel_range, 0).rotated(self.global_rotation)
-	animations.play("travelling")
+	#self.end_position = self.start_position + Vector2(travel_range, 0).rotated(self.global_rotation)
+	velocity_component.maximizeVelocity(Vector2(1, 0).rotated(self.global_rotation))
+	travel_animation.play("travelling")
 	
-func _process(delta: float) -> void:
-	t += delta * speed_coef
-	t = clamp(t, 0.0, 1.0) 
-	self.global_position = self.start_position.lerp(end_position, t)
-	if t == 1.0:
+func _physics_process(delta: float) -> void:
+	var last_position: Vector2 = self.position
+	velocity_component.move_collide(self, delta)
+	travelled = min(max_range, travelled + last_position.distance_to(self.position))
+	
+	if travelled == max_range:
 		queue_free()
-	
-func _on_body_entered(body: Node2D) -> void:
-	if body != shooter:
+		
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if attacker != area.get_parent():
 		hits_remaining -= 1
 		if impact_scene:
 			var impact_effect = impact_scene.instantiate()

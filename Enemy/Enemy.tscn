@@ -57,9 +57,9 @@ animations = [{
 radius = 47.87
 height = 124.45
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_88mqo"]
-radius = 50.45
-height = 130.44
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a3fhh"]
+radius = 49.38
+height = 128.29
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_2q3mj")
@@ -91,15 +91,13 @@ script = ExtResource("11_c0033")
 [node name="EnemyDash" type="Node" parent="StateMachine"]
 script = ExtResource("12_p8yis")
 
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("14_7mhvc")]
+rotation = 1.5708
+health_component = NodePath("../Health")
+hurtbox_shape = SubResource("CapsuleShape2D_a3fhh")
+
 [node name="Health" parent="." instance=ExtResource("13_v1yyc")]
 max_health = 50.0
-
-[node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("14_7mhvc")]
-health_component = NodePath("../Health")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
-rotation = -1.5708
-shape = SubResource("CapsuleShape2D_88mqo")
 
 [node name="Pathfinding" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("15_hxspx")]
 velocity_component = NodePath("../Velocity")
