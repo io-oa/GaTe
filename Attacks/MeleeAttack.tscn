@@ -6,3 +6,4 @@
 script = ExtResource("1_l014q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+debug_color = Color(0.831373, 0.32549, 0.564706, 0.501961)

@@ -3,15 +3,15 @@ class_name Enemy extends CharacterBody2D
 const MOTION_SPEED: float = 400 # Pixels/second.
 
 @onready var player_node: Node2D = get_node("/root/Main/Player")
-@onready var health = $Health
+@onready var health_component = $Health
+@onready var velocity_component = $Velocity
+@onready var pathfinding_component = $Pathfinding
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	health.init_health()
+	health_component.init_health()
 	var enemy_types = $AnimatedSprite2D.sprite_frames.get_animation_names()
 	$AnimatedSprite2D.play(enemy_types[randi() % enemy_types.size()])
-
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float):

@@ -5,4 +5,7 @@
 [node name="Hurtbox" type="Area2D"]
 script = ExtResource("1_bu67f")
 
+[node name="HurtboxShape" type="CollisionShape2D" parent="."]
+debug_color = Color(0.595497, 0.538629, 0.246887, 0.42)
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

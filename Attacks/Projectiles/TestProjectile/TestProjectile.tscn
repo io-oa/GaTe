@@ -1,0 +1,86 @@
+[gd_scene load_steps=14 format=3 uid="uid://duhegav1hscke"]
+
+[ext_resource type="Script" path="res://Attacks/Scripts/Projectile.gd" id="1_iastt"]
+[ext_resource type="PackedScene" uid="uid://dxilrpy122drq" path="res://Attacks/Projectiles/TestProjectile/TestProjectileImpact.tscn" id="2_ah4fp"]
+[ext_resource type="Texture2D" uid="uid://carv27sjbo7br" path="res://Attacks/Projectiles/Assets/super-pixel-projectiles-pack-2-pixel-art-animated-projectiles/Super Pixel Projectiles Pack 2/spritesheet/pj2_shuriken_large_gray/spritesheet.png" id="2_uo0wc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5jd2y"]
+radius = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwowj"]
+atlas = ExtResource("2_uo0wc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llg8r"]
+atlas = ExtResource("2_uo0wc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kex7w"]
+atlas = ExtResource("2_uo0wc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tj3a"]
+atlas = ExtResource("2_uo0wc")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5b7a"]
+atlas = ExtResource("2_uo0wc")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mg23t"]
+atlas = ExtResource("2_uo0wc")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlmg0"]
+atlas = ExtResource("2_uo0wc")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8k71k"]
+atlas = ExtResource("2_uo0wc")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pu2pr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwowj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llg8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kex7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tj3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5b7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mg23t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlmg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8k71k")
+}],
+"loop": true,
+"name": &"travelling",
+"speed": 15.0
+}]
+
+[node name="TestProjectile" type="Area2D"]
+script = ExtResource("1_iastt")
+time = 10.0
+impact_scene = ExtResource("2_ah4fp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5jd2y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pu2pr")
+animation = &"travelling"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

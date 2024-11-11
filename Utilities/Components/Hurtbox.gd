@@ -1,9 +1,11 @@
+@tool
 class_name Hurtbox extends Area2D
 
 @export var health_component: Health 
+@export var hurtbox_shape: Shape2D
 
 func _ready() -> void:
-	pass 
+	$HurtboxShape.shape = hurtbox_shape
 
 func _process(_delta: float) -> void:
 	pass

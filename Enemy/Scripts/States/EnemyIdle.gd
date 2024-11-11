@@ -3,13 +3,14 @@ extends EnemyState
 
 # Called when the node enters the scene tree for the first time.
 func enter():
-	enemy.velocity = Vector2()
+	enemy.velocity_component.stop()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func process_state(_delta: float):
 	if true:
-		transitioned.emit(self, "PlayerMove")
+		pass
+		#transitioned.emit(self, "PlayerMove")
 	elif Input.is_action_pressed("player_dash") and enemy.abilities["dash"]["cooldown_left"] == 0:
 		pass
 		#transitioned.emit(self, "PlayerDash")

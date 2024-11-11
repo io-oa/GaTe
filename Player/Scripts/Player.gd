@@ -10,7 +10,6 @@ var last_direction = Vector2(1, 0)
 @onready var weapon: Weapon = $Held/Weapon.get_child(0)
 @onready var weapon_anim_player = $Held/Weapon/WeapAnimPlayer
 @onready var attack = $MeleeAttack
-@onready var projectile_container = $ProjectileContainer
 
 var abilities = {
 	"dash": {
@@ -26,6 +25,7 @@ func _ready():
 	weapon.monitorable = false
 	GameGlobals.SCREEN_SIZE = get_viewport_rect().size
 	GameGlobals.PROJECTILES = get_node(^"/root/Main/Projectiles")
+	GameGlobals.EFFECTS = get_node(^"/root/Main/Effects")
 	$Health.init_health()
 	
 func _physics_process(_delta):
@@ -35,22 +35,26 @@ func _process(delta: float):
 	if $Health.dead:
 		$Info/Test.text = "XD"
 		
-	var direction: Vector2 = (self.position - get_global_mouse_position()).normalized()
-	var angle: float = rad_to_deg(atan2(direction.y, direction.x)) - 90
-	attack.rotation_degrees = angle
+	var mouse_direction: Vector2 = (get_global_mouse_position() - self.position).normalized()
+	attack.global_rotation = mouse_direction.angle()
 	
 	if Input.is_action_pressed("attack"):
-		attack.fire()		
-		#weapon.monitorable = true
-		#character_model.rotation_degrees.y = -angle
-		#weapon_anim_player.play("swordAttack")
+		#var angle = rad_to_deg(atan2(mouse_direction.y, mouse_direction.x)) - 90.0
+		#self.character_model.rotation_degrees.y = -angle
+		attack.fire(self)	
 		
 	for ability in abilities:
 		abilities[ability]["cooldown_left"] = max(abilities[ability]["cooldown_left"] - delta, 0.0)
 		
+	#print(self.global_rotation_degrees)
+	#self.character_model.rotation_degrees.y = self.global_rotation_degrees
+	
+	#var angle = rad_to_deg(atan2(mouse_direction.y, mouse_direction.x))
+	#self.character_model.rotation_degrees.y = -angle
+	
 func _on_weapon_hit(enemy: Enemy) -> void:
 	enemy.take_damage()
-
+	
 func _on_weap_anim_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "swordAttack":
 		weapon.monitorable = false

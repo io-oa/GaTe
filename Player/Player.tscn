@@ -1,4 +1,4 @@
-[gd_scene load_steps=283 format=3 uid="uid://bqpkxht3mx8l8"]
+[gd_scene load_steps=282 format=3 uid="uid://bqpkxht3mx8l8"]
 
 [ext_resource type="Texture2D" uid="uid://djajxdngayssf" path="res://Player/Assets/goblin.png" id="1"]
 [ext_resource type="Script" path="res://Player/Scripts/Player.gd" id="2"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c1hqnes8bhodl" path="res://Attacks/MeleeAttack.tscn" id="3_yxy5q"]
 [ext_resource type="PackedScene" uid="uid://dhve04b56rgnu" path="res://Utilities/Components/Health.tscn" id="4_3g4iy"]
 [ext_resource type="Script" path="res://Player/Scripts/States/PlayerState.gd" id="4_cedwf"]
-[ext_resource type="PackedScene" uid="uid://duhegav1hscke" path="res://Attacks/Projectiles/TestProjectile.tscn" id="4_wmmu1"]
+[ext_resource type="PackedScene" uid="uid://duhegav1hscke" path="res://Attacks/Projectiles/TestProjectile/TestProjectile.tscn" id="4_dq28x"]
 [ext_resource type="Script" path="res://Player/Scripts/States/PlayerDash.gd" id="5_24ngb"]
 [ext_resource type="Script" path="res://Player/Scripts/States/PlayerIdle.gd" id="6_ukwmf"]
 [ext_resource type="Script" path="res://Player/Scripts/States/PlayerMove.gd" id="7_xkk1o"]
@@ -1904,10 +1904,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7amb"]
-size = Vector2(26, 322)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_w3otc"]
-radius = 86.4
+size = Vector2(397, 16)
 
 [sub_resource type="OccluderPolygon2D" id="661"]
 polygon = PackedVector2Array(16.25, 18.75, 18.75, 36.25, 15, 38.75, 6.25, 42.5, -5, 42.5, -13.75, 41.25, -18.75, 37.5, -15, 20)
@@ -1950,21 +1947,16 @@ animation = &"45back_left_idle"
 
 [node name="MeleeAttack" parent="." instance=ExtResource("3_yxy5q")]
 attack_timer = 0.5
-projectile_scene = ExtResource("4_wmmu1")
+projectile_scenes = Array[PackedScene]([ExtResource("4_dq28x")])
 
 [node name="CollisionShape2D" parent="MeleeAttack" index="0"]
-position = Vector2(0, -151)
+position = Vector2(185.5, 0)
 shape = SubResource("RectangleShape2D_g7amb")
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_5pbo1")]
 priority = 1
 health_component = NodePath("../Health")
 metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-shape = SubResource("CircleShape2D_w3otc")
-one_way_collision_margin = 0.0
-debug_color = Color(0.494118, 0.529412, 0.67451, 1)
 
 [node name="Health" parent="." instance=ExtResource("4_3g4iy")]
 
@@ -2044,7 +2036,6 @@ offset_left = -256.0
 offset_top = -200.0
 offset_right = 256.0
 offset_bottom = 312.0
-metadata/_edit_lock_ = true
 
 [node name="SV" type="SubViewport" parent="View/SVContainer"]
 transparent_bg = true
@@ -2075,5 +2066,4 @@ bones/10/scale = Vector3(1, 1, 1)
 [connection signal="animation_finished" from="Held/Weapon/WeapAnimPlayer" to="." method="_on_weap_anim_player_animation_finished"]
 
 [editable path="MeleeAttack"]
-[editable path="Hurtbox"]
 [editable path="View/SVContainer/SV/Duck"]

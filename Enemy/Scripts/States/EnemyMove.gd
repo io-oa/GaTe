@@ -1,14 +1,9 @@
 extends EnemyState
 
 func physics_process_state(_delta: float):
-	var motion = Vector2()
-	var direction = (enemy.player_node.global_position - enemy.position).normalized()
-	motion = direction * enemy.MOTION_SPEED
-	
-	enemy.rotation_degrees = rad_to_deg(direction.angle())
-	
-	enemy.set_velocity(motion)
-	enemy.move_and_slide()
-	enemy.position = enemy.position.clamp(Vector2.ZERO, GameGlobals.SCREEN_SIZE)
-
-	var dir = enemy.velocity
+	var target: Vector2 = enemy.player_node.global_position
+	enemy.rotation = target.normalized().angle()
+	enemy.pathfinding_component.set_target(target)
+	var direction: Vector2 = enemy.pathfinding_component.follow_path()
+	enemy.velocity_component.move(enemy)
+	enemy.rotation = direction.angle()

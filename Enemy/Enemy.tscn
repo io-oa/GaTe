@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://chvni70so1s7u"]
+[gd_scene load_steps=20 format=3 uid="uid://chvni70so1s7u"]
 
 [ext_resource type="Script" path="res://Enemy/Scripts/Enemy.gd" id="1_2q3mj"]
 [ext_resource type="Texture2D" uid="uid://by3e38tfku5p4" path="res://Enemy/Assets/enemyFlyingAlt_1.png" id="1_pmc1o"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://Enemy/Scripts/States/EnemyDash.gd" id="12_p8yis"]
 [ext_resource type="PackedScene" uid="uid://dhve04b56rgnu" path="res://Utilities/Components/Health.tscn" id="13_v1yyc"]
 [ext_resource type="PackedScene" uid="uid://b4821q1nhproh" path="res://Utilities/Components/Hurtbox.tscn" id="14_7mhvc"]
+[ext_resource type="PackedScene" uid="uid://ba1urcsrxx757" path="res://Utilities/Components/Pathfinding.tscn" id="15_hxspx"]
+[ext_resource type="PackedScene" uid="uid://dn7pr30nu7c1q" path="res://Utilities/Components/Velocity.tscn" id="16_nmeyt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_loiu4"]
 animations = [{
@@ -95,9 +97,14 @@ max_health = 50.0
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("14_7mhvc")]
 health_component = NodePath("../Health")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_88mqo")
+
+[node name="Pathfinding" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("15_hxspx")]
+velocity_component = NodePath("../Velocity")
+
+[node name="Velocity" parent="." instance=ExtResource("16_nmeyt")]
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="died" from="Health" to="." method="_on_death"]
