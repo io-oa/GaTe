@@ -11,7 +11,7 @@ func enter():
 func physics_process_state(delta: float) -> void:
 	if dash_time_left > 0:
 		player.position += dash_speed * min(delta, dash_time_left) # Refactor to use moveandslide ig
-		player.position = player.position.clamp(Vector2.ZERO, player.screen_size)
+		player.position = player.position.clamp(Vector2.ZERO, GameGlobals.SCREEN_SIZE)
 		dash_time_left -= delta
 	else:
 		transitioned.emit(self, "PlayerIdle")

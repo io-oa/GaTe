@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy8xrry7j6r42"]
+
+[ext_resource type="Script" path="res://Attacks/Scripts/ProjectileImpact.gd" id="1_0lvmg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5afaf"]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"impact",
+"speed": 5.0
+}]
+
+[node name="ProjectileImpact" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_5afaf")
+animation = &"impact"
+script = ExtResource("1_0lvmg")

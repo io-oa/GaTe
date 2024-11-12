@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://5lejyv3xu5x3"]
+
+[ext_resource type="Script" path="res://Main/TestPlayerHUD.gd" id="1_03qqp"]
+[ext_resource type="Texture2D" uid="uid://bwlnfswuxlfsi" path="res://Main/Assets/hp_and_rp_frame_empty.png" id="1_5wgkb"]
+[ext_resource type="Texture2D" uid="uid://yll7j1xw284s" path="res://Main/Assets/fill_red.png" id="2_uqf77"]
+
+[node name="TestPlayerHUD" type="MarginContainer"]
+z_index = 2
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 137.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_03qqp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Bars" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HBoxContainer/Bars"]
+layout_mode = 2
+value = 100.0
+texture_under = ExtResource("1_5wgkb")
+texture_progress = ExtResource("2_uqf77")
+texture_progress_offset = Vector2(6, 5)
