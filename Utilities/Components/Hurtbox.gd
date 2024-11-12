@@ -8,10 +8,10 @@ func _ready() -> void:
 	$HurtboxShape.shape = hurtbox_shape
 
 func _process(_delta: float) -> void:
-	$HurtboxShape.shape = hurtbox_shape
+	pass
 
 func _on_area_entered(area: Area2D) -> void:
-	if (area is MeleeAttack) and (self.get_parent() != area.attacker):
+	if (area is Attack) and (self.get_parent() != area.attacker):
 		health_component.damage(area.damage)
 
 func _on_body_entered(body: CharacterBody2D) -> void:

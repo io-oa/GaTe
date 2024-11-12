@@ -24,5 +24,8 @@ func init_health() -> void:
 	self.current_health = self.max_health
 
 func damage(dmg: float) -> void:
-	self.current_health = current_health - dmg
-	#print(self.get_parent().name, "Took %f dmg." % dmg)
+	if not self.dead:
+		self.current_health = current_health - dmg
+	
+func get_health_percentage() -> float:
+	return self.current_health / self.max_health * 100.0

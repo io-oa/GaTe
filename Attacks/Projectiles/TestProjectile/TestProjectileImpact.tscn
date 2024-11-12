@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://dxilrpy122drq"]
 
 [ext_resource type="Script" path="res://Attacks/Scripts/ProjectileImpact.gd" id="1_0rp8m"]
-[ext_resource type="Texture2D" uid="uid://0ei63nuo3biw" path="res://addons/super-pixel-effects-pack-3-pixel-art-effect-animations/Super Pixel Effects Pack 3/spritesheet/fx3_impact_hit_large_blue/spritesheet.png" id="1_t17oe"]
+[ext_resource type="Texture2D" uid="uid://0ei63nuo3biw" path="res://Attacks/Projectiles/Assets/fx3_impact_hit_large_blue/spritesheet.png" id="1_t17oe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_whsql"]
 atlas = ExtResource("1_t17oe")

@@ -1,4 +1,4 @@
-class_name MeleeAttack extends Area2D
+class_name Attack extends Area2D
 
 @export var damage: float = 10.0
 @export var attack_timer: float = 0.1

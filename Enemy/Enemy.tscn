@@ -1,9 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://chvni70so1s7u"]
+[gd_scene load_steps=24 format=3 uid="uid://chvni70so1s7u"]
 
 [ext_resource type="Script" path="res://Enemy/Scripts/Enemy.gd" id="1_2q3mj"]
 [ext_resource type="Texture2D" uid="uid://by3e38tfku5p4" path="res://Enemy/Assets/enemyFlyingAlt_1.png" id="1_pmc1o"]
+[ext_resource type="Texture2D" uid="uid://bwlnfswuxlfsi" path="res://Main/Assets/hp_and_rp_frame_empty.png" id="2_60so3"]
 [ext_resource type="Texture2D" uid="uid://e8hrltr74eum" path="res://Enemy/Assets/enemyFlyingAlt_2.png" id="2_mae1b"]
 [ext_resource type="Texture2D" uid="uid://dorjnwkom02pc" path="res://Enemy/Assets/enemySwimming_1.png" id="3_7qhyj"]
+[ext_resource type="Texture2D" uid="uid://yll7j1xw284s" path="res://Main/Assets/fill_red.png" id="3_72jb7"]
 [ext_resource type="Texture2D" uid="uid://3xvxurwfrf7d" path="res://Enemy/Assets/enemySwimming_2.png" id="4_6apnx"]
 [ext_resource type="Texture2D" uid="uid://wt5i0mjvtcan" path="res://Enemy/Assets/enemyWalking_1.png" id="5_alh3t"]
 [ext_resource type="Texture2D" uid="uid://bdudgjacn3r5x" path="res://Enemy/Assets/enemyWalking_2.png" id="6_8qnm6"]
@@ -14,8 +16,10 @@
 [ext_resource type="Script" path="res://Enemy/Scripts/States/EnemyDash.gd" id="12_p8yis"]
 [ext_resource type="PackedScene" uid="uid://dhve04b56rgnu" path="res://Utilities/Components/Health.tscn" id="13_v1yyc"]
 [ext_resource type="PackedScene" uid="uid://b4821q1nhproh" path="res://Utilities/Components/Hurtbox.tscn" id="14_7mhvc"]
+[ext_resource type="PackedScene" uid="uid://i2til2fybjly" path="res://Attacks/Attack.tscn" id="15_383nn"]
 [ext_resource type="PackedScene" uid="uid://ba1urcsrxx757" path="res://Utilities/Components/Pathfinding.tscn" id="15_hxspx"]
 [ext_resource type="PackedScene" uid="uid://dn7pr30nu7c1q" path="res://Utilities/Components/Velocity.tscn" id="16_nmeyt"]
+[ext_resource type="PackedScene" uid="uid://duhegav1hscke" path="res://Attacks/Projectiles/TestProjectile/TestProjectile.tscn" id="16_pvi33"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_loiu4"]
 animations = [{
@@ -63,7 +67,21 @@ height = 128.29
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_2q3mj")
-metadata/_edit_group_ = true
+
+[node name="HealthBar" type="Node2D" parent="."]
+scale = Vector2(0.533056, 0.755217)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HealthBar"]
+z_index = 1
+offset_left = -75.0391
+offset_top = 74.1509
+offset_right = 98.9609
+offset_bottom = 101.151
+scale = Vector2(0.866156, 0.368918)
+value = 100.0
+texture_under = ExtResource("2_60so3")
+texture_progress = ExtResource("3_72jb7")
+texture_progress_offset = Vector2(6, 5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_loiu4")
@@ -90,6 +108,11 @@ script = ExtResource("11_c0033")
 
 [node name="EnemyDash" type="Node" parent="StateMachine"]
 script = ExtResource("12_p8yis")
+
+[node name="BasicAttack" parent="." instance=ExtResource("15_383nn")]
+damage = 5.0
+attack_timer = 0.5
+projectile_scenes = Array[PackedScene]([ExtResource("16_pvi33")])
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("14_7mhvc")]
 rotation = 1.5708
