@@ -16,7 +16,7 @@ func on_settings_save(data: Dictionary) -> void:
 
 func load_settings_data() -> void:
 	if not FileAccess.file_exists(SETTINGS_SAVE_PATH):
-		print("Nie ma pliku config")
+		print("Config file doesn't exist!")
 		return
 	
 	var save_settings_data_file = FileAccess.open(SETTINGS_SAVE_PATH, FileAccess.READ)
@@ -30,3 +30,4 @@ func load_settings_data() -> void:
 		loaded_data = json.get_data()
 	
 	SettingsSignalBus.emit_load_settings_data(loaded_data)
+	loaded_data = {}
