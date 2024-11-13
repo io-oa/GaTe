@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="PlayerKeybindResource" load_steps=7 format=3 uid="uid://cnsnu4858otbw"]
+
+[ext_resource type="Script" path="res://Resources/Settings/PlayerKeybindResource.gd" id="1_qkhbe"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_8lmpl"]
+device = -1
+physical_keycode = 83
+unicode = 115
+
+[sub_resource type="InputEventKey" id="InputEventKey_83nk4"]
+device = -1
+physical_keycode = 68
+unicode = 100
+
+[sub_resource type="InputEventKey" id="InputEventKey_io08e"]
+device = -1
+physical_keycode = 65
+unicode = 97
+
+[sub_resource type="InputEventKey" id="InputEventKey_ongu4"]
+device = -1
+physical_keycode = 87
+unicode = 119
+
+[sub_resource type="InputEventKey" id="InputEventKey_qaqcf"]
+device = -1
+physical_keycode = 4194325
+
+[resource]
+script = ExtResource("1_qkhbe")
+DEFAULT_MOVE_LEFT_KEY = SubResource("InputEventKey_83nk4")
+DEFAULT_MOVE_RIGHT_KEY = SubResource("InputEventKey_io08e")
+DEFAULT_MOVE_UP_KEY = SubResource("InputEventKey_ongu4")
+DEFAULT_MOVE_DOWN_KEY = SubResource("InputEventKey_8lmpl")
+DEFAULT_PLAYER_DASH_KEY = SubResource("InputEventKey_qaqcf")
