@@ -142,6 +142,7 @@ func on_settings_data_loaded(data: Dictionary) -> void:
 	on_sfx_sound_set(loaded_data.sfx_volume)
 	on_keybinds_loaded(loaded_data.keybinds)
 
+
 func handle_signals() -> void:
 	SettingsSignalBus.on_window_mode_selected.connect(on_window_mode_selected)
 	SettingsSignalBus.on_resolution_selected.connect(on_resolution_selected)

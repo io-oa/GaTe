@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwlu8ys850hxx"]
+
+[ext_resource type="Script" path="res://Attacks/Scripts/Projectile.gd" id="1_iastt"]
+[ext_resource type="PackedScene" uid="uid://dn7pr30nu7c1q" path="res://Utilities/Components/Velocity.tscn" id="2_hhjt2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e4g6k"]
+
+[node name="Projectile" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_iastt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+[node name="TravelAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e4g6k")
+
+[node name="Velocity" parent="." instance=ExtResource("2_hhjt2")]

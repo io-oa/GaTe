@@ -11,6 +11,7 @@ func _ready() -> void:
 	set_process_unhandled_key_input(false)
 	set_action_name()
 	set_text_for_key()
+
 	load_keybinds()
 
 func load_keybinds() -> void:
@@ -33,6 +34,7 @@ func set_text_for_key() -> void:
 	var action_events = InputMap.action_get_events(action_name)
 	if action_events.size() > 0:
 		var action_event = action_events[0]
+
 		button.text = OS.get_keycode_string(action_event.physical_keycode)
 	else:
 		button.text = "Unassigned"
@@ -74,3 +76,4 @@ func rebind_action_key(event: InputEventKey) -> void:
 	SettingsDataContainer.set_keybind(action_name, event)
 	set_process_unhandled_key_input(false)
 	set_text_for_key()
+
