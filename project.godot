@@ -15,13 +15,16 @@ warnings/check_invalid_track_paths=false
 [application]
 
 config/name="GateTesting"
-run/main_scene="res://Main/Main.tscn"
+run/main_scene="res://GUI/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameGlobals="*res://Global/Globals.gd"
+SettingsDataContainer="*res://Global/SettingsDataContainer.gd"
+SettingsSignalBus="*res://Global/SettingsSignalBus.gd"
+SaveManager="*res://Global/SaveManager.gd"
 
 [input]
 
