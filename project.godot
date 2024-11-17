@@ -15,7 +15,7 @@ warnings/check_invalid_track_paths=false
 [application]
 
 config/name="GateTesting"
-run/main_scene="res://GUI/main_menu.tscn"
+run/main_scene="res://Main/Main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -25,6 +25,17 @@ GameGlobals="*res://Global/Globals.gd"
 SettingsDataContainer="*res://Global/SettingsDataContainer.gd"
 SettingsSignalBus="*res://Global/SettingsSignalBus.gd"
 SaveManager="*res://Global/SaveManager.gd"
+
+[display]
+
+window/size/viewport_width=2400
+window/size/viewport_height=1200
+window/stretch/mode="viewport"
+window/main_scene="res://Main/Main.tscn"
+
+[global_group]
+
+Enemies=""
 
 [input]
 

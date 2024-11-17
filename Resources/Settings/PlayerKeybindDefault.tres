@@ -9,13 +9,13 @@ unicode = 115
 
 [sub_resource type="InputEventKey" id="InputEventKey_83nk4"]
 device = -1
-physical_keycode = 68
-unicode = 100
+physical_keycode = 65
+unicode = 97
 
 [sub_resource type="InputEventKey" id="InputEventKey_io08e"]
 device = -1
-physical_keycode = 65
-unicode = 97
+physical_keycode = 68
+unicode = 100
 
 [sub_resource type="InputEventKey" id="InputEventKey_ongu4"]
 device = -1

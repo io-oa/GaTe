@@ -19,10 +19,10 @@ func load_keybinds() -> void:
 
 func set_action_name() -> void:
 	match action_name:
+		"move_right":
+			label.text = "Move reft"
 		"move_left":
 			label.text = "Move left"
-		"move_right":
-			label.text = "Move right"
 		"move_up":
 			label.text = "Move up"
 		"move_down":
@@ -76,4 +76,3 @@ func rebind_action_key(event: InputEventKey) -> void:
 	SettingsDataContainer.set_keybind(action_name, event)
 	set_process_unhandled_key_input(false)
 	set_text_for_key()
-

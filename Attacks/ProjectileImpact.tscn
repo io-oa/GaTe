@@ -11,6 +11,7 @@ animations = [{
 }]
 
 [node name="ProjectileImpact" type="AnimatedSprite2D"]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_5afaf")
 animation = &"impact"
 script = ExtResource("1_0lvmg")

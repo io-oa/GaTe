@@ -247,10 +247,13 @@ shape = SubResource("CircleShape2D_6vhwn")
 debug_color = Color(0.744847, 0.185992, 0.198257, 0.42)
 
 [node name="TravelAnimation" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(-2.86102e-06, -1.90735e-06)
+scale = Vector2(0.579375, 0.579375)
 sprite_frames = SubResource("SpriteFrames_pu2pr")
 animation = &"travelling"
 
 [node name="Velocity" parent="." instance=ExtResource("4_a0l3o")]
-max_speed = 400.0
+max_speed = 2000.0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
