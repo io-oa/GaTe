@@ -12,5 +12,6 @@ func _ready() -> void:
 func _on_health_changed(previous_health: float, current_health: float, max_health: float) -> void:
 	hp_bar.value = player.health_component.get_health_percentage()
 
-func _on_player_level_up():
+func _on_player_level_up(level: int):
+	get_tree().paused = true
 	upgrade_choices.visible = true

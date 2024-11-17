@@ -136,10 +136,10 @@ script = ExtResource("1_d0l1m")
 health_component = NodePath("../Health")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -48)
-scale = Vector2(1.46208, 1.46208)
+scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_loiu4")
 animation = &"walk_right"
+offset = Vector2(0, -30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
