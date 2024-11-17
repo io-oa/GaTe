@@ -1,6 +1,6 @@
 extends Node
 
-@export var enemy_scene: PackedScene
+@export var enemy_scenes: Array[PackedScene]
 var score
 
 func _ready():
@@ -23,9 +23,10 @@ func _on_start_timer_timeout():
 
 func _on_mob_timer_timeout():
 	if (get_tree().get_nodes_in_group("Enemies").size() < 1):
-		var enemy = enemy_scene.instantiate()
-		var enemy_spawn_location = $MobPath/MobSpawnLocation
-		enemy_spawn_location.progress_ratio = randf()
-		enemy.position = enemy_spawn_location.position
-		add_child(enemy)
-		enemy.add_to_group("Enemies")
+		for enemy_scene in enemy_scenes:
+			var enemy = enemy_scene.instantiate()
+			var enemy_spawn_location = $MobPath/MobSpawnLocation
+			enemy_spawn_location.progress_ratio = randf()
+			enemy.position = enemy_spawn_location.position
+			add_child(enemy)
+			enemy.add_to_group("Enemies")

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Utilities/Components/Hurtbox.gd" id="1_bu67f"]
 
 [node name="Hurtbox" type="Area2D"]
-collision_mask = 9
+collision_mask = 11
 script = ExtResource("1_bu67f")
 
 [node name="HurtboxShape" type="CollisionShape2D" parent="."]

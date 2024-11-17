@@ -1,7 +1,7 @@
 class_name Attack extends Area2D
 
 @export var damage: float = 10.0
-@export var attack_timer: float = 0.1
+@export_range(0.001, 100) var attack_timer: float = 0.1
 @export var lock_position_on_fire: bool = true
 @export var projectile_scenes: Array[PackedScene]
 
@@ -14,6 +14,7 @@ class_name Attack extends Area2D
 var attacker: Node2D
 
 func _ready() -> void:
+	self.attacker = get_owner()
 	hitbox.set_deferred("disabled", true)
 	
 func fire(attacker: Node2D) -> void:
@@ -22,11 +23,10 @@ func fire(attacker: Node2D) -> void:
 		locked_rotation = self.global_rotation
 		if lock_position_on_fire:
 			locked_position = self.get_parent().global_position
-		self.attacker = attacker
 		for projectile_scene in projectile_scenes:
 			var new_projectile = projectile_scene.instantiate()
 			GameGlobals.PROJECTILES.add_child(new_projectile)
-			new_projectile.spawn(self.attacker, self.global_rotation)
+			new_projectile.spawn(self.global_position, self.global_rotation, self.attacker.ally_flag)
 		cooldown = attack_timer
 		hitbox.set_deferred("disabled", false)
 	

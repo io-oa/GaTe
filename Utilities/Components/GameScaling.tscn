@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkco3mn1qyxib"]
+
+[ext_resource type="Script" path="res://Utilities/Components/GameScaling.gd" id="1_bjg5g"]
+
+[node name="GameScaling" type="Node"]
+script = ExtResource("1_bjg5g")
