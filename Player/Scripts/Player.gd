@@ -1,6 +1,6 @@
 class_name Player extends CharacterBody2D
 
-signal level_up()
+signal level_up(level: int)
 
 const MOTION_SPEED: float = 400.0
 
@@ -14,6 +14,7 @@ var ally_flag: int = GameGlobals.ALLY_FLAGS.player
 var level:	int = 0
 var points_to_next_level = 50
 var current_level_points = 0
+var level_up_queue: Array[Callable]
 
 var abilities: Dictionary = {
 	"dash": {
@@ -36,6 +37,8 @@ func _physics_process(_delta):
 	pass
 
 func _process(delta: float):
+	if level_up_queue.size() > 0:
+		level_up_queue.pop_front().call()
 	if self.health_component.dead:
 		$Info/Test.text = "XD"
 		
@@ -62,8 +65,8 @@ func update_points(points: int):
 		if points >= points_needed:
 			points -= points_needed
 			self.level += 1
-			current_level_points = 0
-			level_up.emit()
+			self.current_level_points = 0
+			self.level_up_queue.append(level_up.emit.bind(self.level))
 		else:
 			self.current_level_points += points
 			points = 0
