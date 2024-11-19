@@ -26,11 +26,10 @@ func _ready():
 	state_machine.add_states([state_move, state_attack])
 	
 func _process(_delta: float):
+	attack.global_rotation = (player_node.global_position - self.global_position).normalized().angle()
 	state_machine.run()
 	time_lived += _delta
 	
-	attack.global_rotation = (player_node.global_position - self.global_position).angle()
-
 func _on_death() -> void:
 	GameGlobals.on_enemy_death.emit(self.scaling)
 	queue_free()
@@ -55,9 +54,9 @@ func state_move():
 		state_machine.set_current_state(state_attack)
 		
 func state_attack():
-	self.attack.fire(self)
 	if self.attack.cooldown > 0:
 		self.state_machine.set_current_state(state_move)
-	
+		return
+	self.attack.fire(self)
 
 	

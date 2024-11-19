@@ -1,0 +1,82 @@
+[gd_scene load_steps=13 format=3 uid="uid://d3u8caf0wjxve"]
+
+[ext_resource type="Script" path="res://Attacks/Scripts/Projectile.gd" id="1_gcue6"]
+[ext_resource type="PackedScene" uid="uid://dxilrpy122drq" path="res://Attacks/Projectiles/TestProjectile/TestProjectileImpact.tscn" id="2_0riov"]
+[ext_resource type="Texture2D" uid="uid://beqbj5f8jqpdy" path="res://Enemy/Enemies/elemental.png" id="3_0u0bt"]
+[ext_resource type="PackedScene" uid="uid://dn7pr30nu7c1q" path="res://Utilities/Components/Velocity.tscn" id="4_1sdhx"]
+[ext_resource type="AudioStream" uid="uid://chmemuqdgvf7l" path="res://Attacks/Projectiles/Assets/TECH WEAPON Gun Shot Zapper Short 14.ogg" id="5_86dej"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5jd2y"]
+radius = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6vhwn"]
+radius = 19.85
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_je3um"]
+atlas = ExtResource("3_0u0bt")
+region = Rect2(480, 512, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_st4mf"]
+atlas = ExtResource("3_0u0bt")
+region = Rect2(480, 640, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6ymw"]
+atlas = ExtResource("3_0u0bt")
+region = Rect2(480, 768, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xixr8"]
+atlas = ExtResource("3_0u0bt")
+region = Rect2(480, 896, 120, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pu2pr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_je3um")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_st4mf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6ymw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xixr8")
+}],
+"loop": true,
+"name": &"travelling",
+"speed": 15.0
+}]
+
+[node name="FireElementalProjectile" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_gcue6")
+max_hits = 2
+impact_scene = ExtResource("2_0riov")
+rotate_sprite = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5jd2y")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_6vhwn")
+debug_color = Color(0.744847, 0.185992, 0.198257, 0.42)
+
+[node name="TravelAnimation" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(-2.86102e-06, -1.90735e-06)
+scale = Vector2(0.579375, 0.579375)
+sprite_frames = SubResource("SpriteFrames_pu2pr")
+animation = &"travelling"
+
+[node name="Velocity" parent="." instance=ExtResource("4_1sdhx")]
+max_speed = 450.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_86dej")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

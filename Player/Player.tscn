@@ -1,18 +1,13 @@
-[gd_scene load_steps=297 format=4 uid="uid://bqpkxht3mx8l8"]
+[gd_scene load_steps=292 format=4 uid="uid://bqpkxht3mx8l8"]
 
 [ext_resource type="Texture2D" uid="uid://djajxdngayssf" path="res://Player/Assets/goblin.png" id="1"]
 [ext_resource type="Script" path="res://Player/Scripts/Player.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://c8tm2e1vtnds5" path="res://Player/Assets/machine_gun_23.png" id="2_5yjjy"]
 [ext_resource type="Script" path="res://Player/Scripts/Info.gd" id="3_1iccv"]
-[ext_resource type="Script" path="res://Player/Scripts/PlayerStateMachine.gd" id="3_5kkwb"]
 [ext_resource type="PackedScene" uid="uid://b4821q1nhproh" path="res://Utilities/Components/Hurtbox.tscn" id="3_5pbo1"]
 [ext_resource type="PackedScene" uid="uid://dhve04b56rgnu" path="res://Utilities/Components/Health.tscn" id="4_3g4iy"]
-[ext_resource type="Script" path="res://Player/Scripts/States/PlayerState.gd" id="4_cedwf"]
 [ext_resource type="PackedScene" uid="uid://i2til2fybjly" path="res://Attacks/Attack.tscn" id="5_8sati"]
-[ext_resource type="Script" path="res://Player/Scripts/States/PlayerDash.gd" id="5_24ngb"]
 [ext_resource type="PackedScene" uid="uid://duhegav1hscke" path="res://Attacks/Projectiles/TestProjectile/TestProjectile.tscn" id="6_a7vnv"]
-[ext_resource type="Script" path="res://Player/Scripts/States/PlayerIdle.gd" id="6_ukwmf"]
-[ext_resource type="Script" path="res://Player/Scripts/States/PlayerMove.gd" id="7_xkk1o"]
 [ext_resource type="Texture2D" uid="uid://bi2mw4px7ub6x" path="res://addons/cnrIILH8_400x400.jpg" id="14_31mnh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_131rb"]
@@ -2257,7 +2252,7 @@ sprite_frames = SubResource("260")
 animation = &"45back_left_idle"
 
 [node name="BasicAttack" parent="." instance=ExtResource("5_8sati")]
-attack_timer = 0.0
+attack_timer = 0.37
 projectile_scenes = Array[PackedScene]([ExtResource("6_a7vnv")])
 
 [node name="CollisionShape2D" parent="BasicAttack" index="0"]
@@ -2307,22 +2302,6 @@ offset_bottom = -81.0
 text = "!
 "
 metadata/_edit_use_anchors_ = true
-
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("3_5kkwb")
-initial_state = NodePath("PlayerIdle")
-
-[node name="PlayerState" type="Node" parent="StateMachine"]
-script = ExtResource("4_cedwf")
-
-[node name="PlayerIdle" type="Node" parent="StateMachine"]
-script = ExtResource("6_ukwmf")
-
-[node name="PlayerMove" type="Node" parent="StateMachine"]
-script = ExtResource("7_xkk1o")
-
-[node name="PlayerDash" type="Node" parent="StateMachine"]
-script = ExtResource("5_24ngb")
 
 [node name="View" type="Node2D" parent="."]
 

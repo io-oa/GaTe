@@ -1390,10 +1390,9 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_37c71"]
-vertices = PackedVector2Array(340.18, 208.492, -8.42969, 208.492, -8.42969, -9.85938, 340.18, -9.85938)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ojkrl"]
+vertices = PackedVector2Array(-5000, -5000, -5000, 5000, 5000, 5000, 5000, -5000)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-18.4306, -19.8629, -18.4306, 218.491, 350.181, 218.491, 350.181, -19.8629)])
 
 [node name="Main" type="Node"]
 script = ExtResource("1_xlgft")
@@ -1420,6 +1419,8 @@ gizmo_extents = 109.1
 curve = SubResource("Curve2D_isdsk")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(529.959, 0)
+progress = 529.959
 
 [node name="Player" parent="." instance=ExtResource("4_bghvw")]
 position = Vector2(576, 328)
@@ -1429,8 +1430,7 @@ position = Vector2(576, 328)
 [node name="Effects" type="Node" parent="."]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-scale = Vector2(3.47249, 3.22209)
-navigation_polygon = SubResource("NavigationPolygon_37c71")
+navigation_polygon = SubResource("NavigationPolygon_ojkrl")
 
 [node name="HUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_2ihst")]
 player = NodePath("../Player")
