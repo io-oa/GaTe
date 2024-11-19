@@ -5,11 +5,13 @@ class_name Projectile extends CharacterBody2D
 @export var max_hits: int = 1
 @export var spread: float = 0
 @export var impact_scene: PackedScene
+@export var rotate_sprite: bool = true
 
 @onready var hitbox: Area2D = $Area2D
 @onready var travel_animation: AnimatedSprite2D = $TravelAnimation
 @onready var hits_remaining: int = max_hits
 @onready var velocity_component: Velocity = $Velocity
+@onready var audio: AudioStreamPlayer =  $AudioStreamPlayer
 	
 var start_position: Vector2
 var end_position: Vector2
@@ -20,9 +22,12 @@ func spawn(position: Vector2, projectile_rotation: float, ally_flag: int) -> voi
 	self.attacker_ally_flag = ally_flag
 	self.start_position = position
 	self.global_rotation = projectile_rotation + randf_range(-spread, spread)
+	if not rotate_sprite:
+		self.travel_animation.global_rotation = 0
 	self.global_position = self.start_position
 	velocity_component.maximizeVelocity(Vector2(1, 0).rotated(self.global_rotation))
 	travel_animation.play("travelling")
+	audio.play()
 	
 func _physics_process(delta: float) -> void:
 	var last_position: Vector2 = self.position

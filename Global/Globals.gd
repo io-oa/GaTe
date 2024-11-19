@@ -3,6 +3,14 @@ extends Node
 var SCREEN_SIZE: Vector2
 var PROJECTILES: Node
 var EFFECTS: Node
+
+const MAP_VERTICES: PackedVector2Array = [
+		Vector2(-5000, -5000),	#	TOP LEFT
+		Vector2(-5000, 5000),	#	BOTTOM LEFT
+		Vector2(5000, 5000),	#	BOTTOM RIGHT
+		Vector2(5000, -5000)	#	TOP RIGHT
+]
+
 enum ALLY_FLAGS{
 	player = 1 << 0,
 	enemy = 1 << 1

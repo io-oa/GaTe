@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cgrtst55jiw68" path="res://Enemy/EnemyInfo.tscn" id="2_kmy7q"]
 [ext_resource type="Texture2D" uid="uid://beqbj5f8jqpdy" path="res://Enemy/Enemies/elemental.png" id="3_yh0w4"]
 [ext_resource type="PackedScene" uid="uid://i2til2fybjly" path="res://Attacks/Attack.tscn" id="4_if5p7"]
-[ext_resource type="PackedScene" uid="uid://duhegav1hscke" path="res://Attacks/Projectiles/TestProjectile/TestProjectile.tscn" id="5_mj11k"]
+[ext_resource type="PackedScene" uid="uid://d3u8caf0wjxve" path="res://Attacks/Projectiles/FireElementalProjectile/FireElementalProjectile.tscn" id="5_fx4hy"]
 [ext_resource type="PackedScene" uid="uid://b4821q1nhproh" path="res://Utilities/Components/Hurtbox.tscn" id="6_w4cpx"]
 [ext_resource type="PackedScene" uid="uid://dhve04b56rgnu" path="res://Utilities/Components/Health.tscn" id="7_mjhpo"]
 [ext_resource type="PackedScene" uid="uid://ba1urcsrxx757" path="res://Utilities/Components/Pathfinding.tscn" id="8_46uwl"]
@@ -147,7 +147,8 @@ shape = SubResource("CapsuleShape2D_ux088")
 
 [node name="BasicAttack" parent="." instance=ExtResource("4_if5p7")]
 damage = 5.0
-projectile_scenes = Array[PackedScene]([ExtResource("5_mj11k")])
+attack_timer = 0.1
+projectile_scenes = Array[PackedScene]([ExtResource("5_fx4hy")])
 
 [node name="CollisionShape2D" parent="BasicAttack" index="0"]
 position = Vector2(219, 0)

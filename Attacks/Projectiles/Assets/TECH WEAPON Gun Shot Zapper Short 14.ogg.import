@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://chmemuqdgvf7l"
+path="res://.godot/imported/TECH WEAPON Gun Shot Zapper Short 14.ogg-a2514d88a1330c4404e4af33bc2ac8c3.oggvorbisstr"
+
+[deps]
+
+source_file="res://Attacks/Projectiles/Assets/TECH WEAPON Gun Shot Zapper Short 14.ogg"
+dest_files=["res://.godot/imported/TECH WEAPON Gun Shot Zapper Short 14.ogg-a2514d88a1330c4404e4af33bc2ac8c3.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -15,7 +15,7 @@ func set_target(target: Vector2) -> void:
 func follow_path():
 	if self.navigation_agent.is_navigation_finished():
 		self.velocity_component.stop()
-		return 
+		return
 	
 	var direction = (navigation_agent.get_next_path_position() - self.global_position).normalized()
 	self.velocity_component.maximizeVelocity(direction)
@@ -25,7 +25,7 @@ func follow_path():
 func follow_path_sin(time: float):
 	if self.navigation_agent.is_navigation_finished():
 		self.velocity_component.stop()
-		return 
+		return
 
 	var direction = (navigation_agent.get_next_path_position() - self.global_position).normalized()
 	var perpendicular_dir = Vector2(-direction.y, direction.x)
