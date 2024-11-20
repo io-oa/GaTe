@@ -6,6 +6,7 @@
 
 [sub_resource type="SystemFont" id="SystemFont_qogr6"]
 font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
 
 [node name="Pause_Menu" type="Control"]
 process_mode = 3

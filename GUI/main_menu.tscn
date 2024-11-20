@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://rhtpubdlpi6l"]
+[gd_scene load_steps=8 format=3 uid="uid://rhtpubdlpi6l"]
 
 [ext_resource type="Texture2D" uid="uid://dbhcd6jbv6e5i" path="res://GUI/Assets/Main_Menu_BG.jpg" id="1_hs8ys"]
 [ext_resource type="Script" path="res://GUI/Scripts/main_menu.gd" id="1_trlu1"]
 [ext_resource type="FontFile" uid="uid://btrmhyw8c5y4p" path="res://GUI/Assets/DungeonFont.ttf" id="2_at1x2"]
 [ext_resource type="PackedScene" uid="uid://bvdbn5drgd0lr" path="res://GUI/settings_menu.tscn" id="4_dqxhn"]
 [ext_resource type="AudioStream" uid="uid://c3hbi6f2cnqj5" path="res://GUI/Assets/Main_Menu_Music.mp3" id="5_phntf"]
+[ext_resource type="PackedScene" uid="uid://cx5bok4sq6oan" path="res://GUI/leaderboard.tscn" id="5_tmmj3"]
 
 [sub_resource type="SystemFont" id="SystemFont_j575n"]
 font_names = PackedStringArray("Impact")
@@ -81,7 +82,7 @@ theme_override_font_sizes/font_size = 24
 text = "Start Game
 "
 
-[node name="Load_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Leaderboard_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_j575n")
@@ -112,6 +113,10 @@ theme_override_font_sizes/font_size = 24
 text = "Exit"
 
 [node name="Settings_Menu" parent="." instance=ExtResource("4_dqxhn")]
+visible = false
+layout_mode = 1
+
+[node name="Leaderboard" parent="." instance=ExtResource("5_tmmj3")]
 visible = false
 layout_mode = 1
 
