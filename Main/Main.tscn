@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://oxvwmxpk4tp7"]
+[gd_scene load_steps=10 format=4 uid="uid://oxvwmxpk4tp7"]
 
 [ext_resource type="Script" path="res://Main/Scripts/Main.gd" id="1_xlgft"]
 [ext_resource type="PackedScene" uid="uid://chvni70so1s7u" path="res://Enemy/Enemy.tscn" id="2_g421u"]
 [ext_resource type="Texture2D" uid="uid://bv4u7c4nasccu" path="res://Main/Assets/MapTiles.png" id="4_6tndu"]
 [ext_resource type="PackedScene" uid="uid://bqpkxht3mx8l8" path="res://Player/Player.tscn" id="4_bghvw"]
+[ext_resource type="PackedScene" uid="uid://i6atcg4t4kna" path="res://GUI/pause_menu.tscn" id="5_jxyjf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hwjj5"]
 texture = ExtResource("4_6tndu")
@@ -1427,6 +1428,10 @@ position = Vector2(576, 328)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 scale = Vector2(3.47249, 3.22209)
 navigation_polygon = SubResource("NavigationPolygon_37c71")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause_Menu" parent="CanvasLayer" instance=ExtResource("5_jxyjf")]
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

@@ -76,4 +76,3 @@ func rebind_action_key(event: InputEventKey) -> void:
 	SettingsDataContainer.set_keybind(action_name, event)
 	set_process_unhandled_key_input(false)
 	set_text_for_key()
-

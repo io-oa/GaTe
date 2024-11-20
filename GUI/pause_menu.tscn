@@ -1,33 +1,31 @@
-[gd_scene load_steps=7 format=3 uid="uid://rhtpubdlpi6l"]
+[gd_scene load_steps=5 format=3 uid="uid://i6atcg4t4kna"]
 
-[ext_resource type="Texture2D" uid="uid://dbhcd6jbv6e5i" path="res://GUI/Assets/Main_Menu_BG.jpg" id="1_hs8ys"]
-[ext_resource type="Script" path="res://GUI/Scripts/main_menu.gd" id="1_trlu1"]
-[ext_resource type="FontFile" uid="uid://btrmhyw8c5y4p" path="res://GUI/Assets/DungeonFont.ttf" id="2_at1x2"]
-[ext_resource type="PackedScene" uid="uid://bvdbn5drgd0lr" path="res://GUI/settings_menu.tscn" id="4_dqxhn"]
-[ext_resource type="AudioStream" uid="uid://c3hbi6f2cnqj5" path="res://GUI/Assets/Main_Menu_Music.mp3" id="5_phntf"]
+[ext_resource type="FontFile" uid="uid://btrmhyw8c5y4p" path="res://GUI/Assets/DungeonFont.ttf" id="1_d5ofy"]
+[ext_resource type="Script" path="res://GUI/Scripts/pause_menu.gd" id="1_ytvew"]
+[ext_resource type="PackedScene" uid="uid://bvdbn5drgd0lr" path="res://GUI/settings_menu.tscn" id="2_3o2qs"]
 
-[sub_resource type="SystemFont" id="SystemFont_j575n"]
+[sub_resource type="SystemFont" id="SystemFont_qogr6"]
 font_names = PackedStringArray("Impact")
-subpixel_positioning = 0
 
-[node name="Main_Menu" type="Control"]
+[node name="Pause_Menu" type="Control"]
+process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_trlu1")
+script = ExtResource("1_ytvew")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_hs8ys")
-expand_mode = 1
+color = Color(0.25098, 0.25098, 0.25098, 0.705882)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -55,9 +53,9 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 10
 theme_override_constants/shadow_offset_y = 10
 theme_override_constants/outline_size = 24
-theme_override_fonts/font = ExtResource("2_at1x2")
+theme_override_fonts/font = ExtResource("1_d5ofy")
 theme_override_font_sizes/font_size = 90
-text = "GaTe"
+text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -73,49 +71,29 @@ alignment = 1
 [node name="Seperator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Start_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Resume_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_j575n")
+theme_override_fonts/font = SubResource("SystemFont_qogr6")
 theme_override_font_sizes/font_size = 24
-text = "Start Game
+text = "Resume Game
 "
-
-[node name="Load_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 32)
-layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_j575n")
-theme_override_font_sizes/font_size = 24
-text = "Leaderboard"
 
 [node name="Settings_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_j575n")
+theme_override_fonts/font = SubResource("SystemFont_qogr6")
 theme_override_font_sizes/font_size = 24
 text = "Enter Settings
-"
-
-[node name="Credits_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 32)
-layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_j575n")
-theme_override_font_sizes/font_size = 24
-text = "Show Credits
 "
 
 [node name="Exit_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_j575n")
+theme_override_fonts/font = SubResource("SystemFont_qogr6")
 theme_override_font_sizes/font_size = 24
 text = "Exit"
 
-[node name="Settings_Menu" parent="." instance=ExtResource("4_dqxhn")]
+[node name="Settings_Menu" parent="." instance=ExtResource("2_3o2qs")]
 visible = false
 layout_mode = 1
-
-[node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_phntf")
-autoplay = true
-bus = &"Music"
