@@ -5,8 +5,8 @@ signal exp_change()
 
 const MOTION_SPEED: float = 400.0
 
-@onready var character_anim_player: AnimationPlayer = $View/SVContainer/SV/Duck/AnimationPlayer
-@onready var character_model: Node3D = $View/SVContainer/SV/Duck
+@onready var animations: AnimatedSprite2D = $Animations
+@onready var attack_indicator: Sprite2D = $AttackDirectionIndicator
 @onready var attack: Attack = $BasicAttack
 @onready var health_component: Health = $Health
 
@@ -55,12 +55,10 @@ func _process(delta: float):
 		
 	var mouse_direction: Vector2 = (get_global_mouse_position() - self.position).normalized()
 	attack.global_rotation = mouse_direction.angle()
-	$Gun.global_rotation = mouse_direction.angle() + PI / 8
-	$Gun.global_position = self.global_position
+	attack_indicator.rotation = mouse_direction.angle()
 	
 	if Input.is_action_pressed("attack"):
-		#var angle = rad_to_deg(atan2(mouse_direction.y, mouse_direction.x)) - 90.0
-		#self.character_model.rotation_degrees.y = -angle
+		GameGlobals.update_animation_4dir(animations, "attack", GameGlobals.normalize_angle_360(rad_to_deg(attack.global_rotation)))
 		attack.fire(self)	
 		
 	for ability in abilities:
@@ -121,7 +119,7 @@ func state_move():
 		state_machine.set_current_state(state_dash)
 		
 	if motion.length() > 0:
-		self.character_anim_player.play("walkcycle_1")
+		GameGlobals.update_animation_4dir(animations, "walk", GameGlobals.normalize_angle_360(rad_to_deg(motion.angle())))
 		self.last_direction = motion
 	else:
 		state_machine.set_current_state(state_idle)

@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://ba52freryk52u"]
+[gd_scene load_steps=11 format=3 uid="uid://ba52freryk52u"]
 
 [ext_resource type="Script" path="res://Main/HUD.gd" id="1_wvl6r"]
 [ext_resource type="Texture2D" uid="uid://bwlnfswuxlfsi" path="res://Main/Assets/hp_and_rp_frame_empty.png" id="2_4avyd"]
 [ext_resource type="Texture2D" uid="uid://yll7j1xw284s" path="res://Main/Assets/fill_red.png" id="3_g7j6a"]
 [ext_resource type="Texture2D" uid="uid://be733nm136637" path="res://Main/Assets/fill_purple.png" id="4_gyr8h"]
 [ext_resource type="Texture2D" uid="uid://c5dkvbixj8f6e" path="res://icon.svg" id="4_theae"]
-[ext_resource type="Texture2D" uid="uid://dvbcfy3cronkn" path="res://Main/Assets/levelup_badge_bottom_middle.png" id="5_kwr36"]
+[ext_resource type="Texture2D" uid="uid://bssfjrm2lc30w" path="res://Main/Assets/role_icon_frame_focus.png" id="5_f1jlc"]
 [ext_resource type="Script" path="res://Main/UpgradeButton.gd" id="5_y77ts"]
+[ext_resource type="AudioStream" uid="uid://63t1ko6vhlik" path="res://Main/Assets/SUCCESS PICKUP Collect Beep 02.wav" id="8_b84vb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2jrip"]
 
@@ -98,8 +99,9 @@ texture_progress = ExtResource("4_gyr8h")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -93.0
-offset_right = -20.0
+offset_left = -110.0
+offset_top = 10.0
+offset_right = -10.0
 offset_bottom = 110.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2jrip")
@@ -121,7 +123,7 @@ text = "40
 
 [node name="TextureRect" type="TextureRect" parent="LevelDisplayContainer"]
 layout_mode = 2
-texture = ExtResource("5_kwr36")
+texture = ExtResource("5_f1jlc")
 expand_mode = 1
 
 [node name="UpgradeChoices" type="Panel" parent="."]
@@ -150,6 +152,9 @@ offset_bottom = 354.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UpgradeChoices/HBoxContainer"]
+stream = ExtResource("8_b84vb")
 
 [node name="Button" type="Button" parent="UpgradeChoices/HBoxContainer"]
 layout_mode = 2

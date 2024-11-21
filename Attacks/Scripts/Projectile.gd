@@ -33,17 +33,16 @@ func _physics_process(delta: float) -> void:
 	var last_position: Vector2 = self.position
 	velocity_component.move_collide(self, delta)
 	travelled = min(max_range, travelled + last_position.distance_to(self.position))
-	
+			
 	if travelled == max_range:
 		queue_free()
 		
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if self.attacker_ally_flag == area.get_parent().ally_flag:
 		return
-	hits_remaining -= 1
+	if area is Hurtbox:
+		hits_remaining -= 1
 	if impact_scene:
 		var impact_effect = impact_scene.instantiate()
 		GameGlobals.EFFECTS.add_child(impact_effect)
 		impact_effect.position = self.position
-	if hits_remaining == 0:
-		queue_free()
