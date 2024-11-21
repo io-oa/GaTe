@@ -1,4 +1,3 @@
-@tool
 extends Node 
 
 const LEVEL_DISPLAY_TEXT = "[font_size=40][center]%s[/center][/font_size]"

@@ -33,23 +33,13 @@ func _process(_delta: float):
 func _on_death() -> void:
 	GameGlobals.on_enemy_death.emit(self.scaling)
 	queue_free()
-
-func update_animation(angle: float):
-	if angle > 315.0 or angle < 45.0:
-		animations.play("walk_right")
-	elif angle > 45.0 and angle < 135.0:
-		animations.play("walk_down")
-	elif angle > 135.0 and angle < 225.0:
-		animations.play("walk_left")
-	elif angle > 225.0 and angle < 315.0:
-		animations.play("walk_up")
 		
 func state_move():
 	self.pathfinding_component.set_target(self.player_node.global_position)
 	var direction = self.pathfinding_component.follow_path()
 	self.velocity_component.move(self)
 	if direction:
-		self.update_animation(GameGlobals.normalize_angle_360(rad_to_deg(direction.angle())))
+		GameGlobals.update_animation_4dir(animations, "walk", GameGlobals.normalize_angle_360(rad_to_deg(direction.angle())))
 	if self.position.distance_to(player_node.global_position) < self.attack_range:
 		state_machine.set_current_state(state_attack)
 		

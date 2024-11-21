@@ -146,8 +146,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ux088")
 
 [node name="BasicAttack" parent="." instance=ExtResource("4_23i3c")]
-damage = 5.0
-attack_timer = 0.1
+attack_timer = 0.5
 projectile_scenes = Array[PackedScene]([ExtResource("5_gs3qm")])
 
 [node name="CollisionShape2D" parent="BasicAttack" index="0"]
