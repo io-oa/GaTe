@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dujgmlkjdv2mb"]
+
+[ext_resource type="Script" path="res://Resources/HUD/HUDResource.gd" id="1_p0ik6"]
+
+[resource]
+script = ExtResource("1_p0ik6")

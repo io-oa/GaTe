@@ -1390,7 +1390,7 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_tc0qr"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_i5ot6"]
 vertices = PackedVector2Array(-5000, -5000, -5000, 5000, 5000, 5000, 5000, -5000)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 
@@ -1419,8 +1419,8 @@ gizmo_extents = 109.1
 curve = SubResource("Curve2D_isdsk")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
-position = Vector2(529.959, 0)
-progress = 529.959
+position = Vector2(838.349, 0)
+progress = 838.348
 
 [node name="Player" parent="." instance=ExtResource("4_bghvw")]
 position = Vector2(576, 328)
@@ -1430,7 +1430,7 @@ position = Vector2(576, 328)
 [node name="Effects" type="Node" parent="."]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_tc0qr")
+navigation_polygon = SubResource("NavigationPolygon_i5ot6")
 
 [node name="HUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_2ihst")]
 player = NodePath("../Player")

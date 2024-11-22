@@ -1,13 +1,4 @@
-class_name WaterElemental extends CharacterBody2D
-
-var walk_anim: Array[String] = [
-		"walk_right",
-		"walk_left",
-		"walk_down",
-		"walk_up"
-]
-
-@export var attack_range: float = 400.0 
+class_name WaterElemental extends Entity
 
 @onready var player_node: Node2D = get_node("/root/Main/Player")
 @onready var health_component: Health = $Health
@@ -17,11 +8,8 @@ var walk_anim: Array[String] = [
 @onready var animations: AnimatedSprite2D = $AnimatedSprite2D
 @onready var scaling: Node = $GameScaling
 
-var time_lived: float = 0.0
-var ally_flag: int = GameGlobals.ALLY_FLAGS.enemy
-var state_machine: StateMachine = StateMachine.new()
-
 func _ready():
+	ally_flag = GameGlobals.ALLY_FLAGS.enemy
 	health_component.init_health()
 	state_machine.add_states([state_move, state_attack])
 	
@@ -39,7 +27,7 @@ func state_move():
 	var direction = self.pathfinding_component.follow_path()
 	self.velocity_component.move(self)
 	if direction:
-		GameGlobals.update_animation_4dir(animations, "walk", GameGlobals.normalize_angle_360(rad_to_deg(direction.angle())))
+		GameGlobals.update_animation_4dir(animations, "walk", snapped(GameGlobals.normalize_angle_360(rad_to_deg(direction.angle())), 1))
 	if self.position.distance_to(player_node.global_position) < self.attack_range:
 		state_machine.set_current_state(state_attack)
 		
