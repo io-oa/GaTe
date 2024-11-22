@@ -338,10 +338,9 @@ animation = &"attack_left"
 offset = Vector2(0, -10)
 
 [node name="AttackDirectionIndicator" type="Sprite2D" parent="."]
-position = Vector2(25, 0)
 scale = Vector2(0.273585, 0.273585)
 texture = ExtResource("4_2pbpn")
-offset = Vector2(-3.65517, 0)
+offset = Vector2(87.7242, 0)
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0.129412, 0.0745098, 0.192157, 0.647059)

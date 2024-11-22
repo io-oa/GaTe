@@ -129,14 +129,16 @@ expand_mode = 1
 [node name="UpgradeChoices" type="Panel" parent="."]
 process_mode = 2
 visible = false
-offset_left = -20.0
-offset_right = 2380.0
+offset_right = 2400.0
 offset_bottom = 1200.0
 
 [node name="Label" type="Label" parent="UpgradeChoices"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UpgradeChoices"]
+stream = ExtResource("8_b84vb")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UpgradeChoices"]
 layout_mode = 1
@@ -145,40 +147,104 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -626.5
-offset_top = -354.0
-offset_right = 626.5
-offset_bottom = 354.0
+offset_left = -506.0
+offset_top = -286.0
+offset_right = 506.0
+offset_bottom = 286.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UpgradeChoices/HBoxContainer"]
-stream = ExtResource("8_b84vb")
-
 [node name="Button" type="Button" parent="UpgradeChoices/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "test"
 icon = ExtResource("4_theae")
 icon_alignment = 1
 vertical_icon_alignment = 0
 script = ExtResource("5_y77ts")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeChoices/HBoxContainer/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 158.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="UpgradeChoices/HBoxContainer/Button/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 1
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Desc" type="Label" parent="UpgradeChoices/HBoxContainer/Button/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_alignment = 1
+autowrap_mode = 3
+uppercase = true
 
 [node name="Button2" type="Button" parent="UpgradeChoices/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "TEST"
 icon = ExtResource("4_theae")
 icon_alignment = 1
 vertical_icon_alignment = 0
 script = ExtResource("5_y77ts")
 
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeChoices/HBoxContainer/Button2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 158.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="UpgradeChoices/HBoxContainer/Button2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Desc" type="Label" parent="UpgradeChoices/HBoxContainer/Button2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
 [node name="Button3" type="Button" parent="UpgradeChoices/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "test"
 icon = ExtResource("4_theae")
 icon_alignment = 1
 vertical_icon_alignment = 0
 script = ExtResource("5_y77ts")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeChoices/HBoxContainer/Button3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 158.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="UpgradeChoices/HBoxContainer/Button3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Desc" type="Label" parent="UpgradeChoices/HBoxContainer/Button3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_alignment = 1
+autowrap_mode = 3
+uppercase = true

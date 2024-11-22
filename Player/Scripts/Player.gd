@@ -1,4 +1,4 @@
-class_name Player extends CharacterBody2D
+class_name Player extends Entity
 
 signal level_up(level: int)
 signal exp_change()
@@ -11,9 +11,7 @@ const MOTION_SPEED: float = 400.0
 @onready var health_component: Health = $Health
 
 #Misc
-var state_machine: StateMachine = StateMachine.new()
 var last_direction = Vector2(1, 0)
-var ally_flag: int = GameGlobals.ALLY_FLAGS.player
 
 #Leveling
 var level: int = 0
@@ -35,6 +33,7 @@ var abilities: Dictionary = {
 }
 	
 func _ready():
+	ally_flag = GameGlobals.ALLY_FLAGS.player
 	self.add_to_group("Player")
 	GameGlobals.SCREEN_SIZE = get_viewport_rect().size
 	GameGlobals.PROJECTILES = get_node(^"/root/Main/Projectiles")
@@ -58,7 +57,7 @@ func _process(delta: float):
 	attack_indicator.rotation = mouse_direction.angle()
 	
 	if Input.is_action_pressed("attack"):
-		GameGlobals.update_animation_4dir(animations, "attack", GameGlobals.normalize_angle_360(rad_to_deg(attack.global_rotation)))
+		GameGlobals.update_animation_4dir(animations, "attack", snapped(GameGlobals.normalize_angle_360(rad_to_deg(attack.global_rotation)), 1))
 		attack.fire(self)	
 		
 	for ability in abilities:
@@ -119,7 +118,7 @@ func state_move():
 		state_machine.set_current_state(state_dash)
 		
 	if motion.length() > 0:
-		GameGlobals.update_animation_4dir(animations, "walk", GameGlobals.normalize_angle_360(rad_to_deg(motion.angle())))
+		GameGlobals.update_animation_4dir(animations, "walk", snapped(GameGlobals.normalize_angle_360(rad_to_deg(motion.angle())), 1))
 		self.last_direction = motion
 	else:
 		state_machine.set_current_state(state_idle)

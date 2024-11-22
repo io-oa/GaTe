@@ -46,3 +46,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		var impact_effect = impact_scene.instantiate()
 		GameGlobals.EFFECTS.add_child(impact_effect)
 		impact_effect.position = self.position
+		
+func modify_damage(scale: float, amount: float = damage):
+	self.damage = damage * scale

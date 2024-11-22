@@ -15,6 +15,7 @@ var attacker: Node2D
 
 func _ready() -> void:
 	self.attacker = get_owner()
+	damage = damage * self.attacker.stat_modifiers["damage"]
 	hitbox.set_deferred("disabled", true)
 	
 func fire(attacker: Node2D) -> void:
@@ -26,6 +27,7 @@ func fire(attacker: Node2D) -> void:
 		for projectile_scene in projectile_scenes:
 			var new_projectile = projectile_scene.instantiate()
 			GameGlobals.PROJECTILES.add_child(new_projectile)
+			new_projectile.modify_damage(self.attacker.stat_modifiers["damage"])
 			new_projectile.spawn(self.global_position, self.global_rotation, self.attacker.ally_flag)
 		cooldown = attack_timer
 		hitbox.set_deferred("disabled", false)
