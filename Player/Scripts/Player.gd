@@ -7,7 +7,8 @@ const MOTION_SPEED: float = 400.0
 
 @onready var animations: AnimatedSprite2D = $Animations
 @onready var attack_indicator: Sprite2D = $AttackDirectionIndicator
-@onready var attack: Attack = $BasicAttack
+@onready var basic_attack: Attack = $BasicAttack
+@onready var auto_projectiles: Attack = $AutomaticProjectiles
 @onready var health_component: Health = $Health
 
 #Misc
@@ -46,22 +47,27 @@ func _physics_process(_delta):
 	pass
 
 func _process(delta: float):
-	state_machine.run()
-	if level_up_queue.size() > 0:
-		level_up_queue.pop_front().call()
+	self.state_machine.run()
+	if self.level_up_queue.size() > 0:
+		self.level_up_queue.pop_front().call()
 	if self.health_component.dead:
 		$Info/Test.text = "XD"
 		
 	var mouse_direction: Vector2 = (get_global_mouse_position() - self.position).normalized()
-	attack.global_rotation = mouse_direction.angle()
-	attack_indicator.rotation = mouse_direction.angle()
+	self.basic_attack.global_rotation = mouse_direction.angle()
+	self.attack_indicator.rotation = mouse_direction.angle()
+	
+	#Attacks
+	if auto_projectiles.projectile_scenes.size() > 0:
+		self.auto_projectiles.fire(self)
 	
 	if Input.is_action_pressed("attack"):
-		GameGlobals.update_animation_4dir(animations, "attack", snapped(GameGlobals.normalize_angle_360(rad_to_deg(attack.global_rotation)), 1))
-		attack.fire(self)	
-		
-	for ability in abilities:
-		abilities[ability]["cooldown_left"] = max(abilities[ability]["cooldown_left"] - delta, 0.0)
+		GameGlobals.update_animation_4dir(self.animations, "attack", snapped(GameGlobals.normalize_angle_360(rad_to_deg(self.basic_attack.global_rotation)), 1))
+		self.basic_attack.fire(self)	
+	
+	#Abilities
+	for ability in self.abilities:
+		self.abilities[ability]["cooldown_left"] = max(self.abilities[ability]["cooldown_left"] - delta, 0.0)
 		
 func _on_enemy_killed(scaling: Node):
 	update_points(scaling.points_on_kill)
@@ -83,9 +89,9 @@ func update_points(points: float):
 func state_idle():
 	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right") \
 	or Input.is_action_pressed("move_up") or Input.is_action_pressed("move_down"):
-		state_machine.set_current_state(state_move)
+		self.state_machine.set_current_state(state_move)
 	elif Input.is_action_pressed("player_dash") and self.abilities["dash"]["cooldown_left"] == 0:
-		state_machine.set_current_state(state_dash)
+		self.state_machine.set_current_state(state_dash)
 	else:
 		pass
 	self.set_velocity(Vector2())
@@ -93,16 +99,16 @@ func state_idle():
 	self.position = self.position.clamp(GameGlobals.MAP_VERTICES[0], GameGlobals.MAP_VERTICES[2])
 		
 func state_dash():
-	if state_machine.entered:
+	if self.state_machine.entered:
 		self.abilities["dash"]["cooldown_left"] = self.abilities["dash"]["cooldown"]
-		dash_time_left = self.abilities["dash"]["duration"]
-		dash_speed = self.abilities["dash"]["distance"] / self.abilities["dash"]["duration"] * self.last_direction.normalized()
-	if dash_time_left > 0:
-		self.position += dash_speed * min(get_process_delta_time(), dash_time_left) # Refactor to use moveandslide ig
+		self.dash_time_left = self.abilities["dash"]["duration"]
+		self.dash_speed = self.abilities["dash"]["distance"] / self.abilities["dash"]["duration"] * self.last_direction.normalized()
+	if self.dash_time_left > 0:
+		self.position += self.dash_speed * min(get_process_delta_time(), self.dash_time_left) # Refactor to use moveandslide ig
 		self.position = self.position.clamp(GameGlobals.MAP_VERTICES[0], GameGlobals.MAP_VERTICES[2])
-		dash_time_left -= get_process_delta_time()
+		self.dash_time_left -= get_process_delta_time()
 	else:
-		state_machine.set_current_state(state_idle)
+		self.state_machine.set_current_state(state_idle)
 		
 func state_move():
 	var motion = Vector2(
@@ -115,10 +121,10 @@ func state_move():
 	self.position = self.position.clamp(GameGlobals.MAP_VERTICES[0], GameGlobals.MAP_VERTICES[2])
 
 	if Input.is_action_pressed("player_dash") and self.abilities["dash"]["cooldown_left"] == 0:
-		state_machine.set_current_state(state_dash)
+		self.state_machine.set_current_state(state_dash)
 		
 	if motion.length() > 0:
-		GameGlobals.update_animation_4dir(animations, "walk", snapped(GameGlobals.normalize_angle_360(rad_to_deg(motion.angle())), 1))
+		GameGlobals.update_animation_4dir(self.animations, "walk", snapped(GameGlobals.normalize_angle_360(rad_to_deg(motion.angle())), 1))
 		self.last_direction = motion
 	else:
-		state_machine.set_current_state(state_idle)
+		self.state_machine.set_current_state(state_idle)

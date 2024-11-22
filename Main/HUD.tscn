@@ -129,8 +129,8 @@ expand_mode = 1
 [node name="UpgradeChoices" type="Panel" parent="."]
 process_mode = 2
 visible = false
-offset_right = 2400.0
-offset_bottom = 1200.0
+offset_right = 2560.0
+offset_bottom = 1440.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UpgradeChoices"]
 stream = ExtResource("8_b84vb")

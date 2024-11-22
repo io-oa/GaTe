@@ -234,6 +234,7 @@ animations = [{
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_iastt")
+damage = 100.0
 max_hits = 2
 impact_scene = ExtResource("2_ah4fp")
 
