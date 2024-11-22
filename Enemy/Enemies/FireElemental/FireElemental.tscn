@@ -1,0 +1,185 @@
+[gd_scene load_steps=29 format=3 uid="uid://drr2tlxww2kpa"]
+
+[ext_resource type="Script" path="res://Enemy/Enemies/FireElemental/FireElemental.gd" id="1_barw6"]
+[ext_resource type="PackedScene" uid="uid://cgrtst55jiw68" path="res://Enemy/EnemyInfo.tscn" id="2_kmy7q"]
+[ext_resource type="Texture2D" uid="uid://beqbj5f8jqpdy" path="res://Enemy/Enemies/elemental.png" id="3_yh0w4"]
+[ext_resource type="PackedScene" uid="uid://i2til2fybjly" path="res://Attacks/Attack.tscn" id="4_if5p7"]
+[ext_resource type="PackedScene" uid="uid://d3u8caf0wjxve" path="res://Attacks/Projectiles/FireElementalProjectile/FireElementalProjectile.tscn" id="5_fx4hy"]
+[ext_resource type="Script" path="res://Attacks/ProjectileSceneWrapper.gd" id="6_8mc5c"]
+[ext_resource type="PackedScene" uid="uid://b4821q1nhproh" path="res://Utilities/Components/Hurtbox.tscn" id="6_w4cpx"]
+[ext_resource type="PackedScene" uid="uid://dhve04b56rgnu" path="res://Utilities/Components/Health.tscn" id="7_mjhpo"]
+[ext_resource type="PackedScene" uid="uid://ba1urcsrxx757" path="res://Utilities/Components/Pathfinding.tscn" id="8_46uwl"]
+[ext_resource type="PackedScene" uid="uid://dn7pr30nu7c1q" path="res://Utilities/Components/Velocity.tscn" id="9_f2b81"]
+[ext_resource type="PackedScene" uid="uid://dkco3mn1qyxib" path="res://Utilities/Components/GameScaling.tscn" id="10_524h2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7r8mg"]
+atlas = ExtResource("3_yh0w4")
+region = Rect2(360, 0, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3q4xd"]
+atlas = ExtResource("3_yh0w4")
+region = Rect2(480, 0, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4142o"]
+atlas = ExtResource("3_yh0w4")
+region = Rect2(600, 0, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_812hd"]
+atlas = ExtResource("3_yh0w4")
+region = Rect2(360, 128, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57nol"]
+atlas = ExtResource("3_yh0w4")
+region = Rect2(480, 128, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8klaw"]
+atlas = ExtResource("3_yh0w4")
+region = Rect2(600, 128, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kr72j"]
+atlas = ExtResource("3_yh0w4")
+region = Rect2(360, 256, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ga5ru"]
+atlas = ExtResource("3_yh0w4")
+region = Rect2(480, 256, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtn7q"]
+atlas = ExtResource("3_yh0w4")
+region = Rect2(600, 256, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohg88"]
+atlas = ExtResource("3_yh0w4")
+region = Rect2(360, 384, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ip44i"]
+atlas = ExtResource("3_yh0w4")
+region = Rect2(480, 384, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2rvb"]
+atlas = ExtResource("3_yh0w4")
+region = Rect2(600, 384, 120, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_loiu4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7r8mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3q4xd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4142o")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_812hd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57nol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8klaw")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kr72j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ga5ru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtn7q")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohg88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ip44i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2rvb")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ux088"]
+radius = 47.87
+height = 124.45
+
+[sub_resource type="Resource" id="Resource_wky2t"]
+script = ExtResource("6_8mc5c")
+projectile = ExtResource("5_fx4hy")
+cooldown = 1.0
+duplicate_x = false
+follow_attack_direction = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o70bk"]
+size = Vector2(458, 20)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a3fhh"]
+radius = 49.38
+height = 128.29
+
+[node name="FireElemental" type="CharacterBody2D"]
+script = ExtResource("1_barw6")
+
+[node name="EnemyInfo" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_kmy7q")]
+health_component = NodePath("../Health")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_loiu4")
+animation = &"walk_up"
+offset = Vector2(0, -30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ux088")
+
+[node name="BasicAttack" parent="." instance=ExtResource("4_if5p7")]
+damage = 5.0
+attack_timer = 0.2
+projectile_scenes = Array[Resource]([SubResource("Resource_wky2t")])
+
+[node name="CollisionShape2D" parent="BasicAttack" index="0"]
+position = Vector2(219, 0)
+shape = SubResource("RectangleShape2D_o70bk")
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_w4cpx")]
+rotation = 1.5708
+health_component = NodePath("../Health")
+hurtbox_shape = SubResource("CapsuleShape2D_a3fhh")
+
+[node name="Health" parent="." instance=ExtResource("7_mjhpo")]
+max_health = 50.0
+
+[node name="Pathfinding" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("8_46uwl")]
+velocity_component = NodePath("../Velocity")
+wave_amplitude = 5.0
+wave_frequency = 1.0
+
+[node name="Velocity" parent="." instance=ExtResource("9_f2b81")]
+
+[node name="GameScaling" parent="." instance=ExtResource("10_524h2")]
+
+[connection signal="died" from="Health" to="." method="_on_death"]
+[connection signal="health_changed" from="Health" to="." method="_on_health_changed"]
+
+[editable path="BasicAttack"]

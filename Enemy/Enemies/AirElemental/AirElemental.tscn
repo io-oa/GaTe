@@ -1,0 +1,184 @@
+[gd_scene load_steps=29 format=3 uid="uid://bkywwow0itulc"]
+
+[ext_resource type="Script" path="res://Enemy/Enemies/AirElemental/AirElemental.gd" id="1_575aw"]
+[ext_resource type="PackedScene" uid="uid://cgrtst55jiw68" path="res://Enemy/EnemyInfo.tscn" id="2_vp60i"]
+[ext_resource type="Texture2D" uid="uid://beqbj5f8jqpdy" path="res://Enemy/Enemies/elemental.png" id="3_noo5j"]
+[ext_resource type="PackedScene" uid="uid://i2til2fybjly" path="res://Attacks/Attack.tscn" id="4_m5qji"]
+[ext_resource type="PackedScene" uid="uid://dnknv5b4coqje" path="res://Attacks/Projectiles/AirElementalProjectile/AirElementalProjectile.tscn" id="5_bnei6"]
+[ext_resource type="PackedScene" uid="uid://b4821q1nhproh" path="res://Utilities/Components/Hurtbox.tscn" id="6_65uwj"]
+[ext_resource type="Script" path="res://Attacks/ProjectileSceneWrapper.gd" id="6_yjrk1"]
+[ext_resource type="PackedScene" uid="uid://dhve04b56rgnu" path="res://Utilities/Components/Health.tscn" id="7_uadt7"]
+[ext_resource type="PackedScene" uid="uid://ba1urcsrxx757" path="res://Utilities/Components/Pathfinding.tscn" id="8_nuhqr"]
+[ext_resource type="PackedScene" uid="uid://dn7pr30nu7c1q" path="res://Utilities/Components/Velocity.tscn" id="9_23ps5"]
+[ext_resource type="PackedScene" uid="uid://dkco3mn1qyxib" path="res://Utilities/Components/GameScaling.tscn" id="10_xokc2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_345rx"]
+atlas = ExtResource("3_noo5j")
+region = Rect2(720, 0, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqwjf"]
+atlas = ExtResource("3_noo5j")
+region = Rect2(840, 0, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5x813"]
+atlas = ExtResource("3_noo5j")
+region = Rect2(960, 0, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_el1ea"]
+atlas = ExtResource("3_noo5j")
+region = Rect2(720, 128, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdihq"]
+atlas = ExtResource("3_noo5j")
+region = Rect2(840, 128, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcuv6"]
+atlas = ExtResource("3_noo5j")
+region = Rect2(960, 128, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8hca"]
+atlas = ExtResource("3_noo5j")
+region = Rect2(720, 256, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vp0tf"]
+atlas = ExtResource("3_noo5j")
+region = Rect2(840, 256, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu6pr"]
+atlas = ExtResource("3_noo5j")
+region = Rect2(960, 256, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hxym"]
+atlas = ExtResource("3_noo5j")
+region = Rect2(720, 384, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htcbi"]
+atlas = ExtResource("3_noo5j")
+region = Rect2(840, 384, 120, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m28oy"]
+atlas = ExtResource("3_noo5j")
+region = Rect2(960, 384, 120, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_loiu4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_345rx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqwjf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5x813")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_el1ea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdihq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcuv6")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8hca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vp0tf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hu6pr")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hxym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htcbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m28oy")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ux088"]
+radius = 47.87
+height = 124.45
+
+[sub_resource type="Resource" id="Resource_iete5"]
+script = ExtResource("6_yjrk1")
+projectile = ExtResource("5_bnei6")
+cooldown = 1.0
+duplicate_x = false
+follow_attack_direction = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o70bk"]
+size = Vector2(458, 20)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a3fhh"]
+radius = 49.38
+height = 128.29
+
+[node name="AirElemental" type="CharacterBody2D"]
+script = ExtResource("1_575aw")
+
+[node name="EnemyInfo" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_vp60i")]
+health_component = NodePath("../Health")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_loiu4")
+animation = &"walk_up"
+offset = Vector2(0, -30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ux088")
+
+[node name="BasicAttack" parent="." instance=ExtResource("4_m5qji")]
+attack_timer = 0.333
+projectile_scenes = Array[Resource]([SubResource("Resource_iete5")])
+
+[node name="CollisionShape2D" parent="BasicAttack" index="0"]
+position = Vector2(219, 0)
+shape = SubResource("RectangleShape2D_o70bk")
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_65uwj")]
+rotation = 1.5708
+health_component = NodePath("../Health")
+hurtbox_shape = SubResource("CapsuleShape2D_a3fhh")
+
+[node name="Health" parent="." instance=ExtResource("7_uadt7")]
+max_health = 50.0
+
+[node name="Pathfinding" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("8_nuhqr")]
+velocity_component = NodePath("../Velocity")
+wave_amplitude = 5.0
+wave_frequency = 1.0
+
+[node name="Velocity" parent="." instance=ExtResource("9_23ps5")]
+
+[node name="GameScaling" parent="." instance=ExtResource("10_xokc2")]
+
+[connection signal="died" from="Health" to="." method="_on_death"]
+[connection signal="health_changed" from="Health" to="." method="_on_health_changed"]
+
+[editable path="BasicAttack"]

@@ -3,6 +3,9 @@
 [ext_resource type="Script" path="res://Attacks/Scripts/Attack.gd" id="1_4cy0q"]
 
 [node name="Attack" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_4cy0q")
+attack_timer = 0.001
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

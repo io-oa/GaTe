@@ -1,9 +1,10 @@
-[gd_scene load_steps=38 format=3 uid="uid://duhegav1hscke"]
+[gd_scene load_steps=39 format=3 uid="uid://duhegav1hscke"]
 
 [ext_resource type="Script" path="res://Attacks/Scripts/Projectile.gd" id="1_iastt"]
 [ext_resource type="PackedScene" uid="uid://dxilrpy122drq" path="res://Attacks/Projectiles/TestProjectile/TestProjectileImpact.tscn" id="2_ah4fp"]
 [ext_resource type="Texture2D" uid="uid://dfpddcaxln83j" path="res://Attacks/Projectiles/Assets/pj2_helix_beam_large_blue/spritesheet.png" id="3_dpcek"]
 [ext_resource type="PackedScene" uid="uid://dn7pr30nu7c1q" path="res://Utilities/Components/Velocity.tscn" id="4_a0l3o"]
+[ext_resource type="AudioStream" uid="uid://chmemuqdgvf7l" path="res://Attacks/Projectiles/Assets/TECH WEAPON Gun Shot Zapper Short 14.ogg" id="5_m1gp7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5jd2y"]
 radius = 20.0
@@ -233,6 +234,7 @@ animations = [{
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_iastt")
+damage = 100.0
 max_hits = 2
 impact_scene = ExtResource("2_ah4fp")
 
@@ -247,10 +249,16 @@ shape = SubResource("CircleShape2D_6vhwn")
 debug_color = Color(0.744847, 0.185992, 0.198257, 0.42)
 
 [node name="TravelAnimation" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(-2.86102e-06, -1.90735e-06)
+scale = Vector2(0.579375, 0.579375)
 sprite_frames = SubResource("SpriteFrames_pu2pr")
 animation = &"travelling"
 
 [node name="Velocity" parent="." instance=ExtResource("4_a0l3o")]
-max_speed = 400.0
+max_speed = 2000.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_m1gp7")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
