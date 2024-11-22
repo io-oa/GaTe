@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://bl76xgpii4c1w"]
+[gd_scene load_steps=29 format=3 uid="uid://bl76xgpii4c1w"]
 
 [ext_resource type="Script" path="res://Enemy/Enemies/WaterElemental/WaterElemental.gd" id="1_d0l1m"]
 [ext_resource type="PackedScene" uid="uid://cgrtst55jiw68" path="res://Enemy/EnemyInfo.tscn" id="2_7jxdo"]
 [ext_resource type="Texture2D" uid="uid://dnoiyjuwtl5aj" path="res://Enemy/Assets/elemental.png" id="3_2yif0"]
 [ext_resource type="PackedScene" uid="uid://i2til2fybjly" path="res://Attacks/Attack.tscn" id="4_i1nx4"]
 [ext_resource type="PackedScene" uid="uid://c40th0yhtapr2" path="res://Attacks/Projectiles/WaterElementalProjectile/WaterElementalProjectile.tscn" id="5_4muw4"]
+[ext_resource type="Script" path="res://Attacks/ProjectileSceneWrapper.gd" id="6_6d1cf"]
 [ext_resource type="PackedScene" uid="uid://b4821q1nhproh" path="res://Utilities/Components/Hurtbox.tscn" id="6_tjkx3"]
 [ext_resource type="PackedScene" uid="uid://dhve04b56rgnu" path="res://Utilities/Components/Health.tscn" id="7_pxqsp"]
 [ext_resource type="PackedScene" uid="uid://ba1urcsrxx757" path="res://Utilities/Components/Pathfinding.tscn" id="8_s8eel"]
@@ -122,6 +123,13 @@ animations = [{
 radius = 47.87
 height = 124.45
 
+[sub_resource type="Resource" id="Resource_txkb8"]
+script = ExtResource("6_6d1cf")
+projectile = ExtResource("5_4muw4")
+cooldown = 1.0
+duplicate_x = false
+follow_attack_direction = true
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o70bk"]
 size = Vector2(458, 20)
 
@@ -148,7 +156,7 @@ shape = SubResource("CapsuleShape2D_ux088")
 [node name="BasicAttack" parent="." instance=ExtResource("4_i1nx4")]
 damage = 5.0
 attack_timer = 0.333
-projectile_scenes = Array[PackedScene]([ExtResource("5_4muw4")])
+projectile_scenes = Array[Resource]([SubResource("Resource_txkb8")])
 
 [node name="CollisionShape2D" parent="BasicAttack" index="0"]
 position = Vector2(219, 0)

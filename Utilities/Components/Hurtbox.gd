@@ -15,14 +15,21 @@ func _process(_delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area is not Attack:
 		return
-	if not GameGlobals.is_ally(area.attacker.ally_flag, self.get_parent().ally_flag):
-		health_component.damage(area.damage)
+	var attacker = self.get_parent()
+	if not GameGlobals.is_ally(area.attacker.ally_flag, attacker.ally_flag):
+		if randf()	<= attacker.stat_modifiers["critical_chance"]:
+			health_component.damage(area.damage * 2.0)
+		else:
+			health_component.damage(area.damage)
 
 #Projectile
 func _on_body_entered(body: CharacterBody2D) -> void:
 	if body is not Projectile:
 		return
 	if not GameGlobals.is_ally(body.attacker_ally_flag, self.get_parent().ally_flag):
-		health_component.damage(body.damage)
+		if randf() <= body.modifiers["critical_chance"]:
+			health_component.damage(body.damage * 2.0)
+		else:
+			health_component.damage(body.damage)
 		if body.hits_remaining == 0:
 			body.queue_free()

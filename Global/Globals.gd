@@ -4,6 +4,9 @@ var SCREEN_SIZE: Vector2
 var PROJECTILES: Node
 var EFFECTS: Node
 
+#Constants
+var INT64_MAX = (1 << 63) - 1
+
 const MAP_VERTICES: PackedVector2Array = [
 		Vector2(-5000, -5000),	#	TOP LEFT
 		Vector2(-5000, 5000),	#	BOTTOM LEFT
@@ -16,6 +19,7 @@ enum ALLY_FLAGS{
 	enemy = 1 << 1
 }
 
+#Helpers
 func is_ally(flag1: int, flag2: int):
 	return (flag1 & flag2) != 0
 

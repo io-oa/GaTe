@@ -22,3 +22,5 @@ sprite_frames = SubResource("SpriteFrames_e4g6k")
 
 [node name="Velocity" parent="." instance=ExtResource("2_hhjt2")]
 max_speed = 1000.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

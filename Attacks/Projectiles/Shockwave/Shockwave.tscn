@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://dpnqfe0bk0vni"]
+
+[ext_resource type="Script" path="res://Attacks/Scripts/Projectile.gd" id="1_xtuok"]
+[ext_resource type="PackedScene" uid="uid://dn7pr30nu7c1q" path="res://Utilities/Components/Velocity.tscn" id="2_omj56"]
+[ext_resource type="Texture2D" uid="uid://dasyn81wdvpri" path="res://Attacks/Projectiles/Assets/shockwave.png" id="2_r6glf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fvo1i"]
+size = Vector2(102, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_db67u"]
+size = Vector2(102, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjf3g"]
+atlas = ExtResource("2_r6glf")
+region = Rect2(0, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7r2k"]
+atlas = ExtResource("2_r6glf")
+region = Rect2(128, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0kbw"]
+atlas = ExtResource("2_r6glf")
+region = Rect2(256, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6o4b"]
+atlas = ExtResource("2_r6glf")
+region = Rect2(384, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vollu"]
+atlas = ExtResource("2_r6glf")
+region = Rect2(512, 0, 128, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e4g6k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjf3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7r2k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0kbw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6o4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vollu")
+}],
+"loop": true,
+"name": &"travelling",
+"speed": 15.0
+}]
+
+[node name="Shockwave" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_xtuok")
+damage = 20.0
+max_range = 500.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fvo1i")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_db67u")
+debug_color = Color(0.884482, 0.281168, 0.464726, 0.42)
+
+[node name="TravelAnimation" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(31, 14)
+sprite_frames = SubResource("SpriteFrames_e4g6k")
+animation = &"travelling"
+offset = Vector2(-41, -16)
+
+[node name="Velocity" parent="." instance=ExtResource("2_omj56")]
+max_speed = 500.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
