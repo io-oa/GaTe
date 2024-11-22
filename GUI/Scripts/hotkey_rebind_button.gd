@@ -19,10 +19,10 @@ func load_keybinds() -> void:
 
 func set_action_name() -> void:
 	match action_name:
-		"move_right":
-			label.text = "Move reft"
 		"move_left":
 			label.text = "Move left"
+		"move_right":
+			label.text = "Move right"
 		"move_up":
 			label.text = "Move up"
 		"move_down":
