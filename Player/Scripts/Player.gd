@@ -2,6 +2,7 @@ class_name Player extends Entity
 
 signal level_up(level: int)
 signal exp_change()
+signal stat_change()
 
 const MOTION_SPEED: float = 400.0
 

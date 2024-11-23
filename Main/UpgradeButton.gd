@@ -20,6 +20,7 @@ func _process(delta: float) -> void:
 func _on_button_press():
 	if self.upgrade_type == "stat":
 		HUD.player.stat_modifiers[upgrade_name] += HUD.resource.upgrades[upgrade_name]["amount"]
+		HUD.player.stat_change.emit()
 	elif self.upgrade_type == "projectile":
 		var projectile_aquired: bool = false
 		for i in range(HUD.player.auto_projectiles.projectile_scenes.size()):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ba52freryk52u"]
+[gd_scene load_steps=14 format=3 uid="uid://ba52freryk52u"]
 
 [ext_resource type="Script" path="res://Main/HUD.gd" id="1_wvl6r"]
 [ext_resource type="Texture2D" uid="uid://bwlnfswuxlfsi" path="res://Main/Assets/hp_and_rp_frame_empty.png" id="2_4avyd"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dqrgp4do2x2ju" path="res://Main/Assets/equipment_grade_select.png" id="9_1fqqj"]
 [ext_resource type="Texture2D" uid="uid://dwkuykkhrdhq5" path="res://Main/Assets/mod_shockwave.png" id="9_16xeg"]
 [ext_resource type="Texture2D" uid="uid://cq37mekg818y4" path="res://Main/Assets/mod_projectile_size.png" id="10_6yh2v"]
+[ext_resource type="Texture2D" uid="uid://ov4ga5f5gfff" path="res://Main/Assets/stat_display.png" id="11_ppmtw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2jrip"]
 
@@ -320,3 +321,49 @@ size_flags_vertical = 3
 horizontal_alignment = 1
 autowrap_mode = 3
 uppercase = true
+
+[node name="StatDisplay" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -340.0
+offset_right = 260.0
+offset_bottom = -40.0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="StatDisplay"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 45
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 45
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatDisplay/MarginContainer"]
+layout_mode = 2
+
+[node name="BasicAttackDmg" type="RichTextLabel" parent="StatDisplay/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+
+[node name="Damage" type="RichTextLabel" parent="StatDisplay/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+
+[node name="ProjectileSize" type="RichTextLabel" parent="StatDisplay/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+
+[node name="CritChance" type="RichTextLabel" parent="StatDisplay/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+
+[node name="TextureRect" type="TextureRect" parent="StatDisplay"]
+self_modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 2
+texture = ExtResource("11_ppmtw")

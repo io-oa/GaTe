@@ -16,7 +16,7 @@ mono_crash.*.json
 
 *.tmp
 TestModels/
-addons/
+TestAssets/
 *.exe
 .vscode/
 *.pck
