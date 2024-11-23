@@ -8,7 +8,7 @@ const upgrades = {
 		"type": "stat",
 		"name": "Projectile Size",
 		"icon": preload("res://Main/Assets/mod_projectile_size.png"),
-		"amount": 0.1,
+		"amount": 0.25,
 		"description": "Increases the size of your projectiles"
 	},
 	"critical_chance": {
@@ -28,7 +28,7 @@ const upgrades = {
 	"shockwave": {
 		"type": "projectile",
 		"name": "Shockwave",
-		"icon": preload("res://Main/Assets/mod_projectile_size.png"),
+		"icon": preload("res://Main/Assets/mod_shockwave.png"),
 		"description": "Sends shockwaves in both directions horizontally",
 		"cooldown": 1.0,
 		"duplicate_x": true,

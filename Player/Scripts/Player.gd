@@ -6,6 +6,8 @@ signal exp_change()
 const MOTION_SPEED: float = 400.0
 
 @onready var animations: AnimatedSprite2D = $Animations
+@onready var blink_sound: AudioStreamPlayer = $blink/AudioStreamPlayer
+@onready var blink_effect_scene: PackedScene = preload("res://Player/Assets/BlinkEffect.tscn")
 @onready var attack_indicator: Sprite2D = $AttackDirectionIndicator
 @onready var basic_attack: Attack = $BasicAttack
 @onready var auto_projectiles: Attack = $AutomaticProjectiles
@@ -25,6 +27,12 @@ var dash_time_left: float = 0.0
 var dash_speed: Vector2
 
 var abilities: Dictionary = {
+	"blink":{
+		"cooldown": 2.0,
+		"cooldown_left": 0.0,
+		"distance": 350.0,
+		"duration": 0.0
+	},
 	"dash": {
 		"cooldown": 2.0,
 		"cooldown_left": 0.0,
@@ -66,6 +74,18 @@ func _process(delta: float):
 		self.basic_attack.fire(self)	
 	
 	#Abilities
+	if Input.is_action_pressed("blink") and abilities["blink"]["cooldown_left"] == 0:
+		blink_sound.play()
+		var blink_effect = blink_effect_scene.instantiate()
+		GameGlobals.EFFECTS.add_child(blink_effect)
+		blink_effect.position = self.position
+		self.position.x = self.position.x + abilities["blink"]["distance"] * self.last_direction.x
+		self.position.y = self.position.y + abilities["blink"]["distance"] * self.last_direction.y
+		blink_effect = blink_effect_scene.instantiate()   
+		blink_effect.reverse = true             
+		GameGlobals.EFFECTS.add_child(blink_effect)
+		blink_effect.position = self.position
+		abilities["blink"]["cooldown_left"] = abilities["blink"]["cooldown"]
 	for ability in self.abilities:
 		self.abilities[ability]["cooldown_left"] = max(self.abilities[ability]["cooldown_left"] - delta, 0.0)
 		

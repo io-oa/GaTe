@@ -1,6 +1,7 @@
-[gd_scene load_steps=55 format=3 uid="uid://bqpkxht3mx8l8"]
+[gd_scene load_steps=56 format=3 uid="uid://bqpkxht3mx8l8"]
 
 [ext_resource type="Script" path="res://Player/Scripts/Player.gd" id="2"]
+[ext_resource type="AudioStream" uid="uid://drc3nvy1dxbcq" path="res://Player/Assets/blink_sound.wav" id="2_idxpp"]
 [ext_resource type="Script" path="res://Player/Scripts/Info.gd" id="3_1iccv"]
 [ext_resource type="PackedScene" uid="uid://b4821q1nhproh" path="res://Utilities/Components/Hurtbox.tscn" id="3_5pbo1"]
 [ext_resource type="Texture2D" uid="uid://rmnsblfsun2e" path="res://Player/Assets/Wizard_walk.png" id="3_qd16i"]
@@ -336,6 +337,11 @@ polygon = PackedVector2Array(16.25, 18.75, 18.75, 36.25, 15, 38.75, 6.25, 42.5, 
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("2")
+
+[node name="blink" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="blink"]
+stream = ExtResource("2_idxpp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_131rb")

@@ -5,6 +5,7 @@ extends Button
 @onready var audio: AudioStreamPlayer = $"../../AudioStreamPlayer"
 @onready var upgrade_name_label: Label = $VBoxContainer/Name
 @onready var upgrade_description_label: Label = $VBoxContainer/Desc
+@onready var icon_texture: TextureRect = $IconContainer/MarginContainer/Icon
 static var choices: int = 0
 
 var upgrade_type: String = ""
@@ -47,5 +48,5 @@ func set_properties(upgrade_name: String):
 		upgrade_amount = " +" + str(HUD.resource.upgrades[upgrade_name]["amount"] * 100)+"%"
 	self.upgrade_name_label.text = HUD.resource.upgrades[upgrade_name]["name"] + upgrade_amount
 	self.upgrade_description_label.text = HUD.resource.upgrades[upgrade_name]["description"]
-	self.icon = HUD.resource.upgrades[upgrade_name]["icon"]
+	self.icon_texture.texture = HUD.resource.upgrades[upgrade_name]["icon"]
 	

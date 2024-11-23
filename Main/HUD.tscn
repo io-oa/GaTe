@@ -1,13 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://ba52freryk52u"]
+[gd_scene load_steps=13 format=3 uid="uid://ba52freryk52u"]
 
 [ext_resource type="Script" path="res://Main/HUD.gd" id="1_wvl6r"]
 [ext_resource type="Texture2D" uid="uid://bwlnfswuxlfsi" path="res://Main/Assets/hp_and_rp_frame_empty.png" id="2_4avyd"]
 [ext_resource type="Texture2D" uid="uid://yll7j1xw284s" path="res://Main/Assets/fill_red.png" id="3_g7j6a"]
 [ext_resource type="Texture2D" uid="uid://be733nm136637" path="res://Main/Assets/fill_purple.png" id="4_gyr8h"]
-[ext_resource type="Texture2D" uid="uid://c5dkvbixj8f6e" path="res://icon.svg" id="4_theae"]
 [ext_resource type="Texture2D" uid="uid://bssfjrm2lc30w" path="res://Main/Assets/role_icon_frame_focus.png" id="5_f1jlc"]
 [ext_resource type="Script" path="res://Main/UpgradeButton.gd" id="5_y77ts"]
 [ext_resource type="AudioStream" uid="uid://63t1ko6vhlik" path="res://Main/Assets/SUCCESS PICKUP Collect Beep 02.wav" id="8_b84vb"]
+[ext_resource type="Texture2D" uid="uid://dqrgp4do2x2ju" path="res://Main/Assets/equipment_grade_select.png" id="9_1fqqj"]
+[ext_resource type="Texture2D" uid="uid://dwkuykkhrdhq5" path="res://Main/Assets/mod_shockwave.png" id="9_16xeg"]
+[ext_resource type="Texture2D" uid="uid://cq37mekg818y4" path="res://Main/Assets/mod_projectile_size.png" id="10_6yh2v"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2jrip"]
 
@@ -142,10 +144,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -506.0
-offset_top = -286.0
-offset_right = 506.0
-offset_bottom = 286.0
+offset_left = -600.0
+offset_top = -300.0
+offset_right = 600.0
+offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -153,10 +155,35 @@ alignment = 1
 [node name="Button" type="Button" parent="UpgradeChoices/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-icon = ExtResource("4_theae")
 icon_alignment = 1
 vertical_icon_alignment = 0
 script = ExtResource("5_y77ts")
+
+[node name="IconContainer" type="PanelContainer" parent="UpgradeChoices/HBoxContainer/Button"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -31.5
+offset_right = 32.5
+offset_bottom = 64.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UpgradeChoices/HBoxContainer/Button/IconContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 9
+theme_override_constants/margin_bottom = 9
+
+[node name="Icon" type="TextureRect" parent="UpgradeChoices/HBoxContainer/Button/IconContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("9_16xeg")
+
+[node name="IconBorder" type="TextureRect" parent="UpgradeChoices/HBoxContainer/Button/IconContainer"]
+layout_mode = 2
+texture = ExtResource("9_1fqqj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UpgradeChoices/HBoxContainer/Button"]
 layout_mode = 1
@@ -185,10 +212,35 @@ uppercase = true
 [node name="Button2" type="Button" parent="UpgradeChoices/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-icon = ExtResource("4_theae")
 icon_alignment = 1
 vertical_icon_alignment = 0
 script = ExtResource("5_y77ts")
+
+[node name="IconContainer" type="PanelContainer" parent="UpgradeChoices/HBoxContainer/Button2"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.5
+offset_right = 41.5
+offset_bottom = 82.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UpgradeChoices/HBoxContainer/Button2/IconContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 9
+theme_override_constants/margin_bottom = 9
+
+[node name="Icon" type="TextureRect" parent="UpgradeChoices/HBoxContainer/Button2/IconContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("9_16xeg")
+
+[node name="IconBorder" type="TextureRect" parent="UpgradeChoices/HBoxContainer/Button2/IconContainer"]
+layout_mode = 2
+texture = ExtResource("9_1fqqj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UpgradeChoices/HBoxContainer/Button2"]
 layout_mode = 1
@@ -216,10 +268,35 @@ uppercase = true
 [node name="Button3" type="Button" parent="UpgradeChoices/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-icon = ExtResource("4_theae")
 icon_alignment = 1
 vertical_icon_alignment = 0
 script = ExtResource("5_y77ts")
+
+[node name="IconContainer" type="PanelContainer" parent="UpgradeChoices/HBoxContainer/Button3"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.5
+offset_right = 41.5
+offset_bottom = 82.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UpgradeChoices/HBoxContainer/Button3/IconContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 9
+theme_override_constants/margin_bottom = 9
+
+[node name="Icon" type="TextureRect" parent="UpgradeChoices/HBoxContainer/Button3/IconContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("10_6yh2v")
+
+[node name="IconBorder" type="TextureRect" parent="UpgradeChoices/HBoxContainer/Button3/IconContainer"]
+layout_mode = 2
+texture = ExtResource("9_1fqqj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UpgradeChoices/HBoxContainer/Button3"]
 layout_mode = 1
