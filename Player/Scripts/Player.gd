@@ -75,17 +75,7 @@ func _process(delta: float):
 	
 	#Abilities
 	if Input.is_action_pressed("blink") and abilities["blink"]["cooldown_left"] == 0:
-		blink_sound.play()
-		var blink_effect = blink_effect_scene.instantiate()
-		GameGlobals.EFFECTS.add_child(blink_effect)
-		blink_effect.position = self.position
-		self.position.x = self.position.x + abilities["blink"]["distance"] * self.last_direction.x
-		self.position.y = self.position.y + abilities["blink"]["distance"] * self.last_direction.y
-		blink_effect = blink_effect_scene.instantiate()   
-		blink_effect.reverse = true             
-		GameGlobals.EFFECTS.add_child(blink_effect)
-		blink_effect.position = self.position
-		abilities["blink"]["cooldown_left"] = abilities["blink"]["cooldown"]
+		self.blink()
 	for ability in self.abilities:
 		self.abilities[ability]["cooldown_left"] = max(self.abilities[ability]["cooldown_left"] - delta, 0.0)
 		
@@ -148,3 +138,20 @@ func state_move():
 		self.last_direction = motion
 	else:
 		self.state_machine.set_current_state(state_idle)
+
+func blink():
+	blink_sound.play()
+	var blink_effect = blink_effect_scene.instantiate()
+	GameGlobals.EFFECTS.add_child(blink_effect)
+	blink_effect.position = self.position
+	
+	self.position = Vector2(self.position.x + abilities["blink"]["distance"] * self.last_direction.x,
+		position.y + abilities["blink"]["distance"] * self.last_direction.y
+	).clamp(GameGlobals.MAP_VERTICES[0], GameGlobals.MAP_VERTICES[2])
+	
+	blink_effect = blink_effect_scene.instantiate()   
+	blink_effect.reverse = true             
+	GameGlobals.EFFECTS.add_child(blink_effect)
+	blink_effect.position = self.position
+	
+	abilities["blink"]["cooldown_left"] = abilities["blink"]["cooldown"]
