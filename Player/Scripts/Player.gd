@@ -45,6 +45,7 @@ var abilities: Dictionary = {
 func _ready():
 	ally_flag = GameGlobals.ALLY_FLAGS.player
 	self.add_to_group("Player")
+	GameGlobals.PLAYER = self
 	GameGlobals.SCREEN_SIZE = get_viewport_rect().size
 	GameGlobals.PROJECTILES = get_node(^"/root/Main/Projectiles")
 	GameGlobals.EFFECTS = get_node(^"/root/Main/Effects")
@@ -71,8 +72,8 @@ func _process(delta: float):
 		self.auto_projectiles.fire(self)
 	
 	if Input.is_action_pressed("attack"):
-		GameGlobals.update_animation_4dir(self.animations, "attack", snapped(GameGlobals.normalize_angle_360(rad_to_deg(self.basic_attack.global_rotation)), 1))
 		self.basic_attack.fire(self)	
+		GameGlobals.update_animation_4dir(self.animations, "attack", snapped(GameGlobals.normalize_angle_360(rad_to_deg(self.basic_attack.global_rotation)), 1))
 	
 	#Abilities
 	if Input.is_action_pressed("blink") and abilities["blink"]["cooldown_left"] == 0:

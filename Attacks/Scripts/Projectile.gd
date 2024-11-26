@@ -20,11 +20,11 @@ var travelled: float = 0
 
 var modifiers: Dictionary
 	
-func spawn(position: Vector2, projectile_rotation: float, ally_flag: int, modifiers: Dictionary) -> void:
+func spawn(pos: Vector2, projectile_rotation: float, ally_flag: int, modifiers: Dictionary) -> void:
 	self.modifiers = modifiers
 	self.apply_attacker_modifiers()
 	self.attacker_ally_flag = ally_flag
-	self.start_position = position
+	self.start_position = pos
 	self.global_rotation = projectile_rotation + randf_range(-spread, spread)
 	if not rotate_sprite:
 		self.travel_animation.global_rotation = 0

@@ -94,3 +94,7 @@ stat_display_toggle={
 [quiver]
 
 general/auth_token="H3vjLKN6DGzDCV4di5tuj1iUXO2SkDF0hKPd2L6G"
+
+[rendering]
+
+driver/threads/thread_model=2
