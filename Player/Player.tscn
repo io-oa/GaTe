@@ -11,8 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://duhegav1hscke" path="res://Attacks/Projectiles/TestProjectile/TestProjectile.tscn" id="6_a7vnv"]
 [ext_resource type="Script" path="res://Attacks/ProjectileSceneWrapper.gd" id="7_3328b"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_131rb"]
-radius = 88.77
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0ajs"]
+size = Vector2(48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3d0bk"]
 atlas = ExtResource("3_rldov")
@@ -338,7 +338,8 @@ polygon = PackedVector2Array(16.25, 18.75, 18.75, 36.25, 15, 38.75, 6.25, 42.5, 
 script = ExtResource("2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_131rb")
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_f0ajs")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ova3p")
@@ -357,6 +358,7 @@ scale = Vector2(0.78125, 0.362305)
 texture = SubResource("663")
 
 [node name="BasicAttack" parent="." instance=ExtResource("5_8sati")]
+visible = false
 attack_timer = 0.37
 projectile_scenes = Array[Resource]([SubResource("Resource_n876p")])
 
@@ -365,6 +367,7 @@ position = Vector2(67, 0)
 shape = SubResource("RectangleShape2D_ccugu")
 
 [node name="AutomaticProjectiles" parent="." instance=ExtResource("5_8sati")]
+visible = false
 damage = 0.0
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_5pbo1")]

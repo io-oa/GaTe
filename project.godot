@@ -28,16 +28,16 @@ SaveManager="*res://Global/SaveManager.gd"
 Leaderboards="*res://addons/quiver_leaderboards/leaderboards.tscn"
 PlayerAccounts="*res://addons/quiver_player_accounts/player_accounts.tscn"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/quiver_leaderboards/plugin.cfg", "res://addons/quiver_player_accounts/plugin.cfg")
-
 [display]
 
 window/size/viewport_width=2560
 window/size/viewport_height=1440
 window/stretch/mode="viewport"
 window/main_scene="res://Main/Main.tscn"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/quiver_leaderboards/plugin.cfg", "res://addons/quiver_player_accounts/plugin.cfg")
 
 [global_group]
 
