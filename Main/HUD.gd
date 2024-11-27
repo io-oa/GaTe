@@ -1,4 +1,4 @@
-extends Node 
+extends CanvasLayer 
 
 @export var player: Player
 
@@ -10,12 +10,25 @@ extends Node
 @onready var upgrade_buttons: Array[Node] = upgrade_options_container.get_children()
 @onready var resource: HUDResource = preload("res://Resources/HUD/HUDResource.tres")
 
+#Stat Display
+@onready var stat_display: PanelContainer = $StatDisplay
+@onready var basic_attack_dmg_lbl: RichTextLabel = $StatDisplay/MarginContainer/VBoxContainer/BasicAttackDmg
+@onready var damage_lbl: RichTextLabel = $StatDisplay/MarginContainer/VBoxContainer/Damage
+@onready var projectile_size_lbl: RichTextLabel = $StatDisplay/MarginContainer/VBoxContainer/ProjectileSize
+@onready var crit_chance_lbl: RichTextLabel = $StatDisplay/MarginContainer/VBoxContainer/CritChance
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("stat_display_toggle"):
+		stat_display.visible = !stat_display.visible
+	
 func _ready() -> void:
 	exp_bar.value = player.current_level_points / player.points_to_next_level * 100
 	hp_bar.value = player.health_component.get_health_percentage()
 	level_display.text = resource.LEVEL_DISPLAY_TEXT % player.level
+	_update_stat_display()
 	player.level_up.connect(_on_player_level_up)
 	player.exp_change.connect(_on_player_exp_change)
+	player.stat_change.connect(_update_stat_display)
 	player.health_component.health_changed.connect(_on_health_changed)
 	
 func _on_health_changed(previous_health: float, current_health: float, max_health: float) -> void:
@@ -31,3 +44,9 @@ func _on_player_level_up(level: int):
 		
 func _on_player_exp_change():
 	exp_bar.value = player.current_level_points / player.points_to_next_level * 100
+
+func _update_stat_display():
+	self.basic_attack_dmg_lbl.text = resource.STAT_DISPLAY_TEXT % ("BASIC DMG: " + str(player.basic_attack.damage))
+	self.damage_lbl.text = resource.STAT_DISPLAY_TEXT % ("DAMAGE: " + str(player.stat_modifiers["damage"] * 100) + "%")
+	self.projectile_size_lbl.text = resource.STAT_DISPLAY_TEXT % ("PROJECTILE SIZE: " + str(player.stat_modifiers["projectile_size"] * 100) + "%")
+	self.crit_chance_lbl.text = resource.STAT_DISPLAY_TEXT % ("CRIT: " + str(player.stat_modifiers["critical_chance"] * 100) + "%")

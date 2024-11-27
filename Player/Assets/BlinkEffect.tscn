@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://b2k5ew8726cpi"]
+
+[ext_resource type="Script" path="res://Attacks/Scripts/ProjectileImpact.gd" id="1_ut5gj"]
+[ext_resource type="Texture2D" uid="uid://uebe0unj053s" path="res://Player/Assets/blink_effect.png" id="1_xqa5n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myys7"]
+atlas = ExtResource("1_xqa5n")
+region = Rect2(658, 0, 94, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dd5w"]
+atlas = ExtResource("1_xqa5n")
+region = Rect2(564, 0, 94, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o6sk"]
+atlas = ExtResource("1_xqa5n")
+region = Rect2(470, 0, 94, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_newju"]
+atlas = ExtResource("1_xqa5n")
+region = Rect2(376, 0, 94, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_leog7"]
+atlas = ExtResource("1_xqa5n")
+region = Rect2(282, 0, 94, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8l2d"]
+atlas = ExtResource("1_xqa5n")
+region = Rect2(188, 0, 94, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0o0s2"]
+atlas = ExtResource("1_xqa5n")
+region = Rect2(94, 0, 94, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2loq"]
+atlas = ExtResource("1_xqa5n")
+region = Rect2(0, 0, 94, 56)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5afaf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myys7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dd5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3o6sk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_newju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_leog7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8l2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0o0s2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2loq")
+}],
+"loop": false,
+"name": &"impact",
+"speed": 30.0
+}]
+
+[node name="BlinkEffect" type="AnimatedSprite2D"]
+z_index = 1
+scale = Vector2(2.35714, 2.35714)
+sprite_frames = SubResource("SpriteFrames_5afaf")
+animation = &"impact"
+script = ExtResource("1_ut5gj")

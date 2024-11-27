@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nhqg3nrvqsna"
-path="res://.godot/imported/duck_icon.png-08cd91219a29b5e2267a98bb3c8c7aa6.ctex"
+uid="uid://uebe0unj053s"
+path="res://.godot/imported/blink_effect.png-e35b69cc087220ce7ebfbfa8b86da5a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://duck_icon.png"
-dest_files=["res://.godot/imported/duck_icon.png-08cd91219a29b5e2267a98bb3c8c7aa6.ctex"]
+source_file="res://Player/Assets/blink_effect.png"
+dest_files=["res://.godot/imported/blink_effect.png-e35b69cc087220ce7ebfbfa8b86da5a3.ctex"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://i6atcg4t4kna"]
+[gd_scene load_steps=5 format=3 uid="uid://cx701ugh168d6"]
 
 [ext_resource type="FontFile" uid="uid://btrmhyw8c5y4p" path="res://GUI/Assets/DungeonFont.ttf" id="1_d5ofy"]
 [ext_resource type="Script" path="res://GUI/Scripts/pause_menu.gd" id="1_ytvew"]

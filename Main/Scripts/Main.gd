@@ -40,7 +40,7 @@ func _on_start_timer_timeout():
 	$ScoreTimer.start()
 
 func _on_mob_timer_timeout():
-	if (get_tree().get_nodes_in_group("Enemies").size() < 1):
+	if (get_tree().get_nodes_in_group("Enemies").size() < 0):
 		for enemy_scene in enemy_scenes:
 			var enemy = enemy_scene.instantiate()
 			var enemy_spawn_location = $MobPath/MobSpawnLocation

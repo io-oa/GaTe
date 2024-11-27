@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://80ug8tf2yg6l"
-path="res://.godot/imported/grass_01_iso_tile_256_10.png-413c39ad17713a03fc382402e6d9c17e.ctex"
+uid="uid://dqrgp4do2x2ju"
+path="res://.godot/imported/equipment_grade_select.png-a9a7f073b9f4f2eaa2bb008b12be0876.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://grass_01_iso_tile_256_10.png"
-dest_files=["res://.godot/imported/grass_01_iso_tile_256_10.png-413c39ad17713a03fc382402e6d9c17e.ctex"]
+source_file="res://Main/Assets/equipment_grade_select.png"
+dest_files=["res://.godot/imported/equipment_grade_select.png-a9a7f073b9f4f2eaa2bb008b12be0876.ctex"]
 
 [params]
 

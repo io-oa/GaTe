@@ -2,10 +2,13 @@ class_name Player extends Entity
 
 signal level_up(level: int)
 signal exp_change()
+signal stat_change()
 
 const MOTION_SPEED: float = 400.0
 
 @onready var animations: AnimatedSprite2D = $Animations
+@onready var blink_sound: AudioStreamPlayer = $blink/AudioStreamPlayer
+@onready var blink_effect_scene: PackedScene = preload("res://Player/Assets/BlinkEffect.tscn")
 @onready var attack_indicator: Sprite2D = $AttackDirectionIndicator
 @onready var basic_attack: Attack = $BasicAttack
 @onready var auto_projectiles: Attack = $AutomaticProjectiles
@@ -25,6 +28,12 @@ var dash_time_left: float = 0.0
 var dash_speed: Vector2
 
 var abilities: Dictionary = {
+	"blink":{
+		"cooldown": 2.0,
+		"cooldown_left": 0.0,
+		"distance": 350.0,
+		"duration": 0.0
+	},
 	"dash": {
 		"cooldown": 2.0,
 		"cooldown_left": 0.0,
@@ -36,6 +45,7 @@ var abilities: Dictionary = {
 func _ready():
 	ally_flag = GameGlobals.ALLY_FLAGS.player
 	self.add_to_group("Player")
+	GameGlobals.PLAYER = self
 	GameGlobals.SCREEN_SIZE = get_viewport_rect().size
 	GameGlobals.PROJECTILES = get_node(^"/root/Main/Projectiles")
 	GameGlobals.EFFECTS = get_node(^"/root/Main/Effects")
@@ -62,10 +72,12 @@ func _process(delta: float):
 		self.auto_projectiles.fire(self)
 	
 	if Input.is_action_pressed("attack"):
-		GameGlobals.update_animation_4dir(self.animations, "attack", snapped(GameGlobals.normalize_angle_360(rad_to_deg(self.basic_attack.global_rotation)), 1))
 		self.basic_attack.fire(self)	
+		GameGlobals.update_animation_4dir(self.animations, "attack", snapped(GameGlobals.normalize_angle_360(rad_to_deg(self.basic_attack.global_rotation)), 1))
 	
 	#Abilities
+	if Input.is_action_pressed("blink") and abilities["blink"]["cooldown_left"] == 0:
+		self.blink()
 	for ability in self.abilities:
 		self.abilities[ability]["cooldown_left"] = max(self.abilities[ability]["cooldown_left"] - delta, 0.0)
 		
@@ -128,3 +140,20 @@ func state_move():
 		self.last_direction = motion
 	else:
 		self.state_machine.set_current_state(state_idle)
+
+func blink():
+	blink_sound.play()
+	var blink_effect = blink_effect_scene.instantiate()
+	GameGlobals.EFFECTS.add_child(blink_effect)
+	blink_effect.position = self.position
+	
+	self.position = Vector2(self.position.x + abilities["blink"]["distance"] * self.last_direction.x,
+		position.y + abilities["blink"]["distance"] * self.last_direction.y
+	).clamp(GameGlobals.MAP_VERTICES[0], GameGlobals.MAP_VERTICES[2])
+	
+	blink_effect = blink_effect_scene.instantiate()   
+	blink_effect.reverse = true             
+	GameGlobals.EFFECTS.add_child(blink_effect)
+	blink_effect.position = self.position
+	
+	abilities["blink"]["cooldown_left"] = abilities["blink"]["cooldown"]

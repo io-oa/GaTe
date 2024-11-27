@@ -25,20 +25,34 @@ func fire(attacker: Node2D) -> void:
 		if lock_position_on_fire:
 			locked_position = self.get_parent().global_position
 		for projectile_scene_wrapper in projectile_scenes:
-			if projectile_scene_wrapper.cooldown_left > 0:
-				continue
-			var projectile_rotation = self.global_rotation
-			if not projectile_scene_wrapper.follow_attack_direction: 
-				projectile_rotation = 0
-			if projectile_scene_wrapper.duplicate_x:
-				var new_projectile = projectile_scene_wrapper.projectile.instantiate()
-				GameGlobals.PROJECTILES.add_child(new_projectile)
-				new_projectile.scale = Vector2(new_projectile.scale.x, -new_projectile.scale.y)
-				new_projectile.spawn(self.global_position, projectile_rotation + PI, self.attacker.ally_flag, self.attacker.stat_modifiers)
-			var new_projectile = projectile_scene_wrapper.projectile.instantiate()
-			GameGlobals.PROJECTILES.add_child(new_projectile)
-			new_projectile.spawn(self.global_position, projectile_rotation, self.attacker.ally_flag, self.attacker.stat_modifiers)
-			projectile_scene_wrapper.cooldown_left = projectile_scene_wrapper.cooldown
+			for i in range(1):
+				if projectile_scene_wrapper.cooldown_left > 0:
+					continue
+				var projectile_rotation = self.global_rotation
+				if not projectile_scene_wrapper.follow_attack_direction: 
+					projectile_rotation = 0
+				if projectile_scene_wrapper.duplicate_x:
+					GameGlobals.add_to_projectile_queue(
+						Callable(self, "prepare_projectile").bind(
+							projectile_scene_wrapper,
+							self.global_position,
+							projectile_rotation + PI,
+							self.attacker.ally_flag,
+							self.attacker.stat_modifiers,
+							true
+						)
+					)
+					
+				GameGlobals.add_to_projectile_queue(
+					Callable(self, "prepare_projectile").bind(
+						projectile_scene_wrapper,
+						 self.global_position, 
+						projectile_rotation,
+						self.attacker.ally_flag,
+						self.attacker.stat_modifiers
+						)
+				)
+				projectile_scene_wrapper.cooldown_left = projectile_scene_wrapper.cooldown
 		cooldown = attack_timer
 		hitbox.set_deferred("disabled", false)
 	
@@ -53,4 +67,11 @@ func _process(_delta: float) -> void:
 			firing = false
 			set_global_position(self.get_parent().global_position)
 			hitbox.set_deferred("disabled", true)
+
+func prepare_projectile(projectile_scene_wrapper: ProjectileSceneWrapper, pos: Vector2, proj_rotation: float, ally_flag: int, stat_modifiers: Dictionary, flip_h: bool = false):
+	var new_projectile = projectile_scene_wrapper.projectile.instantiate()
+	GameGlobals.PROJECTILES.add_child.call_deferred(new_projectile)
+	if flip_h:
+		new_projectile.scale = Vector2(new_projectile.scale.x, -new_projectile.scale.y)
+	new_projectile.spawn.call_deferred(pos, proj_rotation, ally_flag, stat_modifiers)
 	

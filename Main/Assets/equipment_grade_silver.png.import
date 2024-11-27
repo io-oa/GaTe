@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nhqg3nrvqsna"
-path="res://.godot/imported/duck_icon.png-08cd91219a29b5e2267a98bb3c8c7aa6.ctex"
+uid="uid://hidowx3s6j0a"
+path="res://.godot/imported/equipment_grade_silver.png-3331093a58df09c11d67bedeaa68d083.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://duck_icon.png"
-dest_files=["res://.godot/imported/duck_icon.png-08cd91219a29b5e2267a98bb3c8c7aa6.ctex"]
+source_file="res://Main/Assets/equipment_grade_silver.png"
+dest_files=["res://.godot/imported/equipment_grade_silver.png-3331093a58df09c11d67bedeaa68d083.ctex"]
 
 [params]
 
