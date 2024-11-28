@@ -15,7 +15,7 @@ const MOTION_SPEED: float = 400.0
 @onready var health_component: Health = $Health
 
 #Misc
-var last_direction = Vector2(1, 0)
+var last_direction = Vector2.RIGHT
 
 #Leveling
 var level: int = 0
@@ -105,8 +105,9 @@ func state_idle():
 	elif Input.is_action_pressed("player_dash") and self.abilities["dash"]["cooldown_left"] == 0:
 		self.state_machine.set_current_state(state_dash)
 	else:
-		pass
-	self.set_velocity(Vector2())
+		GameGlobals.update_animation_4dir(self.animations, "idle", snapped(GameGlobals.normalize_angle_360(rad_to_deg(last_direction.angle())), 1))
+
+	self.set_velocity(Vector2.ZERO)
 	self.move_and_slide()
 	self.position = self.position.clamp(GameGlobals.MAP_VERTICES[0], GameGlobals.MAP_VERTICES[2])
 		

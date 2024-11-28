@@ -29,7 +29,7 @@ func spawn(pos: Vector2, projectile_rotation: float, ally_flag: int, modifiers: 
 	if not rotate_sprite:
 		self.travel_animation.global_rotation = 0
 	self.global_position = self.start_position
-	velocity_component.maximizeVelocity(Vector2(1, 0).rotated(self.global_rotation))
+	velocity_component.maximizeVelocity(Vector2.RIGHT.rotated(self.global_rotation))
 	travel_animation.play("travelling")
 	if audio:
 		audio.play()
