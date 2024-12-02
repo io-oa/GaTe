@@ -459,7 +459,7 @@ texture = SubResource("663")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ova3p")
-animation = &"idle_up"
+animation = &"attack_down"
 offset = Vector2(0, -10)
 
 [node name="AttackDirectionIndicator" type="Sprite2D" parent="."]
@@ -486,7 +486,6 @@ metadata/_edit_lock_ = true
 [node name="Health" parent="." instance=ExtResource("4_3g4iy")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.5, 1.5)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 visible = false

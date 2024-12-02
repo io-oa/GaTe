@@ -17,6 +17,7 @@ const MOTION_SPEED: float = 400.0
 #Misc
 var last_direction = Vector2.RIGHT
 
+
 #Leveling
 var level: int = 0
 var points_to_next_level: float = 50.0
@@ -72,7 +73,7 @@ func _process(delta: float):
 		self.auto_projectiles.fire(self)
 	
 	if Input.is_action_pressed("attack"):
-		self.basic_attack.fire(self)	
+		self.basic_attack.fire(self)
 		GameGlobals.update_animation_4dir(self.animations, "attack", snapped(GameGlobals.normalize_angle_360(rad_to_deg(self.basic_attack.global_rotation)), 1))
 	
 	#Abilities
