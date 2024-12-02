@@ -9,7 +9,7 @@ class_name Attack extends Area2D
 @onready var firing: bool = false
 @onready var cooldown: float = 0
 @onready var locked_rotation: float = 0
-@onready var locked_position: Vector2 = Vector2(0,0)
+@onready var locked_position: Vector2 = Vector2.ZERO
 
 var attacker: Node2D
 

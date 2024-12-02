@@ -1391,7 +1391,7 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_fvc0t"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_wmkx2"]
 vertices = PackedVector2Array(-5000, -5000, -5000, 5000, 5000, 5000, 5000, -5000)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 
@@ -1432,7 +1432,7 @@ position = Vector2(576, 328)
 [node name="Effects" type="Node" parent="."]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_fvc0t")
+navigation_polygon = SubResource("NavigationPolygon_wmkx2")
 
 [node name="HUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_2ihst")]
 player = NodePath("../Player")

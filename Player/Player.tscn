@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bqpkxht3mx8l8"]
+[gd_scene load_steps=69 format=3 uid="uid://bqpkxht3mx8l8"]
 
 [ext_resource type="Script" path="res://Player/Scripts/Player.gd" id="2"]
 [ext_resource type="AudioStream" uid="uid://drc3nvy1dxbcq" path="res://Player/Assets/blink_sound.wav" id="2_idxpp"]
@@ -8,12 +8,22 @@
 [ext_resource type="Texture2D" uid="uid://cudh4olthk71q" path="res://Player/Assets/Wizard_attack_NOhitbox.png" id="3_rldov"]
 [ext_resource type="Texture2D" uid="uid://b8u513bwmlsq" path="res://Main/Assets/attack_indicator.png" id="4_2pbpn"]
 [ext_resource type="PackedScene" uid="uid://dhve04b56rgnu" path="res://Utilities/Components/Health.tscn" id="4_3g4iy"]
+[ext_resource type="Texture2D" uid="uid://dvwd7smx22tvr" path="res://Player/Assets/Wizard_idle.png" id="4_wipt6"]
 [ext_resource type="PackedScene" uid="uid://i2til2fybjly" path="res://Attacks/Attack.tscn" id="5_8sati"]
 [ext_resource type="PackedScene" uid="uid://duhegav1hscke" path="res://Attacks/Projectiles/TestProjectile/TestProjectile.tscn" id="6_a7vnv"]
 [ext_resource type="Script" path="res://Attacks/ProjectileSceneWrapper.gd" id="7_3328b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_131rb"]
 radius = 88.77
+
+[sub_resource type="Gradient" id="662"]
+offsets = PackedFloat32Array(0.00558659, 0.441341, 0.659218)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="663"]
+gradient = SubResource("662")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3d0bk"]
 atlas = ExtResource("3_rldov")
@@ -94,6 +104,54 @@ region = Rect2(432, 360, 144, 120)
 [sub_resource type="AtlasTexture" id="AtlasTexture_cgh2i"]
 atlas = ExtResource("3_rldov")
 region = Rect2(576, 360, 144, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtsh5"]
+atlas = ExtResource("4_wipt6")
+region = Rect2(0, 72, 48, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hln1l"]
+atlas = ExtResource("4_wipt6")
+region = Rect2(48, 72, 48, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1t3n8"]
+atlas = ExtResource("4_wipt6")
+region = Rect2(96, 72, 48, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exu55"]
+atlas = ExtResource("4_wipt6")
+region = Rect2(144, 72, 48, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrwqb"]
+atlas = ExtResource("4_wipt6")
+region = Rect2(0, 144, 48, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnovl"]
+atlas = ExtResource("4_wipt6")
+region = Rect2(48, 144, 48, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t418b"]
+atlas = ExtResource("4_wipt6")
+region = Rect2(96, 144, 48, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_546dq"]
+atlas = ExtResource("4_wipt6")
+region = Rect2(144, 144, 48, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2vwi"]
+atlas = ExtResource("4_wipt6")
+region = Rect2(0, 216, 48, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5cfa"]
+atlas = ExtResource("4_wipt6")
+region = Rect2(48, 216, 48, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83ah3"]
+atlas = ExtResource("4_wipt6")
+region = Rect2(96, 216, 48, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5g2nk"]
+atlas = ExtResource("4_wipt6")
+region = Rect2(144, 216, 48, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0flit"]
 atlas = ExtResource("3_qd16i")
@@ -241,6 +299,62 @@ animations = [{
 "name": &"attack_up",
 "speed": 30.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtsh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hln1l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1t3n8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exu55")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrwqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnovl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t418b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_546dq")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2vwi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5cfa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83ah3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5g2nk")
+}],
+"loop": true,
+"name": &"idle_up",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0flit")
@@ -310,15 +424,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Gradient" id="662"]
-offsets = PackedFloat32Array(0.00558659, 0.441341, 0.659218)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="663"]
-gradient = SubResource("662")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
 [sub_resource type="Resource" id="Resource_n876p"]
 script = ExtResource("7_3328b")
 projectile = ExtResource("6_a7vnv")
@@ -346,21 +451,21 @@ stream = ExtResource("2_idxpp")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_131rb")
 
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0.129412, 0.0745098, 0.192157, 0.647059)
+position = Vector2(-0.5, 20.7969)
+scale = Vector2(0.796875, 0.368653)
+texture = SubResource("663")
+
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ova3p")
-animation = &"attack_left"
+animation = &"attack_down"
 offset = Vector2(0, -10)
 
 [node name="AttackDirectionIndicator" type="Sprite2D" parent="."]
 scale = Vector2(0.273585, 0.273585)
 texture = ExtResource("4_2pbpn")
 offset = Vector2(87.7242, 0)
-
-[node name="Shadow" type="Sprite2D" parent="."]
-modulate = Color(0.129412, 0.0745098, 0.192157, 0.647059)
-position = Vector2(0, -0.406251)
-scale = Vector2(0.78125, 0.362305)
-texture = SubResource("663")
 
 [node name="BasicAttack" parent="." instance=ExtResource("5_8sati")]
 projectile_scenes = Array[Resource]([SubResource("Resource_n876p")])

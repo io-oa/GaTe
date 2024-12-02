@@ -22,10 +22,10 @@ script = ExtResource("1_wvl6r")
 
 [node name="HealthBarContainer" type="PanelContainer" parent="."]
 y_sort_enabled = true
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 220.0
-offset_bottom = 40.0
+offset_left = 18.0
+offset_top = 16.0
+offset_right = 600.0
+offset_bottom = 51.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="HealthBarContainer"]
 y_sort_enabled = true
