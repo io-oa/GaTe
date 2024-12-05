@@ -48,4 +48,5 @@ func on_credits_pressed() -> void:
 	pass
 	
 func on_exit_pressed() -> void:
-	get_tree().quit()
+	OS.kill(OS.get_process_id())
+	
