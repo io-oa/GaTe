@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtq48p77p0fu1"
-path="res://.godot/imported/TX Shadow.png-6ccb19b1cea50e36ed274bcf5a60ed6d.ctex"
+uid="uid://cio1rbhiyff7e"
+path="res://.godot/imported/[Base]BaseChip_pipo.png-9033528374045ece12aeaa6ab9dbeb14.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Map/Assets/Texture/TX Shadow.png"
-dest_files=["res://.godot/imported/TX Shadow.png-6ccb19b1cea50e36ed274bcf5a60ed6d.ctex"]
+source_file="res://Map/Assets/[Base]BaseChip_pipo.png"
+dest_files=["res://.godot/imported/[Base]BaseChip_pipo.png-9033528374045ece12aeaa6ab9dbeb14.ctex"]
 
 [params]
 

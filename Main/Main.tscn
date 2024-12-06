@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://i6atcg4t4kna" path="res://GUI/pause_menu.tscn" id="5_jxyjf"]
 [ext_resource type="PackedScene" uid="uid://bl76xgpii4c1w" path="res://Enemy/Enemies/WaterElemental/WaterElemental.tscn" id="5_laiv8"]
 [ext_resource type="PackedScene" uid="uid://ba52freryk52u" path="res://Main/HUD.tscn" id="8_2ihst"]
-[ext_resource type="PackedScene" uid="uid://dc7k4uhitpf5d" path="res://Map/map.tscn" id="9_wlrpj"]
+[ext_resource type="PackedScene" uid="uid://dh5ordgthoc2p" path="res://Map/map.tscn" id="9_wlrpj"]
 
 [sub_resource type="Curve2D" id="Curve2D_isdsk"]
 _data = {
@@ -16,15 +16,16 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_3vf8f"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_kc7tr"]
 vertices = PackedVector2Array(-5000, -5000, -5000, 5000, 5000, 5000, 5000, -5000)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_xlgft")
 enemy_scenes = Array[PackedScene]([ExtResource("2_rxnlu"), ExtResource("3_ealkw"), ExtResource("4_qksm0"), ExtResource("5_laiv8")])
 
-[node name="Map" parent="." instance=ExtResource("9_wlrpj")]
+[node name="Mapa" parent="." instance=ExtResource("9_wlrpj")]
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -36,26 +37,25 @@ wait_time = 2.0
 one_shot = true
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(344, 312)
+position = Vector2(1701, 304)
 gizmo_extents = 109.1
 
 [node name="MobPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_isdsk")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
-position = Vector2(257.52, 648)
-rotation = 3.14159
-progress = 2694.48
+position = Vector2(240.998, 0)
+progress = 240.999
 
 [node name="Player" parent="." instance=ExtResource("4_bghvw")]
-position = Vector2(576, 328)
+position = Vector2(1706, 292)
 
 [node name="Projectiles" type="Node" parent="."]
 
 [node name="Effects" type="Node" parent="."]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_3vf8f")
+navigation_polygon = SubResource("NavigationPolygon_kc7tr")
 
 [node name="HUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_2ihst")]
 player = NodePath("../Player")

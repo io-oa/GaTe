@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8iy1lg27hrtg"
-path="res://.godot/imported/TX Shadow Plant.png-c2db68937b5ab45d64bc1f83465dc1cf.ctex"
+uid="uid://v2y80ucihldo"
+path="res://.godot/imported/[A]Grass_pipo.png-4b5f9fe2a3058e4d9cd3525af68671d5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Map/Assets/Texture/TX Shadow Plant.png"
-dest_files=["res://.godot/imported/TX Shadow Plant.png-c2db68937b5ab45d64bc1f83465dc1cf.ctex"]
+source_file="res://Map/Assets/[A]Grass_pipo.png"
+dest_files=["res://.godot/imported/[A]Grass_pipo.png-4b5f9fe2a3058e4d9cd3525af68671d5.ctex"]
 
 [params]
 
