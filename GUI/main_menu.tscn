@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://rhtpubdlpi6l"]
+[gd_scene load_steps=9 format=3 uid="uid://rhtpubdlpi6l"]
 
 [ext_resource type="Texture2D" uid="uid://dbhcd6jbv6e5i" path="res://GUI/Assets/Main_Menu_BG.jpg" id="1_hs8ys"]
 [ext_resource type="Script" path="res://GUI/Scripts/main_menu.gd" id="1_trlu1"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bvdbn5drgd0lr" path="res://GUI/settings_menu.tscn" id="4_dqxhn"]
 [ext_resource type="AudioStream" uid="uid://c3hbi6f2cnqj5" path="res://GUI/Assets/Main_Menu_Music.mp3" id="5_phntf"]
 [ext_resource type="PackedScene" uid="uid://cx5bok4sq6oan" path="res://GUI/leaderboard.tscn" id="5_tmmj3"]
+[ext_resource type="PackedScene" uid="uid://udm5jrn1al7c" path="res://GUI/confirm_exit.tscn" id="7_qwipv"]
 
 [sub_resource type="SystemFont" id="SystemFont_j575n"]
 font_names = PackedStringArray("Impact")
@@ -124,3 +125,7 @@ layout_mode = 1
 stream = ExtResource("5_phntf")
 autoplay = true
 bus = &"Music"
+
+[node name="ConfirmExit" parent="." instance=ExtResource("7_qwipv")]
+visible = false
+layout_mode = 1

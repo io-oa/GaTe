@@ -9,6 +9,7 @@ extends Control
 @onready var margin_container: MarginContainer = $MarginContainer
 @onready var settings_menu: SettingsMenu = $Settings_Menu
 @onready var leaderboard: Leaderboard = $Leaderboard
+@onready var confirm_exit: ConfirmExit = $ConfirmExit
 @export var start_level = preload("res://Main/Main.tscn")
 
 func _ready() -> void:
@@ -48,5 +49,10 @@ func on_credits_pressed() -> void:
 	pass
 	
 func on_exit_pressed() -> void:
-	OS.kill(OS.get_process_id())
+	confirm_exit.visible = true
+	var is_confirmed = await confirm_exit.prompt()
 	
+	if is_confirmed:
+		OS.kill(OS.get_process_id())
+	else:
+		confirm_exit.visible = false

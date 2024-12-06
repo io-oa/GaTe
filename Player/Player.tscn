@@ -427,7 +427,7 @@ animations = [{
 [sub_resource type="Resource" id="Resource_n876p"]
 script = ExtResource("7_3328b")
 projectile = ExtResource("6_a7vnv")
-cooldown = 0.0
+cooldown = 1.0
 duplicate_x = false
 follow_attack_direction = true
 
