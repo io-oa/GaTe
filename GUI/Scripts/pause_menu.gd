@@ -45,10 +45,8 @@ func on_exit_pressed() -> void:
 	var is_confirmed = await confirm_exit.prompt()
 	
 	if is_confirmed:
-
 		_is_paused = false
 		get_tree().paused = false
 		get_tree().change_scene_to_file(main_menu_path)
 	else:
 		confirm_exit.visible = false
-	#

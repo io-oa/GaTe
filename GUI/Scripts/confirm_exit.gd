@@ -10,10 +10,10 @@ func _ready() -> void:
 	button_cancel.pressed.connect(_on_button_cancel_pressed)
 	button_exit.pressed.connect(_on_button_exit_pressed)
 
-func _on_button_exit_pressed():
+func _on_button_exit_pressed() -> void:
 	confirmed.emit(true)
 
-func _on_button_cancel_pressed():
+func _on_button_cancel_pressed() -> void:
 	confirmed.emit(false)
 	
 func prompt() -> bool:
@@ -25,9 +25,9 @@ func prompt() -> bool:
 #	exit_button.button_down.connect(on_exit_pressed)
 #1. Dodaj tę scenę jako instancję sceny roboczej
 #2. Ustaw tę scenę jako domyślnie niewidoczną
-#2. Dodaj w skrypcie sceny roboczej deklarację:
+#3. Dodaj w skrypcie sceny roboczej deklarację:
 #	@onready var confirm_exit: ConfirmExit = $ConfirmExit
-#3. Dodaj w skrypcie sceny roboczej funkcję:
+#4. Dodaj w skrypcie sceny roboczej funkcję:
 #	func on_exit_pressed() -> void:
 #		confirm_exit.visible = true
 #		var is_confirmed = await confirm_exit.prompt()
