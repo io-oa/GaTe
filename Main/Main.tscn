@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://drr2tlxww2kpa" path="res://Enemy/Enemies/FireElemental/FireElemental.tscn" id="4_qksm0"]
 [ext_resource type="PackedScene" uid="uid://cx701ugh168d6" path="res://GUI/pause_menu.tscn" id="5_jxyjf"]
 [ext_resource type="PackedScene" uid="uid://bl76xgpii4c1w" path="res://Enemy/Enemies/WaterElemental/WaterElemental.tscn" id="5_laiv8"]
-[ext_resource type="PackedScene" uid="uid://ba52freryk52u" path="res://Main/HUD.tscn" id="8_2ihst"]
+[ext_resource type="PackedScene" uid="uid://ba52freryk52u" path="res://HUD/HUD.tscn" id="8_2ihst"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hwjj5"]
 texture = ExtResource("4_6tndu")
