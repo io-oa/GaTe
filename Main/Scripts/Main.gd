@@ -16,8 +16,8 @@ var spawning_disabled = false
 func _process(delta: float) -> void:
 	handle_waves()
 	
-	
 func _ready():
+	get_tree().paused = false
 	GameGlobals.PLAYER = $Player
 	GameGlobals.ROUND_TIMER = $RoundTimer
 	GameGlobals.SCREEN_SIZE = GameGlobals.PLAYER.get_viewport_rect().size

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ba52freryk52u"]
+[gd_scene load_steps=18 format=3 uid="uid://ba52freryk52u"]
 
 [ext_resource type="Script" path="res://Main/HUD.gd" id="1_wvl6r"]
 [ext_resource type="Texture2D" uid="uid://bwlnfswuxlfsi" path="res://Main/Assets/hp_and_rp_frame_empty.png" id="2_4avyd"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://be733nm136637" path="res://Main/Assets/fill_purple.png" id="4_gyr8h"]
 [ext_resource type="Texture2D" uid="uid://bssfjrm2lc30w" path="res://Main/Assets/role_icon_frame_focus.png" id="5_f1jlc"]
 [ext_resource type="Script" path="res://Main/UpgradeButton.gd" id="5_y77ts"]
+[ext_resource type="Texture2D" uid="uid://t45p1oqi05as" path="res://Main/Assets/kill_counter_icon.png" id="7_x3lhj"]
 [ext_resource type="AudioStream" uid="uid://63t1ko6vhlik" path="res://Main/Assets/SUCCESS PICKUP Collect Beep 02.wav" id="8_b84vb"]
 [ext_resource type="Texture2D" uid="uid://dqrgp4do2x2ju" path="res://Main/Assets/equipment_grade_select.png" id="9_1fqqj"]
 [ext_resource type="Texture2D" uid="uid://dwkuykkhrdhq5" path="res://Main/Assets/mod_shockwave.png" id="9_16xeg"]
@@ -17,15 +18,22 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ewrrw"]
 content_margin_top = 20.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cloea"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_02d44"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6t550"]
+
 [node name="HUD" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_wvl6r")
 
 [node name="HealthBarContainer" type="PanelContainer" parent="."]
 y_sort_enabled = true
-offset_left = 18.0
-offset_top = 16.0
-offset_right = 600.0
-offset_bottom = 51.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 597.0
+offset_bottom = 50.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="HealthBarContainer"]
 y_sort_enabled = true
@@ -98,18 +106,20 @@ stretch_margin_right = 10
 stretch_margin_bottom = 10
 texture_progress = ExtResource("4_gyr8h")
 
-[node name="LevelDisplayContainer" type="PanelContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -110.0
-offset_top = 10.0
-offset_right = -10.0
-offset_bottom = 110.0
+offset_left = -100.0
+offset_bottom = 147.0
 grow_horizontal = 0
+
+[node name="LevelDisplayContainer" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2jrip")
 
-[node name="MarginContainer" type="MarginContainer" parent="LevelDisplayContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/LevelDisplayContainer"]
 z_index = 2
 layout_mode = 2
 theme_override_constants/margin_left = 5
@@ -117,17 +127,46 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 35
 
-[node name="LevelDisplay" type="RichTextLabel" parent="LevelDisplayContainer/MarginContainer"]
+[node name="LevelDisplay" type="RichTextLabel" parent="VBoxContainer/LevelDisplayContainer/MarginContainer"]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ewrrw")
 bbcode_enabled = true
 text = "40
 "
 
-[node name="TextureRect" type="TextureRect" parent="LevelDisplayContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/LevelDisplayContainer"]
 layout_mode = 2
 texture = ExtResource("5_f1jlc")
 expand_mode = 1
+
+[node name="KillCounterContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/KillCounterContainer"]
+self_modulate = Color(1, 0, 0, 1)
+material = SubResource("ShaderMaterial_cloea")
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_x3lhj")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/KillCounterContainer"]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+bbcode_enabled = true
+text = "9999
+
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="TimePlayedContainer" type="PanelContainer" parent="."]
 anchors_preset = 5
@@ -137,6 +176,7 @@ offset_left = -81.5
 offset_right = 81.5
 offset_bottom = 61.0
 grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_02d44")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TimePlayedContainer"]
 layout_mode = 2
@@ -380,3 +420,56 @@ bbcode_enabled = true
 self_modulate = Color(1, 1, 1, 0.392157)
 layout_mode = 2
 texture = ExtResource("11_ppmtw")
+
+[node name="EndGameScreen" type="Panel" parent="."]
+visible = false
+z_index = 2
+offset_right = 2560.0
+offset_bottom = 1440.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6t550")
+
+[node name="EndGameMenu" type="VBoxContainer" parent="EndGameScreen"]
+custom_minimum_size = Vector2(400, 600)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -300.0
+offset_right = 200.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndGameScreen/EndGameMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Level" type="RichTextLabel" parent="EndGameScreen/EndGameMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+bbcode_enabled = true
+text = "Level"
+
+[node name="EnemiesKilled" type="RichTextLabel" parent="EndGameScreen/EndGameMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+bbcode_enabled = true
+text = "EnemiesKilled
+"
+
+[node name="BossFightTime" type="RichTextLabel" parent="EndGameScreen/EndGameMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+bbcode_enabled = true
+text = "BossFightTime
+"
+
+[node name="MenuBackButton" type="Button" parent="EndGameScreen/EndGameMenu"]
+layout_mode = 2
+text = "Back To Menu
+"
