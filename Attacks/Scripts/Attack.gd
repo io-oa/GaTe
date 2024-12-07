@@ -2,6 +2,7 @@ class_name Attack extends Area2D
 
 @export var damage: float = 10.0
 @export_range(0.001, 100) var attack_timer: float = 0.1
+@export_range(1, 20) var spread_projectiles_around_count: int = 1
 @export var lock_position_on_fire: bool = true
 @export var projectile_scenes: Array[Resource]
 
@@ -25,7 +26,7 @@ func fire(attacker: Node2D) -> void:
 		if lock_position_on_fire:
 			locked_position = self.get_parent().global_position
 		for projectile_scene_wrapper in projectile_scenes:
-			for i in range(1):
+			for i in range(spread_projectiles_around_count):
 				if projectile_scene_wrapper.cooldown_left > 0:
 					continue
 				var projectile_rotation = self.global_rotation
@@ -46,8 +47,8 @@ func fire(attacker: Node2D) -> void:
 				GameGlobals.add_to_projectile_queue(
 					Callable(self, "prepare_projectile").bind(
 						projectile_scene_wrapper,
-						 self.global_position, 
-						projectile_rotation,
+						self.global_position, 
+						projectile_rotation + (2.0 * PI / spread_projectiles_around_count) * i,
 						self.attacker.ally_flag,
 						self.attacker.stat_modifiers
 						)
@@ -61,7 +62,8 @@ func _process(_delta: float) -> void:
 		projectile.cooldown_left = max(0, projectile.cooldown_left - _delta)
 	if firing:
 		set_global_rotation(locked_rotation)
-		set_global_position(locked_position)
+		if lock_position_on_fire:
+			set_global_position(locked_position)
 		cooldown = max(0, cooldown - _delta)
 		if cooldown == 0:
 			firing = false

@@ -3,6 +3,7 @@ class_name HUDResource extends Resource
 const UPGRADE_BUTTON_TEXT: String = "[center][b]%s[/b]\n%s\n%s[/center]"
 const LEVEL_DISPLAY_TEXT: String = "[font_size=40][center]%s[/center][/font_size]"
 const STAT_DISPLAY_TEXT: String = "[center][b]%s[/b][/center]"
+const TIMER_DISPLAY_TEXT: String = "[font_size=30][center][b]%02d:%02d[/b][/center][/font_size]"
 
 const upgrades = {
 	"projectile_size": {

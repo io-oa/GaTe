@@ -29,7 +29,7 @@ var dash_time_left: float = 0.0
 var dash_speed: Vector2
 
 var abilities: Dictionary = {
-	"blink":{
+	"blink":{ 
 		"cooldown": 2.0,
 		"cooldown_left": 0.0,
 		"distance": 350.0,
@@ -46,15 +46,12 @@ var abilities: Dictionary = {
 func _ready():
 	ally_flag = GameGlobals.ALLY_FLAGS.player
 	self.add_to_group("Player")
-	GameGlobals.PLAYER = self
-	GameGlobals.SCREEN_SIZE = get_viewport_rect().size
-	GameGlobals.PROJECTILES = get_node(^"/root/Main/Projectiles")
-	GameGlobals.EFFECTS = get_node(^"/root/Main/Effects")
 	self.health_component.init_health()
 	GameGlobals.on_enemy_death.connect(_on_enemy_killed)
 	state_machine.add_states([state_idle, state_move, state_dash])
 	
 func _physics_process(_delta):
+	self.basic_attack.damage
 	pass
 
 func _process(delta: float):
@@ -125,21 +122,21 @@ func state_dash():
 		self.state_machine.set_current_state(state_idle)
 		
 func state_move():
-	var motion = Vector2(
+	var motion_direction = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	).normalized()
 
-	self.set_velocity(motion * self.MOTION_SPEED)
+	self.set_velocity(motion_direction * self.MOTION_SPEED)
 	self.move_and_slide()
 	self.position = self.position.clamp(GameGlobals.MAP_VERTICES[0], GameGlobals.MAP_VERTICES[2])
 
 	if Input.is_action_pressed("player_dash") and self.abilities["dash"]["cooldown_left"] == 0:
 		self.state_machine.set_current_state(state_dash)
 		
-	if motion.length() > 0:
-		GameGlobals.update_animation_4dir(self.animations, "walk", snapped(GameGlobals.normalize_angle_360(rad_to_deg(motion.angle())), 1))
-		self.last_direction = motion
+	if motion_direction.length() > 0:
+		GameGlobals.update_animation_4dir(self.animations, "walk", snapped(GameGlobals.normalize_angle_360(rad_to_deg(motion_direction.angle())), 1))
+		self.last_direction = motion_direction
 	else:
 		self.state_machine.set_current_state(state_idle)
 

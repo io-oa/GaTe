@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://Attacks/ProjectileSceneWrapper.gd" id="7_3328b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_131rb"]
-radius = 88.77
+radius = 0.01
 
 [sub_resource type="Gradient" id="662"]
 offsets = PackedFloat32Array(0.00558659, 0.441341, 0.659218)
@@ -434,8 +434,9 @@ follow_attack_direction = true
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccugu"]
 size = Vector2(154, 20)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_m6pvm"]
-radius = 88.77
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tltck"]
+radius = 19.84
+height = 59.39
 
 [sub_resource type="OccluderPolygon2D" id="661"]
 polygon = PackedVector2Array(16.25, 18.75, 18.75, 36.25, 15, 38.75, 6.25, 42.5, -5, 42.5, -13.75, 41.25, -18.75, 37.5, -15, 20)
@@ -480,7 +481,7 @@ damage = 0.0
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_5pbo1")]
 priority = 1
 health_component = NodePath("../Health")
-hurtbox_shape = SubResource("CircleShape2D_m6pvm")
+hurtbox_shape = SubResource("CapsuleShape2D_tltck")
 metadata/_edit_lock_ = true
 
 [node name="Health" parent="." instance=ExtResource("4_3g4iy")]

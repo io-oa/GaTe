@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdudgjacn3r5x"
-path="res://.godot/imported/enemyWalking_2.png-6b365cb19c11d96f1e016d5becab4add.ctex"
+uid="uid://bfmn667a0qxpn"
+path="res://.godot/imported/green_missile.png-61695c485f8b51f3df69cb70bc29cc06.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemy/Assets/enemyWalking_2.png"
-dest_files=["res://.godot/imported/enemyWalking_2.png-6b365cb19c11d96f1e016d5becab4add.ctex"]
+source_file="res://Attacks/Projectiles/Assets/green_missile.png"
+dest_files=["res://.godot/imported/green_missile.png-61695c485f8b51f3df69cb70bc29cc06.ctex"]
 
 [params]
 

@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var hp_bar: TextureProgressBar = $HealthBarContainer/MarginContainer/PlayerHealthBar
 @onready var exp_bar: TextureProgressBar = $ExpBarContainer/MarginContainer/PlayerExpBar
 @onready var level_display: RichTextLabel = $LevelDisplayContainer/MarginContainer/LevelDisplay
+@onready var timer:  RichTextLabel = $TimePlayedContainer/RichTextLabel
 @onready var upgrade_choices_menu: Panel = $UpgradeChoices
 @onready var upgrade_options_container: HBoxContainer = $UpgradeChoices/HBoxContainer
 @onready var upgrade_buttons: Array[Node] = upgrade_options_container.get_children()
@@ -18,6 +19,7 @@ extends CanvasLayer
 @onready var crit_chance_lbl: RichTextLabel = $StatDisplay/MarginContainer/VBoxContainer/CritChance
 
 func _process(delta: float) -> void:
+	update_timer()
 	if Input.is_action_just_pressed("stat_display_toggle"):
 		stat_display.visible = !stat_display.visible
 	
@@ -50,3 +52,13 @@ func _update_stat_display():
 	self.damage_lbl.text = resource.STAT_DISPLAY_TEXT % ("DAMAGE: " + str(player.stat_modifiers["damage"] * 100) + "%")
 	self.projectile_size_lbl.text = resource.STAT_DISPLAY_TEXT % ("PROJECTILE SIZE: " + str(player.stat_modifiers["projectile_size"] * 100) + "%")
 	self.crit_chance_lbl.text = resource.STAT_DISPLAY_TEXT % ("CRIT: " + str(player.stat_modifiers["critical_chance"] * 100) + "%")
+	
+func update_timer():
+	if not GameGlobals.in_boss_fight:
+		var minutes: int = int((GameGlobals.current_time) / 60)
+		var	seconds: int = int((GameGlobals.current_time) - minutes * 60)
+		timer.text = resource.TIMER_DISPLAY_TEXT % [minutes, seconds]
+	else:
+		var minutes: int = int((GameGlobals.ROUND_TIMER.time_left) / 60)
+		var	seconds: int = int((GameGlobals.ROUND_TIMER.time_left) - minutes * 60)
+		timer.text = resource.TIMER_DISPLAY_TEXT % [minutes, seconds]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://e8hrltr74eum"
-path="res://.godot/imported/enemyFlyingAlt_2.png-06510944e8673d9bc6d8c507f59e8bfe.ctex"
+uid="uid://co60oyg2xbujc"
+path="res://.godot/imported/Projectile_9_Green_Large.png-640292c006dd574945319e914fa1b741.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemy/Assets/enemyFlyingAlt_2.png"
-dest_files=["res://.godot/imported/enemyFlyingAlt_2.png-06510944e8673d9bc6d8c507f59e8bfe.ctex"]
+source_file="res://Enemy/Enemies/Bosses/Alien/Assets/Projectile_9_Green_Large.png"
+dest_files=["res://.godot/imported/Projectile_9_Green_Large.png-640292c006dd574945319e914fa1b741.ctex"]
 
 [params]
 

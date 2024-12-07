@@ -7,8 +7,11 @@ var PLAYER: Player
 var SCREEN_SIZE: Vector2
 var PROJECTILES: Node
 var EFFECTS: Node
+var ROUND_TIMER: Timer
 var score: int
 var player_name: String
+var current_time: float
+var in_boss_fight: bool = false
  
 #Multithreading
 var projectile_queue: Array[Callable]
@@ -17,7 +20,9 @@ var projectile_queue_mutex: Mutex
 var projectile_threads: Array[Thread]
 
 #Constants
-var INT64_MAX = (1 << 63) - 1
+const INT64_MAX: int = (1 << 63) - 1
+const GAME_TIME: float = 1.0
+const MAX_BOSS_FIGHT_TIME: float = 180.0
 
 const MAP_VERTICES: PackedVector2Array = [
 		Vector2(-5000, -5000),	#	TOP LEFT
@@ -65,9 +70,11 @@ func init_projectile_threads(count: int):
 		projectile_threads[i].start(Callable(self, "_projectile_processing_thread").bind(str(i)))
 				
 func _process(delta: float) -> void:
-	pass
+	current_time = GAME_TIME - ROUND_TIMER.time_left
+	
 		
 func _ready() -> void:
+	current_time = 0.0
 	projectile_queue_semaphore = Semaphore.new()
 	projectile_queue_mutex = Mutex.new()
 	init_projectile_threads(4)
@@ -92,3 +99,42 @@ func add_to_projectile_queue(callable: Callable) -> void:
 	projectile_queue.append(callable)
 	projectile_queue_mutex.unlock()
 	projectile_queue_semaphore.post()
+
+func find_valid_position(offset: float) -> Vector2:
+	var point: Vector2 = Vector2.ZERO
+	point.x = randi_range(
+		self.PLAYER.position.x - (self.SCREEN_SIZE.x / 2) - offset,
+		self.PLAYER.position.x + (self.SCREEN_SIZE.x / 2) + offset
+	)
+	point.y = randi_range(
+		self.PLAYER.position.y - (self.SCREEN_SIZE.y / 2) - offset,
+		self.PLAYER.position.y + (self.SCREEN_SIZE.y / 2) + offset
+	)
+	if offset > 0.0:
+		if point.x > self.PLAYER.position.x:
+			point.x = clamp(
+				point.x, 
+				self.PLAYER.position.x + (self.SCREEN_SIZE.x / 2), 
+				self.PLAYER.position.x + (self.SCREEN_SIZE.x / 2) + offset
+			)
+		else:
+			point.x = clamp(
+				point.x, 
+				self.PLAYER.position.x - (self.SCREEN_SIZE.x / 2) - offset, 
+				self.PLAYER.position.x - (self.SCREEN_SIZE.x / 2)
+			)
+		if point.y > self.PLAYER.position.y:
+			point.x = clamp(
+				point.y, 
+				self.PLAYER.position.y + (self.SCREEN_SIZE.y / 2), 
+				self.PLAYER.position.y + (self.SCREEN_SIZE.y / 2) + offset
+			)
+		else:
+			point.y = clamp(
+				point.y, 
+				self.PLAYER.position.y - (self.SCREEN_SIZE.y / 2) - offset, 
+				self.PLAYER.position.y - (self.SCREEN_SIZE.y / 2)
+			)
+	point.x = clamp(point.x, self.MAP_VERTICES[1].x, self.MAP_VERTICES[3].x)
+	point.y = clamp(point.y, self.MAP_VERTICES[3].y, self.MAP_VERTICES[1].y)
+	return point

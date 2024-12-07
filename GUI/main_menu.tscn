@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://btrmhyw8c5y4p" path="res://GUI/Assets/DungeonFont.ttf" id="2_at1x2"]
 [ext_resource type="PackedScene" uid="uid://bvdbn5drgd0lr" path="res://GUI/settings_menu.tscn" id="4_dqxhn"]
 [ext_resource type="AudioStream" uid="uid://c3hbi6f2cnqj5" path="res://GUI/Assets/Main_Menu_Music.mp3" id="5_phntf"]
-[ext_resource type="PackedScene" uid="uid://cx5bok4sq6oan" path="res://GUI/leaderboard.tscn" id="5_tmmj3"]
+[ext_resource type="PackedScene" path="res://GUI/leaderboard.tscn" id="5_tmmj3"]
 
 [sub_resource type="SystemFont" id="SystemFont_j575n"]
 font_names = PackedStringArray("Impact")

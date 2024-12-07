@@ -129,6 +129,19 @@ layout_mode = 2
 texture = ExtResource("5_f1jlc")
 expand_mode = 1
 
+[node name="TimePlayedContainer" type="PanelContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -81.5
+offset_right = 81.5
+offset_bottom = 61.0
+grow_horizontal = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TimePlayedContainer"]
+layout_mode = 2
+bbcode_enabled = true
+
 [node name="UpgradeChoices" type="Panel" parent="."]
 process_mode = 2
 visible = false
