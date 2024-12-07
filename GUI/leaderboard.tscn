@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cx5bok4sq6oan"]
+[gd_scene load_steps=3 format=3 uid="uid://85abbp7b7buc"]
 
 [ext_resource type="Script" path="res://GUI/Scripts/leaderboard.gd" id="1_3gtdb"]
 [ext_resource type="PackedScene" uid="uid://dgygkbtm0burn" path="res://addons/quiver_leaderboards/leaderboard_ui.tscn" id="1_xudit"]

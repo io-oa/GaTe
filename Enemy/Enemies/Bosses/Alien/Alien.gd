@@ -33,8 +33,7 @@ func _process(_delta: float):
 		blink_timer = BLINK_COOLDOWN
 	
 func _on_death() -> void:
-	GameGlobals.on_enemy_death.emit(self.scaling)
-	queue_free()
+	GameGlobals.boss_death.emit(self)
 		
 func state_move():
 	pass

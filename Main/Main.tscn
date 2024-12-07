@@ -1391,7 +1391,6 @@ _data = {
 }
 point_count = 5
 
-
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vwati"]
 vertices = PackedVector2Array(-5000, -5000, -5000, 5000, 5000, 5000, 5000, -5000)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])

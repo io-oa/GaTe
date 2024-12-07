@@ -1,6 +1,7 @@
 extends Node
 
-signal on_enemy_death(game_scaling: Node)
+signal enemy_death(game_scaling: Node)
+signal boss_death(boss: Entity)
 
 #Random stuff!
 var PLAYER: Player
@@ -12,6 +13,7 @@ var score: int
 var player_name: String
 var current_time: float
 var in_boss_fight: bool = false
+var enemies_killed: int = 0
  
 #Multithreading
 var projectile_queue: Array[Callable]
@@ -21,7 +23,7 @@ var projectile_threads: Array[Thread]
 
 #Constants
 const INT64_MAX: int = (1 << 63) - 1
-const GAME_TIME: float = 1.0
+const GAME_TIME: float = 3.0
 const MAX_BOSS_FIGHT_TIME: float = 180.0
 
 const MAP_VERTICES: PackedVector2Array = [

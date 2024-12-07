@@ -9,7 +9,6 @@ extends Control
 @onready var margin_container: MarginContainer = $MarginContainer
 @onready var settings_menu: SettingsMenu = $Settings_Menu
 @onready var leaderboard: Leaderboard = $Leaderboard
-@export var start_level = preload("res://Main/Main.tscn")
 
 func _ready() -> void:
 	handle_connecting_signals()
@@ -24,7 +23,7 @@ func handle_connecting_signals() -> void:
 	leaderboard.exit_leaderboard_menu.connect(on_exit_leaderboard)
 
 func on_start_pressed() -> void:
-	get_tree().change_scene_to_packed(start_level)
+	Scenes.switch_to(Scenes.GAME)
 	
 func on_leaderboard_pressed() -> void:
 	margin_container.visible = false

@@ -47,7 +47,7 @@ func _ready():
 	ally_flag = GameGlobals.ALLY_FLAGS.player
 	self.add_to_group("Player")
 	self.health_component.init_health()
-	GameGlobals.on_enemy_death.connect(_on_enemy_killed)
+	GameGlobals.enemy_death.connect(_on_enemy_killed)
 	state_machine.add_states([state_idle, state_move, state_dash])
 	
 func _physics_process(_delta):
@@ -81,6 +81,7 @@ func _process(delta: float):
 		
 func _on_enemy_killed(scaling: Node):
 	update_points(scaling.points_on_kill)
+	GameGlobals.enemies_killed += 1
 	print(self.level)
 
 func update_points(points: float):
