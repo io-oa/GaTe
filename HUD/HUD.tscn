@@ -1,11 +1,11 @@
 [gd_scene load_steps=18 format=3 uid="uid://ba52freryk52u"]
 
-[ext_resource type="Script" path="res://Main/HUD.gd" id="1_wvl6r"]
+[ext_resource type="Script" path="res://HUD/HUD.gd" id="1_wvl6r"]
 [ext_resource type="Texture2D" uid="uid://bwlnfswuxlfsi" path="res://Main/Assets/hp_and_rp_frame_empty.png" id="2_4avyd"]
 [ext_resource type="Texture2D" uid="uid://yll7j1xw284s" path="res://Main/Assets/fill_red.png" id="3_g7j6a"]
 [ext_resource type="Texture2D" uid="uid://be733nm136637" path="res://Main/Assets/fill_purple.png" id="4_gyr8h"]
 [ext_resource type="Texture2D" uid="uid://bssfjrm2lc30w" path="res://Main/Assets/role_icon_frame_focus.png" id="5_f1jlc"]
-[ext_resource type="Script" path="res://Main/UpgradeButton.gd" id="5_y77ts"]
+[ext_resource type="Script" path="res://HUD/UpgradeButton.gd" id="5_y77ts"]
 [ext_resource type="Texture2D" uid="uid://t45p1oqi05as" path="res://Main/Assets/kill_counter_icon.png" id="7_x3lhj"]
 [ext_resource type="AudioStream" uid="uid://63t1ko6vhlik" path="res://Main/Assets/SUCCESS PICKUP Collect Beep 02.wav" id="8_b84vb"]
 [ext_resource type="Texture2D" uid="uid://dqrgp4do2x2ju" path="res://Main/Assets/equipment_grade_select.png" id="9_1fqqj"]
