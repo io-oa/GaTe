@@ -1,0 +1,106 @@
+[gd_scene load_steps=5 format=3 uid="uid://udm5jrn1al7c"]
+
+[ext_resource type="Script" path="res://GUI/Scripts/confirm_exit.gd" id="1_grvok"]
+
+[sub_resource type="SystemFont" id="SystemFont_2jux7"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_mt4n1"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_k7y4w"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[node name="ConfirmExit" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_grvok")
+
+[node name="Frame" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -214.5
+offset_top = -111.0
+offset_right = 214.5
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.355314, 0.355314, 0.355314, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Frame"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.5
+offset_top = -94.0
+offset_right = 201.5
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.654232, 0.654232, 0.654232, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Frame/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SeparatorV1" type="Control" parent="Frame/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Frame/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_2jux7")
+theme_override_font_sizes/font_size = 25
+text = "Are you sure
+ you want to exit?"
+horizontal_alignment = 1
+
+[node name="SeparatorV2" type="Control" parent="Frame/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Frame/ColorRect/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ButtonCancel" type="Button" parent="Frame/ColorRect/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_fonts/font = SubResource("SystemFont_mt4n1")
+theme_override_font_sizes/font_size = 24
+text = "Cancel"
+
+[node name="SeparatorH" type="Control" parent="Frame/ColorRect/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ButtonExit" type="Button" parent="Frame/ColorRect/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_fonts/font = SubResource("SystemFont_k7y4w")
+theme_override_font_sizes/font_size = 24
+text = "Exit"
