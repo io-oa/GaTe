@@ -23,8 +23,6 @@ func handle_connecting_signals() -> void:
 	settings_menu.exit_settings_menu.connect(on_exit_settings)
 	leaderboard.exit_leaderboard_menu.connect(on_exit_leaderboard)
 
-
-	
 func on_start_pressed() -> void:
 	get_tree().change_scene_to_packed(start_level)
 	
@@ -49,4 +47,3 @@ func on_credits_pressed() -> void:
 	
 func on_exit_pressed() -> void:
 	OS.kill(OS.get_process_id())
-	

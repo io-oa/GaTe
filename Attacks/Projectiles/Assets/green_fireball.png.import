@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3xvxurwfrf7d"
-path="res://.godot/imported/enemySwimming_2.png-5a016d8a6ef34cf5b2f64e28f4a751d4.ctex"
+uid="uid://bdbexy33xhmfx"
+path="res://.godot/imported/green_fireball.png-f348e0812252bc9c93f2a0f04741efd5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemy/Assets/enemySwimming_2.png"
-dest_files=["res://.godot/imported/enemySwimming_2.png-5a016d8a6ef34cf5b2f64e28f4a751d4.ctex"]
+source_file="res://Attacks/Projectiles/Assets/green_fireball.png"
+dest_files=["res://.godot/imported/green_fireball.png-f348e0812252bc9c93f2a0f04741efd5.ctex"]
 
 [params]
 
