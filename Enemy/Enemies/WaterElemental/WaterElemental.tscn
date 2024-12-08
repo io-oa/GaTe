@@ -129,6 +129,7 @@ projectile = ExtResource("5_4muw4")
 cooldown = 1.0
 duplicate_x = false
 follow_attack_direction = true
+spread_around = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jttnk"]
 radius = 0.01
