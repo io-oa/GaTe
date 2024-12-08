@@ -38,6 +38,4 @@ func on_exit_settings() -> void:
 	settings_menu.visible = false
 	
 func on_exit_pressed() -> void:
-	_is_paused = false
-	get_tree().paused = false
 	Scenes.switch_to(Scenes.MAIN_MENU)

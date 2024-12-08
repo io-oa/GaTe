@@ -5,6 +5,7 @@ signal boss_death(boss: Entity)
 
 #Random stuff!
 var PLAYER: Player
+var HUD: CanvasLayer
 var SCREEN_SIZE: Vector2
 var PROJECTILES: Node
 var EFFECTS: Node
@@ -60,8 +61,11 @@ func update_animation_4dir(sprite: AnimatedSprite2D, animation: String, angle: f
 	elif angle >= 225.0 and angle <= 315.0:
 		sprite.play(animation + "_up")
 
-func pick_random_keys(dict: Dictionary, n_keys: int) -> Array[String]:
-	var key_array: Array = dict.keys()
+func pick_random_keys(dict: Dictionary, n_keys: int, excluded_keys: Array = []) -> Array[String]:
+	var key_array: Array = []
+	for i in range(dict.keys().size()):
+		if dict.keys()[i] not in excluded_keys:
+			key_array.append(dict.keys()[i])
 	var picked_keys: Array[String] = []
 	for i in range(n_keys):
 		if key_array.size() > 0:

@@ -46,4 +46,5 @@ func on_credits_pressed() -> void:
 	pass
 	
 func on_exit_pressed() -> void:
-	OS.kill(OS.get_process_id())
+	get_tree().paused = true
+	OS.kill.call_deferred(OS.get_process_id())
