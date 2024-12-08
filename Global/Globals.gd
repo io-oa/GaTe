@@ -23,7 +23,7 @@ var projectile_threads: Array[Thread]
 
 #Constants
 const INT64_MAX: int = (1 << 63) - 1
-const GAME_TIME: float = 3.0
+const GAME_TIME: float = 60.0
 const MAX_BOSS_FIGHT_TIME: float = 180.0
 
 const MAP_VERTICES: PackedVector2Array = [
@@ -37,7 +37,12 @@ enum ALLY_FLAGS{
 	player = 1 << 0,
 	enemy = 1 << 1
 }
+	
 
+func reset_vars():
+	in_boss_fight = false
+	enemies_killed = 0
+	
 #Helpers
 func is_ally(flag1: int, flag2: int):
 	return (flag1 & flag2) != 0

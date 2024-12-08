@@ -68,7 +68,7 @@ debug_color = Color(0.744847, 0.185992, 0.198257, 0.42)
 
 [node name="TravelAnimation" type="AnimatedSprite2D" parent="."]
 z_index = 1
-position = Vector2(-2.86102e-06, -1.90735e-06)
+position = Vector2(0, -20)
 scale = Vector2(0.579375, 0.579375)
 sprite_frames = SubResource("SpriteFrames_pu2pr")
 animation = &"travelling"

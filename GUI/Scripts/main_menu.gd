@@ -11,6 +11,7 @@ extends Control
 @onready var leaderboard: Leaderboard = $Leaderboard
 
 func _ready() -> void:
+	Sound.play("MENU_MUSIC")
 	handle_connecting_signals()
 	
 func handle_connecting_signals() -> void:

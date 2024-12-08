@@ -94,4 +94,5 @@ func update_timer():
 		timer.text = resource.TIMER_DISPLAY_TEXT % [minutes, seconds]
 
 func _on_menu_back_btn():
+	GameGlobals.reset_vars()
 	Scenes.switch_to(Scenes.MAIN_MENU)

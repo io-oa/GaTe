@@ -120,8 +120,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ux088"]
-radius = 47.87
-height = 124.45
+radius = 0.005
+height = 0.01
 
 [sub_resource type="Resource" id="Resource_wky2t"]
 script = ExtResource("6_8mc5c")
@@ -130,12 +130,12 @@ cooldown = 1.0
 duplicate_x = false
 follow_attack_direction = true
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o70bk"]
-size = Vector2(458, 20)
+[sub_resource type="CircleShape2D" id="CircleShape2D_4dw0a"]
+radius = 0.01
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a3fhh"]
-radius = 49.38
-height = 128.29
+radius = 43.25
+height = 86.5
 
 [node name="FireElemental" type="CharacterBody2D"]
 script = ExtResource("1_barw6")
@@ -159,8 +159,7 @@ attack_timer = 0.2
 projectile_scenes = Array[Resource]([SubResource("Resource_wky2t")])
 
 [node name="CollisionShape2D" parent="BasicAttack" index="0"]
-position = Vector2(219, 0)
-shape = SubResource("RectangleShape2D_o70bk")
+shape = SubResource("CircleShape2D_4dw0a")
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_w4cpx")]
 rotation = 1.5708
