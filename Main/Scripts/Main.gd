@@ -57,7 +57,7 @@ func spawn_wave():
 func handle_waves():
 	wave_spawn_timer = max(0, wave_spawn_timer - get_process_delta_time())
 	wave_update_timer = max(0, wave_update_timer - get_process_delta_time())
-	if get_tree().get_node_count_in_group("Enemy") <= MOB_SPAWN_CUT_OFF and is_zero_approx(wave_spawn_timer) and not spawning_disabled: 
+	if get_tree().get_node_count_in_group("Enemies") <= MOB_SPAWN_CUT_OFF and is_zero_approx(wave_spawn_timer) and not spawning_disabled: 
 		spawn_wave()
 		wave_spawn_timer = waves_resource.spawn_interval
 	if is_zero_approx(wave_update_timer):
