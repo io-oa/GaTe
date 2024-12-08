@@ -9,6 +9,7 @@ const RESOLUTION_DICTIONARY: Dictionary = {
 }
 
 func _ready() -> void:
+	option_button.get_popup().add_theme_font_size_override("font_size", 35)
 	option_button.item_selected.connect(on_resolution_selected)
 	add_resolution_items()
 	load_data()
