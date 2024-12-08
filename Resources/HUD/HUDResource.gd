@@ -40,5 +40,15 @@ const upgrades = {
 		"duplicate_x": true,
 		"follow_attack_direction": false,
 		"scene_path": "res://Attacks/Projectiles/Shockwave/Shockwave.tscn"
+	},
+	"lightning_orb": {
+		"type": "projectile",
+		"name": "Lightning Orb",
+		"icon": preload("res://Main/Assets/mod_lightning_orb.png"),
+		"description": "Sends 3 lightning orbs towards cursor",
+		"cooldown": 2.0,
+		"duplicate_x": false,
+		"follow_attack_direction": true,
+		"scene_path": "res://Attacks/Projectiles/LightningOrb/LightningOrb.tscn"
 	}
 }

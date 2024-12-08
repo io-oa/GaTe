@@ -74,7 +74,7 @@ duplicate_x = false
 follow_attack_direction = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o70bk"]
-size = Vector2(458, 20)
+size = Vector2(0, 0)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a3fhh"]
 radius = 153.87
@@ -125,7 +125,6 @@ attack_timer = 0.25
 projectile_scenes = Array[Resource]([SubResource("Resource_txkb8")])
 
 [node name="CollisionShape2D" parent="BasicAttack" index="0"]
-position = Vector2(219, 0)
 shape = SubResource("RectangleShape2D_o70bk")
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_5id2k")]

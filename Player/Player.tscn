@@ -1,8 +1,7 @@
-[gd_scene load_steps=69 format=3 uid="uid://bqpkxht3mx8l8"]
+[gd_scene load_steps=67 format=3 uid="uid://bqpkxht3mx8l8"]
 
 [ext_resource type="Script" path="res://Player/Scripts/Player.gd" id="2"]
 [ext_resource type="AudioStream" uid="uid://drc3nvy1dxbcq" path="res://Player/Assets/blink_sound.wav" id="2_idxpp"]
-[ext_resource type="Script" path="res://Player/Scripts/Info.gd" id="3_1iccv"]
 [ext_resource type="PackedScene" uid="uid://b4821q1nhproh" path="res://Utilities/Components/Hurtbox.tscn" id="3_5pbo1"]
 [ext_resource type="Texture2D" uid="uid://rmnsblfsun2e" path="res://Player/Assets/Wizard_walk.png" id="3_qd16i"]
 [ext_resource type="Texture2D" uid="uid://cudh4olthk71q" path="res://Player/Assets/Wizard_attack_NOhitbox.png" id="3_rldov"]
@@ -427,19 +426,16 @@ animations = [{
 [sub_resource type="Resource" id="Resource_n876p"]
 script = ExtResource("7_3328b")
 projectile = ExtResource("6_a7vnv")
-cooldown = 0.0
+cooldown = 1.0
 duplicate_x = false
 follow_attack_direction = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccugu"]
-size = Vector2(154, 20)
+size = Vector2(0, 0)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tltck"]
 radius = 19.84
 height = 59.39
-
-[sub_resource type="OccluderPolygon2D" id="661"]
-polygon = PackedVector2Array(16.25, 18.75, 18.75, 36.25, 15, 38.75, 6.25, 42.5, -5, 42.5, -13.75, 41.25, -18.75, 37.5, -15, 20)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("2")
@@ -469,10 +465,10 @@ texture = ExtResource("4_2pbpn")
 offset = Vector2(87.7242, 0)
 
 [node name="BasicAttack" parent="." instance=ExtResource("5_8sati")]
+attack_timer = 1.0
 projectile_scenes = Array[Resource]([SubResource("Resource_n876p")])
 
 [node name="CollisionShape2D" parent="BasicAttack" index="0"]
-position = Vector2(67, 0)
 shape = SubResource("RectangleShape2D_ccugu")
 
 [node name="AutomaticProjectiles" parent="." instance=ExtResource("5_8sati")]
@@ -485,41 +481,8 @@ hurtbox_shape = SubResource("CapsuleShape2D_tltck")
 metadata/_edit_lock_ = true
 
 [node name="Health" parent="." instance=ExtResource("4_3g4iy")]
+max_health = 300.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-visible = false
-light_mask = 16
-position = Vector2(0, -31)
-scale = Vector2(0.8, 0.8)
-occluder = SubResource("661")
-
-[node name="Info" type="Node2D" parent="."]
-script = ExtResource("3_1iccv")
-
-[node name="Position" type="Label" parent="Info"]
-offset_top = -120.0
-offset_right = 40.0
-offset_bottom = -97.0
-text = "POS1"
-metadata/_edit_use_anchors_ = true
-
-[node name="Position2" type="Label" parent="Info"]
-offset_left = 144.0
-offset_top = -120.0
-offset_right = 185.0
-offset_bottom = -97.0
-text = "POS2"
-metadata/_edit_use_anchors_ = true
-
-[node name="Test" type="Label" parent="Info"]
-offset_left = -104.0
-offset_top = -104.0
-offset_right = -64.0
-offset_bottom = -81.0
-text = "!
-"
-metadata/_edit_use_anchors_ = true
 
 [editable path="BasicAttack"]
