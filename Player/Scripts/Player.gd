@@ -82,7 +82,7 @@ func update_points(points: float):
 			points -= points_needed
 			self.level += 1
 			self.current_level_points = 0
-			self.points_to_next_level += 10
+			self.points_to_next_level += 20
 			self.level_up_queue.append(level_up.emit.bind(self.level))
 		else:
 			self.current_level_points += points

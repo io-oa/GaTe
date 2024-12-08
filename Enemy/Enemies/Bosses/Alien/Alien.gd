@@ -27,7 +27,7 @@ func _process(_delta: float):
 	time_lived += _delta
 	blink_timer = max(0, blink_timer - _delta)
 	laser_timer = max(0, laser_timer - _delta)
-	if is_zero_approx(blink_timer):
+	if is_zero_approx(blink_timer) and not laser_attack.firing:
 		self.position = GameGlobals.find_valid_position(-300.0)
 		blink_attack.fire(self)
 		blink_timer = BLINK_COOLDOWN
