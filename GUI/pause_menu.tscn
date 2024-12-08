@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cx701ugh168d6"]
+[gd_scene load_steps=7 format=3 uid="uid://cx701ugh168d6"]
 
 [ext_resource type="FontFile" uid="uid://btrmhyw8c5y4p" path="res://GUI/Assets/DungeonFont.ttf" id="1_d5ofy"]
 [ext_resource type="Script" path="res://GUI/Scripts/pause_menu.gd" id="1_ytvew"]
@@ -7,6 +7,24 @@
 [sub_resource type="SystemFont" id="SystemFont_qogr6"]
 font_names = PackedStringArray("Impact")
 subpixel_positioning = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0mmlv"]
+bg_color = Color(0.963793, 0.350915, 0.854265, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kx81j"]
+bg_color = Color(0.6, 0.619608, 0.901961, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
 
 [node name="Pause_Menu" type="Control"]
 process_mode = 3
@@ -55,7 +73,7 @@ theme_override_constants/shadow_offset_x = 10
 theme_override_constants/shadow_offset_y = 10
 theme_override_constants/outline_size = 24
 theme_override_fonts/font = ExtResource("1_d5ofy")
-theme_override_font_sizes/font_size = 90
+theme_override_font_sizes/font_size = 240
 text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -66,33 +84,39 @@ alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 30
 alignment = 1
 
 [node name="Seperator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="Resume_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 32)
+custom_minimum_size = Vector2(550, 90)
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_qogr6")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 85
+theme_override_styles/hover = SubResource("StyleBoxFlat_0mmlv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kx81j")
 text = "Resume Game
 "
 
 [node name="Settings_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 32)
+custom_minimum_size = Vector2(550, 90)
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_qogr6")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 85
+theme_override_styles/hover = SubResource("StyleBoxFlat_0mmlv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kx81j")
 text = "Enter Settings
 "
 
 [node name="Exit_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 32)
+custom_minimum_size = Vector2(550, 90)
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_qogr6")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 85
+theme_override_styles/hover = SubResource("StyleBoxFlat_0mmlv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kx81j")
 text = "Exit"
 
 [node name="Settings_Menu" parent="." instance=ExtResource("2_3o2qs")]

@@ -10,6 +10,7 @@ const WINDOWS_MODE_ARRAY : Array[String] = [
 ]
 
 func _ready() -> void:
+	option_button.get_popup().add_theme_font_size_override("font_size", 35)
 	add_window_mode_items()
 	option_button.item_selected.connect(on_window_mode_selected)
 	load_data()
