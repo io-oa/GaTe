@@ -23,6 +23,7 @@ frame_2/duration = 0.3
 frame_3/texture = ExtResource("5_rihit")
 frame_3/duration = 0.3
 
+
 [sub_resource type="SystemFont" id="SystemFont_j575n"]
 font_names = PackedStringArray("Impact")
 subpixel_positioning = 0
@@ -46,6 +47,7 @@ shadow_size = 5
 shadow_offset = Vector2(0, 3)
 
 [node name="Main_Menu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

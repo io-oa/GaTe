@@ -18,7 +18,9 @@ extends Control
 const PLAYER_NAME_FILE = "user://player_name.save"
 var player_name = ""
 
+
 func _ready() -> void:
+	Sound.play("MENU_MUSIC")
 	handle_connecting_signals()
 	load_player_name()
 
@@ -34,7 +36,7 @@ func handle_connecting_signals() -> void:
 	credits.exit_credits_menu.connect(on_exit_credits)
 
 func on_start_pressed() -> void:
-	get_tree().change_scene_to_packed(start_level)
+	Scenes.switch_to(Scenes.GAME)
 	
 func _on_name_text_submitted(text: String) -> void:
 	player_name = text

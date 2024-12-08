@@ -1,9 +1,11 @@
 extends Node
 
-signal on_enemy_death(game_scaling: Node)
+signal enemy_death(game_scaling: Node)
+signal boss_death(boss: Entity)
 
 #Random stuff!
 var PLAYER: Player
+var HUD: CanvasLayer
 var SCREEN_SIZE: Vector2
 var PROJECTILES: Node
 var EFFECTS: Node
@@ -12,6 +14,7 @@ var score: int
 var player_name: String
 var current_time: float
 var in_boss_fight: bool = false
+var enemies_killed: int = 0
  
 #Multithreading
 var projectile_queue: Array[Callable]
@@ -21,7 +24,7 @@ var projectile_threads: Array[Thread]
 
 #Constants
 const INT64_MAX: int = (1 << 63) - 1
-const GAME_TIME: float = 1.0
+const GAME_TIME: float = 60.0
 const MAX_BOSS_FIGHT_TIME: float = 180.0
 
 const MAP_VERTICES: PackedVector2Array = [
@@ -35,7 +38,12 @@ enum ALLY_FLAGS{
 	player = 1 << 0,
 	enemy = 1 << 1
 }
+	
 
+func reset_vars():
+	in_boss_fight = false
+	enemies_killed = 0
+	
 #Helpers
 func is_ally(flag1: int, flag2: int):
 	return (flag1 & flag2) != 0
@@ -53,8 +61,11 @@ func update_animation_4dir(sprite: AnimatedSprite2D, animation: String, angle: f
 	elif angle >= 225.0 and angle <= 315.0:
 		sprite.play(animation + "_up")
 
-func pick_random_keys(dict: Dictionary, n_keys: int) -> Array[String]:
-	var key_array: Array = dict.keys()
+func pick_random_keys(dict: Dictionary, n_keys: int, excluded_keys: Array = []) -> Array[String]:
+	var key_array: Array = []
+	for i in range(dict.keys().size()):
+		if dict.keys()[i] not in excluded_keys:
+			key_array.append(dict.keys()[i])
 	var picked_keys: Array[String] = []
 	for i in range(n_keys):
 		if key_array.size() > 0:

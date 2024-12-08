@@ -121,21 +121,22 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ux088"]
 radius = 0.0
-height = 2.0
+height = 0.01
 
 [sub_resource type="Resource" id="Resource_txkb8"]
 script = ExtResource("6_6d1cf")
 projectile = ExtResource("5_4muw4")
-cooldown = 1.0
+cooldown = 0.75
 duplicate_x = false
 follow_attack_direction = true
+spread_around = 1
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o70bk"]
-size = Vector2(458, 20)
+[sub_resource type="CircleShape2D" id="CircleShape2D_jttnk"]
+radius = 0.01
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a3fhh"]
-radius = 49.38
-height = 128.29
+radius = 38.17
+height = 76.34
 
 [node name="WaterElemental" type="CharacterBody2D"]
 script = ExtResource("1_d0l1m")
@@ -154,13 +155,13 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ux088")
 
 [node name="BasicAttack" parent="." instance=ExtResource("4_i1nx4")]
-damage = 5.0
-attack_timer = 0.333
+damage = 15.0
+attack_timer = 0.75
 projectile_scenes = Array[Resource]([SubResource("Resource_txkb8")])
 
 [node name="CollisionShape2D" parent="BasicAttack" index="0"]
-position = Vector2(219, 0)
-shape = SubResource("RectangleShape2D_o70bk")
+shape = SubResource("CircleShape2D_jttnk")
+disabled = true
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_tjkx3")]
 rotation = 1.5708
@@ -178,7 +179,6 @@ wave_frequency = 1.0
 [node name="Velocity" parent="." instance=ExtResource("9_jymop")]
 
 [node name="GameScaling" parent="." instance=ExtResource("10_ajb5s")]
-points_on_kill = 100
 
 [connection signal="died" from="Health" to="." method="_on_death"]
 [connection signal="health_changed" from="Health" to="." method="_on_health_changed"]
