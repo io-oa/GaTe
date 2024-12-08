@@ -429,6 +429,7 @@ projectile = ExtResource("6_a7vnv")
 cooldown = 1.0
 duplicate_x = false
 follow_attack_direction = true
+spread_around = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccugu"]
 size = Vector2(0, 0)
@@ -465,7 +466,9 @@ texture = ExtResource("4_2pbpn")
 offset = Vector2(87.7242, 0)
 
 [node name="BasicAttack" parent="." instance=ExtResource("5_8sati")]
+damage = 10.0
 attack_timer = 1.0
+lock_position_on_fire = true
 projectile_scenes = Array[Resource]([SubResource("Resource_n876p")])
 
 [node name="CollisionShape2D" parent="BasicAttack" index="0"]
@@ -473,6 +476,8 @@ shape = SubResource("RectangleShape2D_ccugu")
 
 [node name="AutomaticProjectiles" parent="." instance=ExtResource("5_8sati")]
 damage = 0.0
+lock_position_on_fire = true
+projectile_scenes = Array[Resource]([])
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_5pbo1")]
 priority = 1

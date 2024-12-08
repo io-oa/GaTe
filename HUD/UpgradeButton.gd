@@ -33,6 +33,7 @@ func _on_button_press():
 					HUD.resource.upgrades[upgrade_name]["cooldown"],
 					HUD.resource.upgrades[upgrade_name]["duplicate_x"],
 					HUD.resource.upgrades[upgrade_name]["follow_attack_direction"],
+					HUD.resource.upgrades[upgrade_name]["spread_around"]
 				)
 			)
 		else:

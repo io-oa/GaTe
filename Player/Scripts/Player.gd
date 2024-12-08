@@ -74,7 +74,6 @@ func _process(delta: float):
 func _on_enemy_killed(scaling: Node):
 	update_points(scaling.points_on_kill)
 	GameGlobals.enemies_killed += 1
-	print(self.level)
 
 func update_points(points: float):
 	while points > 0:

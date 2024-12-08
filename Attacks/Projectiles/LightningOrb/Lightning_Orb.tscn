@@ -1,9 +1,9 @@
 [gd_scene load_steps=16 format=3 uid="uid://b5wne1ix7g3je"]
 
-[ext_resource type="Script" path="res://Attacks/Scripts/Projectile.gd" id="1_ra80v"]
-[ext_resource type="Texture2D" uid="uid://daeycye6ptvif" path="res://Attacks/Projectiles/Assets/pj2_lightning_orb_large_violet/spritesheet.png" id="3_6g0dl"]
-[ext_resource type="PackedScene" uid="uid://dn7pr30nu7c1q" path="res://Utilities/Components/Velocity.tscn" id="4_df2ns"]
-[ext_resource type="AudioStream" uid="uid://d2472a7m5k6rn" path="res://Attacks/Projectiles/Assets/electric_sparks_lightning_loop4.wav" id="5_kmcat"]
+[ext_resource type="Script" path="res://Attacks/Scripts/Projectile.gd" id="1_2nc6l"]
+[ext_resource type="Texture2D" uid="uid://daeycye6ptvif" path="res://Attacks/Projectiles/Assets/pj2_lightning_orb_large_violet/spritesheet.png" id="2_3nmcq"]
+[ext_resource type="PackedScene" uid="uid://dn7pr30nu7c1q" path="res://Utilities/Components/Velocity.tscn" id="3_gqtu0"]
+[ext_resource type="AudioStream" uid="uid://d2472a7m5k6rn" path="res://Attacks/Projectiles/Assets/electric_sparks_lightning_loop4.wav" id="4_divfj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5jd2y"]
 radius = 20.0
@@ -12,35 +12,35 @@ radius = 20.0
 radius = 19.85
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ho7c4"]
-atlas = ExtResource("3_6g0dl")
+atlas = ExtResource("2_3nmcq")
 region = Rect2(0, 0, 64, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gx7gt"]
-atlas = ExtResource("3_6g0dl")
+atlas = ExtResource("2_3nmcq")
 region = Rect2(64, 0, 64, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y08m0"]
-atlas = ExtResource("3_6g0dl")
+atlas = ExtResource("2_3nmcq")
 region = Rect2(128, 0, 64, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qh8bc"]
-atlas = ExtResource("3_6g0dl")
+atlas = ExtResource("2_3nmcq")
 region = Rect2(192, 0, 64, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aaf7n"]
-atlas = ExtResource("3_6g0dl")
+atlas = ExtResource("2_3nmcq")
 region = Rect2(256, 0, 64, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0fx5t"]
-atlas = ExtResource("3_6g0dl")
+atlas = ExtResource("2_3nmcq")
 region = Rect2(320, 0, 64, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2qm8d"]
-atlas = ExtResource("3_6g0dl")
+atlas = ExtResource("2_3nmcq")
 region = Rect2(384, 0, 64, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4x8fl"]
-atlas = ExtResource("3_6g0dl")
+atlas = ExtResource("2_3nmcq")
 region = Rect2(448, 0, 64, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pu2pr"]
@@ -78,7 +78,7 @@ animations = [{
 [node name="LightningOrb" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 0
-script = ExtResource("1_ra80v")
+script = ExtResource("1_2nc6l")
 damage = 15.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -98,10 +98,10 @@ scale = Vector2(0.579375, 0.579375)
 sprite_frames = SubResource("SpriteFrames_pu2pr")
 animation = &"travelling"
 
-[node name="Velocity" parent="." instance=ExtResource("4_df2ns")]
+[node name="Velocity" parent="." instance=ExtResource("3_gqtu0")]
 max_speed = 2000.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_kmcat")
+stream = ExtResource("4_divfj")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
