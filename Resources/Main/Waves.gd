@@ -12,19 +12,19 @@ var waves = {
 	},
 	"air_elementals": {
 		"enemy": preload("res://Enemy/Enemies/AirElemental/AirElemental.tscn"),
-		"time_available": 20.0,
+		"time_available": 10.0,
 		"mob_count": 5,
 		"available": false
 	},
 	"fire_elementals": {
 		"enemy": preload("res://Enemy/Enemies/FireElemental/FireElemental.tscn"),
-		"time_available": 40.0,
+		"time_available": 20.0,
 		"mob_count": 5,
 		"available": false
 	},
 	"earth_elementals": {
 		"enemy": preload("res://Enemy/Enemies/EarthElemental/EarthElemental.tscn"),
-		"time_available": 80.0,
+		"time_available": 30.0,
 		"mob_count": 5,
 		"available": false
 	}

@@ -46,7 +46,7 @@ const upgrades = {
 		"type": "projectile",
 		"name": "Lightning Orb",
 		"icon": preload("res://Main/Assets/mod_lightning_orb.png"),
-		"description": "Sends 3 lightning orbs towards cursor",
+		"description": "Shoots lightning orbs around",
 		"cooldown": 2.0,
 		"duplicate_x": false,
 		"follow_attack_direction": false,

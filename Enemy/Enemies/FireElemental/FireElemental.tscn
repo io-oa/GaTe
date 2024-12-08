@@ -126,7 +126,7 @@ height = 0.01
 [sub_resource type="Resource" id="Resource_wky2t"]
 script = ExtResource("6_8mc5c")
 projectile = ExtResource("5_fx4hy")
-cooldown = 1.0
+cooldown = 0.333
 duplicate_x = false
 follow_attack_direction = true
 spread_around = 1
@@ -156,7 +156,7 @@ shape = SubResource("CapsuleShape2D_ux088")
 
 [node name="BasicAttack" parent="." instance=ExtResource("4_if5p7")]
 damage = 5.0
-attack_timer = 0.2
+attack_timer = 0.333
 projectile_scenes = Array[Resource]([SubResource("Resource_wky2t")])
 
 [node name="CollisionShape2D" parent="BasicAttack" index="0"]

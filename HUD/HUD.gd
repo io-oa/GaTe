@@ -57,7 +57,12 @@ func _on_player_level_up(level: int):
 	level_display.text = resource.LEVEL_DISPLAY_TEXT % player.level
 	get_tree().paused = true
 	upgrade_choices_menu.visible = true
-	var picked_upgrades: Array[String] = GameGlobals.pick_random_keys(resource.upgrades, 3)
+	var excluded_upgrades: Array[String] = []
+	for i in range(player.auto_projectiles.projectile_scenes.size()):
+		var projectile_name: String = player.auto_projectiles.projectile_scenes[i].projectile_name.to_lower() 
+		if projectile_name in resource.upgrades.keys():
+			excluded_upgrades.append(projectile_name)
+	var picked_upgrades: Array[String] = GameGlobals.pick_random_keys(resource.upgrades, 3, excluded_upgrades)
 	for i in upgrade_buttons.size():
 		upgrade_buttons[i].set_properties(picked_upgrades[i])
 		

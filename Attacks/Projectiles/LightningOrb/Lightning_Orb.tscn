@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://b5wne1ix7g3je"]
 
 [ext_resource type="Script" path="res://Attacks/Scripts/Projectile.gd" id="1_2nc6l"]
-[ext_resource type="Texture2D" uid="uid://daeycye6ptvif" path="res://Attacks/Projectiles/Assets/pj2_lightning_orb_large_violet/spritesheet.png" id="2_3nmcq"]
+[ext_resource type="Texture2D" uid="uid://daeycye6ptvif" path="res://TestAssets/super-pixel-projectiles-pack-2-pixel-art-animated-projectiles/Super Pixel Projectiles Pack 2/spritesheet/pj2_lightning_orb_large_violet/spritesheet.png" id="2_3nmcq"]
 [ext_resource type="PackedScene" uid="uid://dn7pr30nu7c1q" path="res://Utilities/Components/Velocity.tscn" id="3_gqtu0"]
 [ext_resource type="AudioStream" uid="uid://d2472a7m5k6rn" path="res://Attacks/Projectiles/Assets/electric_sparks_lightning_loop4.wav" id="4_divfj"]
 
