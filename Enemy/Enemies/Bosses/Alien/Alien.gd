@@ -50,5 +50,5 @@ func state_attack():
 			self.laser_attack.fire(self)
 			laser_timer = LASER_COOLDOWN
 		
-
-	
+func _on_health_health_changed(previous_health: float, current_health: float, max_health: float) -> void:
+	GameGlobals.HUD.boss_hp_bar.value = self.health_component.get_health_percentage()

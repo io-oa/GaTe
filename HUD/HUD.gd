@@ -11,6 +11,8 @@ extends CanvasLayer
 @onready var level_display: RichTextLabel = $VBoxContainer/LevelDisplayContainer/MarginContainer/LevelDisplay
 @onready var kill_counter: RichTextLabel = $VBoxContainer/KillCounterContainer/RichTextLabel
 @onready var timer:  RichTextLabel = $TimePlayedContainer/RichTextLabel
+@onready var boss_health_bar_container: PanelContainer = $BossHealthBarContainer
+@onready var boss_hp_bar: TextureProgressBar = $BossHealthBarContainer/MarginContainer/BossHealthBar
 
 #Upgrades
 @onready var upgrade_choices_menu: Panel = $UpgradeChoices
@@ -101,3 +103,6 @@ func update_timer():
 func _on_menu_back_btn():
 	GameGlobals.reset_vars()
 	Scenes.switch_to(Scenes.MAIN_MENU)
+	
+func toggle_boss_health_bar():
+	boss_health_bar_container.visible = !boss_health_bar_container.visible

@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 func _ready():
 	get_tree().paused = false
 	GameGlobals.PLAYER = $Player
+	GameGlobals.HUD = $HUD
 	GameGlobals.ROUND_TIMER = $RoundTimer
 	GameGlobals.SCREEN_SIZE = GameGlobals.PLAYER.get_viewport_rect().size
 	GameGlobals.PROJECTILES = get_node(^"/root/Main/Projectiles")
@@ -68,6 +69,7 @@ func handle_waves():
 func spawn_boss(name: String):
 	GameGlobals.ROUND_TIMER.wait_time = GameGlobals.MAX_BOSS_FIGHT_TIME
 	GameGlobals.ROUND_TIMER.start()
+	GameGlobals.HUD.toggle_boss_health_bar()
 	Sound.play("BOSS_MUSIC")
 	GameGlobals.in_boss_fight = true
 	spawning_disabled = true

@@ -5,6 +5,7 @@ signal boss_death(boss: Entity)
 
 #Random stuff!
 var PLAYER: Player
+var HUD: CanvasLayer
 var SCREEN_SIZE: Vector2
 var PROJECTILES: Node
 var EFFECTS: Node
