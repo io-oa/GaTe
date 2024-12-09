@@ -26,7 +26,7 @@ func fire(attacker: Node2D) -> void:
 			locked_position = self.get_parent().global_position
 		for projectile_scene_wrapper in projectile_scenes:
 			for i in range(projectile_scene_wrapper.spread_around):
-				if projectile_scene_wrapper.cooldown_left > 0:
+				if not is_zero_approx(projectile_scene_wrapper.cooldown_left):
 					continue
 				var projectile_rotation = self.global_rotation
 				if not projectile_scene_wrapper.follow_attack_direction: 
@@ -65,7 +65,7 @@ func _process(_delta: float) -> void:
 		if lock_position_on_fire:
 			set_global_position(locked_position)
 		cooldown = max(0, cooldown - _delta)
-		if cooldown == 0:
+		if is_zero_approx(cooldown):
 			firing = false
 			set_global_position(self.get_parent().global_position)
 			hitbox.set_deferred("disabled", true)
