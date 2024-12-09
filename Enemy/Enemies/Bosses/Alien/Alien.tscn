@@ -147,8 +147,8 @@ wave_frequency = 1.0
 points_on_kill = 100
 
 [connection signal="died" from="Health" to="." method="_on_death"]
-[connection signal="health_changed" from="Health" to="." method="_on_health_changed"]
 [connection signal="health_changed" from="Health" to="." method="_on_health_health_changed"]
+[connection signal="health_changed" from="Health" to="." method="_on_health_changed"]
 
 [editable path="LaserAttack"]
 [editable path="BasicAttack"]

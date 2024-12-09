@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://dlucshs3kt7md" path="res://GUI/Assets/Animation/wizard_frame_2.png" id="3_jlu5y"]
 [ext_resource type="Texture2D" uid="uid://dqnildmk2ugpo" path="res://GUI/Assets/Animation/wizard_frame_3.png" id="4_bfw0k"]
 [ext_resource type="PackedScene" uid="uid://bvdbn5drgd0lr" path="res://GUI/settings_menu.tscn" id="4_dqxhn"]
-[ext_resource type="AudioStream" uid="uid://c3hbi6f2cnqj5" path="res://GUI/Assets/Main_Menu_Music.mp3" id="5_phntf"]
+[ext_resource type="AudioStream" uid="uid://c3hbi6f2cnqj5" path="res://Main/Music/Main_Menu_Music.mp3" id="5_phntf"]
 [ext_resource type="Texture2D" uid="uid://cessuwd1otnu3" path="res://GUI/Assets/Animation/wizard_frame_4.png" id="5_rihit"]
-[ext_resource type="PackedScene" uid="uid://cx5bok4sq6oan" path="res://GUI/leaderboard.tscn" id="5_tmmj3"]
+[ext_resource type="PackedScene" uid="uid://85abbp7b7buc" path="res://GUI/leaderboard.tscn" id="5_tmmj3"]
 [ext_resource type="PackedScene" uid="uid://c3ha44wpqenvj" path="res://GUI/credits.tscn" id="10_g5xm3"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_0ca71"]
@@ -22,7 +22,6 @@ frame_2/texture = ExtResource("4_bfw0k")
 frame_2/duration = 0.3
 frame_3/texture = ExtResource("5_rihit")
 frame_3/duration = 0.3
-
 
 [sub_resource type="SystemFont" id="SystemFont_j575n"]
 font_names = PackedStringArray("Impact")
