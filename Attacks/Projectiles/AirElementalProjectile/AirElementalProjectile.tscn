@@ -52,7 +52,7 @@ animations = [{
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_1t86h")
-max_hits = 2
+max_hits = 1
 impact_scene = ExtResource("2_32ade")
 rotate_sprite = false
 
