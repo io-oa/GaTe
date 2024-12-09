@@ -474,6 +474,7 @@ shape = SubResource("RectangleShape2D_ccugu")
 
 [node name="AutomaticProjectiles" parent="." instance=ExtResource("5_8sati")]
 damage = 0.0
+attack_timer = 0.05
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_5pbo1")]
 priority = 1
