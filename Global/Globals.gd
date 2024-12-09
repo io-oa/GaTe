@@ -1,14 +1,20 @@
 extends Node
 
-signal on_enemy_death(game_scaling: Node)
+signal enemy_death(game_scaling: Node)
+signal boss_death(boss: Entity)
 
 #Random stuff!
 var PLAYER: Player
+var HUD: CanvasLayer
 var SCREEN_SIZE: Vector2
 var PROJECTILES: Node
 var EFFECTS: Node
+var ROUND_TIMER: Timer
 var score: int
 var player_name: String
+var current_time: float
+var in_boss_fight: bool = false
+var enemies_killed: int = 0
  
 #Multithreading
 var projectile_queue: Array[Callable]
@@ -17,7 +23,9 @@ var projectile_queue_mutex: Mutex
 var projectile_threads: Array[Thread]
 
 #Constants
-var INT64_MAX = (1 << 63) - 1
+const INT64_MAX: int = (1 << 63) - 1
+const GAME_TIME: float = 60.0
+const MAX_BOSS_FIGHT_TIME: float = 180.0
 
 const MAP_VERTICES: PackedVector2Array = [
 		Vector2(-5000, -5000),	#	TOP LEFT
@@ -30,7 +38,12 @@ enum ALLY_FLAGS{
 	player = 1 << 0,
 	enemy = 1 << 1
 }
+	
 
+func reset_vars():
+	in_boss_fight = false
+	enemies_killed = 0
+	
 #Helpers
 func is_ally(flag1: int, flag2: int):
 	return (flag1 & flag2) != 0
@@ -48,8 +61,11 @@ func update_animation_4dir(sprite: AnimatedSprite2D, animation: String, angle: f
 	elif angle >= 225.0 and angle <= 315.0:
 		sprite.play(animation + "_up")
 
-func pick_random_keys(dict: Dictionary, n_keys: int) -> Array[String]:
-	var key_array: Array = dict.keys()
+func pick_random_keys(dict: Dictionary, n_keys: int, excluded_keys: Array = []) -> Array[String]:
+	var key_array: Array = []
+	for i in range(dict.keys().size()):
+		if dict.keys()[i] not in excluded_keys:
+			key_array.append(dict.keys()[i])
 	var picked_keys: Array[String] = []
 	for i in range(n_keys):
 		if key_array.size() > 0:
@@ -65,9 +81,11 @@ func init_projectile_threads(count: int):
 		projectile_threads[i].start(Callable(self, "_projectile_processing_thread").bind(str(i)))
 				
 func _process(delta: float) -> void:
-	pass
+	current_time = GAME_TIME - ROUND_TIMER.time_left
+	
 		
 func _ready() -> void:
+	current_time = 0.0
 	projectile_queue_semaphore = Semaphore.new()
 	projectile_queue_mutex = Mutex.new()
 	init_projectile_threads(4)
@@ -92,3 +110,42 @@ func add_to_projectile_queue(callable: Callable) -> void:
 	projectile_queue.append(callable)
 	projectile_queue_mutex.unlock()
 	projectile_queue_semaphore.post()
+
+func find_valid_position(offset: float) -> Vector2:
+	var point: Vector2 = Vector2.ZERO
+	point.x = randi_range(
+		self.PLAYER.position.x - (self.SCREEN_SIZE.x / 2) - offset,
+		self.PLAYER.position.x + (self.SCREEN_SIZE.x / 2) + offset
+	)
+	point.y = randi_range(
+		self.PLAYER.position.y - (self.SCREEN_SIZE.y / 2) - offset,
+		self.PLAYER.position.y + (self.SCREEN_SIZE.y / 2) + offset
+	)
+	if offset > 0.0:
+		if point.x > self.PLAYER.position.x:
+			point.x = clamp(
+				point.x, 
+				self.PLAYER.position.x + (self.SCREEN_SIZE.x / 2), 
+				self.PLAYER.position.x + (self.SCREEN_SIZE.x / 2) + offset
+			)
+		else:
+			point.x = clamp(
+				point.x, 
+				self.PLAYER.position.x - (self.SCREEN_SIZE.x / 2) - offset, 
+				self.PLAYER.position.x - (self.SCREEN_SIZE.x / 2)
+			)
+		if point.y > self.PLAYER.position.y:
+			point.x = clamp(
+				point.y, 
+				self.PLAYER.position.y + (self.SCREEN_SIZE.y / 2), 
+				self.PLAYER.position.y + (self.SCREEN_SIZE.y / 2) + offset
+			)
+		else:
+			point.y = clamp(
+				point.y, 
+				self.PLAYER.position.y - (self.SCREEN_SIZE.y / 2) - offset, 
+				self.PLAYER.position.y - (self.SCREEN_SIZE.y / 2)
+			)
+	point.x = clamp(point.x, self.MAP_VERTICES[1].x, self.MAP_VERTICES[3].x)
+	point.y = clamp(point.y, self.MAP_VERTICES[3].y, self.MAP_VERTICES[1].y)
+	return point

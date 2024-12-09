@@ -14,21 +14,21 @@ bus_name = "Master"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1125.0
+offset_bottom = 113.0
 theme_override_constants/separation = 42
 
 [node name="Audio_Name_Lbl" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 60
 text = "Master Volume"
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
 
 [node name="HSlider" type="HSlider" parent="HBoxContainer"]
-custom_minimum_size = Vector2(200, 32)
+custom_minimum_size = Vector2(400, 40)
 layout_mode = 2
 size_flags_vertical = 1
 max_value = 1.0
@@ -40,5 +40,5 @@ layout_mode = 2
 [node name="Audio_Num_Lbl" type="Label" parent="HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 60
 text = "100"

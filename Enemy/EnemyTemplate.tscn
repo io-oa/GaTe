@@ -121,7 +121,7 @@ radius = 47.87
 height = 124.45
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o70bk"]
-size = Vector2(458, 20)
+size = Vector2(453, 20)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a3fhh"]
 radius = 49.38
@@ -146,8 +146,9 @@ shape = SubResource("CapsuleShape2D_ux088")
 damage = 5.0
 
 [node name="CollisionShape2D" parent="BasicAttack" index="0"]
-position = Vector2(219, 0)
+position = Vector2(216.5, 0)
 shape = SubResource("RectangleShape2D_o70bk")
+disabled = true
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_qr1bt")]
 rotation = 1.5708

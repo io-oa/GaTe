@@ -46,7 +46,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if self.attacker_ally_flag == area.get_parent().ally_flag:
 		return
 	if area is Hurtbox and max_hits != GameGlobals.INT64_MAX:
-		hits_remaining -= 1
+		hits_remaining = max(0, hits_remaining - 1)
 	if impact_scene:
 		var impact_effect = impact_scene.instantiate()
 		GameGlobals.EFFECTS.add_child(impact_effect)

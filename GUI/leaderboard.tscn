@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cx5bok4sq6oan"]
+[gd_scene load_steps=3 format=3 uid="uid://85abbp7b7buc"]
 
 [ext_resource type="Script" path="res://GUI/Scripts/leaderboard.gd" id="1_3gtdb"]
 [ext_resource type="PackedScene" uid="uid://dgygkbtm0burn" path="res://addons/quiver_leaderboards/leaderboard_ui.tscn" id="1_xudit"]
@@ -37,8 +37,9 @@ layout_mode = 2
 text = "Submit Score"
 
 [node name="Exit" type="Button" parent="LeaderboardUI/HBoxContainer"]
-custom_minimum_size = Vector2(120, 0)
+custom_minimum_size = Vector2(300, 120)
 layout_mode = 2
+theme_override_font_sizes/font_size = 80
 text = "Exit"
 
 [node name="SubmitContainer" type="HBoxContainer" parent="."]

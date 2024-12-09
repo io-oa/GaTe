@@ -5,3 +5,6 @@
 
 [node name="Resolution_Mode_Button" instance=ExtResource("1_4k28q")]
 script = ExtResource("2_frmow")
+
+[node name="Label" parent="HBoxContainer" index="0"]
+custom_minimum_size = Vector2(450, 0)

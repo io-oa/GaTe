@@ -19,7 +19,7 @@ func _process(_delta: float):
 	time_lived += _delta
 
 func _on_death() -> void:
-	GameGlobals.on_enemy_death.emit(self.scaling)
+	GameGlobals.enemy_death.emit(self.scaling)
 	queue_free()
 
 func state_move():
