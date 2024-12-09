@@ -4,6 +4,9 @@ extends Control
 @onready var exit_button: Button = $MarginContainer/HBoxContainer/VBoxContainer/Exit_Button
 @onready var margin_container: MarginContainer = $MarginContainer
 @onready var settings_menu: SettingsMenu = $Settings_Menu
+@onready var confirm_exit: ConfirmExit = $ConfirmExit
+@export var main_menu_path: String = "res://GUI/main_menu.tscn"
+
 
 func _ready() -> void:
 	handle_connecting_signals()
@@ -13,6 +16,7 @@ func handle_connecting_signals() -> void:
 	settings_button.button_down.connect(on_settings_pressed)
 	exit_button.button_down.connect(on_exit_pressed)
 	settings_menu.exit_settings_menu.connect(on_exit_settings)
+	
 	
 var _is_paused:bool = false:
 	set = set_paused
@@ -38,4 +42,14 @@ func on_exit_settings() -> void:
 	settings_menu.visible = false
 	
 func on_exit_pressed() -> void:
-	Scenes.switch_to(Scenes.MAIN_MENU)
+
+	confirm_exit.visible = true
+	var is_confirmed = await confirm_exit.prompt()
+	
+	if is_confirmed:
+		Scenes.switch_to(Scenes.MAIN_MENU)
+	else:
+		confirm_exit.visible = false
+
+	
+

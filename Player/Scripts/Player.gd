@@ -61,8 +61,10 @@ func _process(delta: float):
 	if auto_projectiles.projectile_scenes.size() > 0:
 		self.auto_projectiles.fire(self)
 	
+
 	if Input.is_action_pressed("attack") and is_zero_approx(self.basic_attack.cooldown):
 		self.basic_attack.fire(self)
+
 		GameGlobals.update_animation_4dir(self.animations, "attack", snapped(GameGlobals.normalize_angle_360(rad_to_deg(self.basic_attack.global_rotation)), 1))
 	
 	#Abilities

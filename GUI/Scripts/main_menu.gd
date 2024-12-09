@@ -9,11 +9,15 @@ extends Control
 @onready var margin_container: MarginContainer = $MarginContainer
 @onready var settings_menu: SettingsMenu = $Settings_Menu
 @onready var leaderboard: Leaderboard = $Leaderboard
+
+@onready var confirm_exit: ConfirmExit = $ConfirmExit
+
 @onready var credits: Credits = $Credits
 @onready var line_edit: LineEdit = $MarginContainer/NicknameContainer/VBoxContainer/LineEdit
 @onready var texture_rect: TextureRect = $TextureRect/TextureRect2
 @onready var label: VBoxContainer = $VBoxContainer
 @onready var save_confirmation_dialog: AcceptDialog = $MarginContainer/SaveConfirmationDialog
+
 @export var start_level = preload("res://Main/Main.tscn")
 const PLAYER_NAME_FILE = "user://player_name.save"
 var player_name = ""
@@ -101,4 +105,12 @@ func save_player_name() -> void:
 
 
 func on_exit_pressed() -> void:
-	get_tree().quit()
+
+	confirm_exit.visible = true
+	var is_confirmed = await confirm_exit.prompt()
+	
+	if is_confirmed:
+		OS.kill(OS.get_process_id())
+	else:
+		confirm_exit.visible = false
+
