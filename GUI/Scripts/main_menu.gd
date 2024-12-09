@@ -23,7 +23,8 @@ func _ready() -> void:
 	Sound.play("MENU_MUSIC")
 	handle_connecting_signals()
 	load_player_name()
-
+	get_tree().paused = true
+	
 func handle_connecting_signals() -> void:
 	line_edit.text_submitted.connect(_on_name_text_submitted)
 	start_button.button_down.connect(on_start_pressed)
@@ -99,6 +100,6 @@ func save_player_name() -> void:
 	file.store_line(player_name)
 	file.close()
 
-
 func on_exit_pressed() -> void:
-	get_tree().quit()
+	get_tree().paused = true
+	OS.kill.call_deferred(OS.get_process_id())
