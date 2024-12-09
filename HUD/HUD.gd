@@ -1,6 +1,7 @@
 extends CanvasLayer 
 
 @export var player: Player
+var enemies_kill: float = 0.0
 
 @onready var resource: HUDResource = preload("res://Resources/HUD/HUDResource.tres")
 
@@ -27,10 +28,10 @@ extends CanvasLayer
 
 #End Game Prompt
 @onready var end_game_prompt: Panel = $EndGameScreen
-@onready var level_lbl = $EndGameScreen/EndGameMenu/VBoxContainer/Level
-@onready var enemies_killed_lbl = $EndGameScreen/EndGameMenu/VBoxContainer/EnemiesKilled
-@onready var boss_fight_time_lbl = $EndGameScreen/EndGameMenu/VBoxContainer/BossFightTime
-@onready var menu_back_btn: Button = $EndGameScreen/EndGameMenu/MenuBackButton
+@onready var level_lbl = $EndGameScreen/MarginContainer/EndGameMenu/VBoxContainer/Level
+@onready var enemies_killed_lbl = $EndGameScreen/MarginContainer/EndGameMenu/VBoxContainer/EnemiesKilled
+@onready var boss_fight_time_lbl = $EndGameScreen/MarginContainer/EndGameMenu/VBoxContainer/BossFightTime
+@onready var menu_back_btn: Button = $EndGameScreen/MarginContainer/MenuBackButton
 
 func _process(delta: float) -> void:
 	update_timer()
@@ -88,6 +89,7 @@ func _on_boss_death(boss: Entity):
 	self.level_lbl.text = resource.STAT_DISPLAY_TEXT % ("Level: " + str(player.level))
 	self.enemies_killed_lbl.text = resource.STAT_DISPLAY_TEXT % ("Enemies Killed: " + str(GameGlobals.enemies_killed))
 	self.boss_fight_time_lbl.text = resource.END_GAME_TIMER_TEXT % [minutes, seconds]
+
 	
 func update_timer():
 	if not GameGlobals.in_boss_fight:
@@ -100,8 +102,10 @@ func update_timer():
 		timer.text = resource.TIMER_DISPLAY_TEXT % [minutes, seconds]
 
 func _on_menu_back_btn():
-	GameGlobals.reset_vars()
+	SilentWolf.Scores.save_score(GameGlobals.player_name, GameGlobals.enemies_killed)
 	Scenes.switch_to(Scenes.MAIN_MENU)
+	GameGlobals.reset_vars()
+
 	
 func toggle_boss_health_bar():
 	boss_health_bar_container.visible = !boss_health_bar_container.visible

@@ -470,48 +470,88 @@ offset_right = 2560.0
 offset_bottom = 1440.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_6t550")
 
-[node name="EndGameMenu" type="VBoxContainer" parent="EndGameScreen"]
-custom_minimum_size = Vector2(400, 600)
+[node name="ColorRect" type="ColorRect" parent="EndGameScreen"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -300.0
-offset_right = 200.0
-offset_bottom = 300.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+color = Color(0.257325, 0.180422, 0.103683, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EndGameScreen/EndGameMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="EndGameScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 200
+
+[node name="MenuBackButton" type="Button" parent="EndGameScreen/MarginContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 90
+text = "Back To Menu
+"
+
+[node name="EndGameMenu" type="VBoxContainer" parent="EndGameScreen/MarginContainer"]
+custom_minimum_size = Vector2(400, 600)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 alignment = 1
 
-[node name="Level" type="RichTextLabel" parent="EndGameScreen/EndGameMenu/VBoxContainer"]
+[node name="Label" type="Label" parent="EndGameScreen/MarginContainer/EndGameMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 148
+text = "Boss Defeated!"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndGameScreen/MarginContainer/EndGameMenu"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="EndGameScreen/MarginContainer/EndGameMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Final score:"
+
+[node name="Level" type="RichTextLabel" parent="EndGameScreen/MarginContainer/EndGameMenu/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
 bbcode_enabled = true
 text = "Level"
+fit_content = true
 
-[node name="EnemiesKilled" type="RichTextLabel" parent="EndGameScreen/EndGameMenu/VBoxContainer"]
+[node name="EnemiesKilled" type="RichTextLabel" parent="EndGameScreen/MarginContainer/EndGameMenu/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
 bbcode_enabled = true
 text = "EnemiesKilled
 "
+fit_content = true
 
-[node name="BossFightTime" type="RichTextLabel" parent="EndGameScreen/EndGameMenu/VBoxContainer"]
+[node name="BossFightTime" type="RichTextLabel" parent="EndGameScreen/MarginContainer/EndGameMenu/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
 bbcode_enabled = true
 text = "BossFightTime
 "
-
-[node name="MenuBackButton" type="Button" parent="EndGameScreen/EndGameMenu"]
-layout_mode = 2
-text = "Back To Menu
-"
+fit_content = true
