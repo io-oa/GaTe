@@ -15,7 +15,7 @@ warnings/check_invalid_track_paths=false
 [application]
 
 config/name="GateTesting"
-run/main_scene="res://Main/Main.tscn"
+run/main_scene="res://GUI/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -25,10 +25,11 @@ GameGlobals="*res://Global/Globals.gd"
 SettingsDataContainer="*res://Global/SettingsDataContainer.gd"
 SettingsSignalBus="*res://Global/SettingsSignalBus.gd"
 SaveManager="*res://Global/SaveManager.gd"
-Leaderboards="*res://addons/quiver_leaderboards/leaderboards.tscn"
-PlayerAccounts="*res://addons/quiver_player_accounts/player_accounts.tscn"
 Scenes="*res://Global/Scenes.gd"
 Sound="*res://Global/Sound.gd"
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
+Leaderboards="*res://addons/quiver_leaderboards/leaderboards.tscn"
+PlayerAccounts="*res://addons/quiver_player_accounts/player_accounts.tscn"
 
 [display]
 
@@ -39,7 +40,7 @@ window/main_scene="res://Main/Main.tscn"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/quiver_leaderboards/plugin.cfg", "res://addons/quiver_player_accounts/plugin.cfg", "res://addons/silent_wolf/plugin.cfg")
 
 [global_group]
 

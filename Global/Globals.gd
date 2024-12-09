@@ -81,7 +81,10 @@ func init_projectile_threads(count: int):
 		projectile_threads[i].start(Callable(self, "_projectile_processing_thread").bind(str(i)))
 				
 func _process(delta: float) -> void:
-	current_time = GAME_TIME - ROUND_TIMER.time_left
+	if ROUND_TIMER != null and ROUND_TIMER.time_left != null:
+		current_time = GAME_TIME - ROUND_TIMER.time_left
+	else:
+		current_time = 0.0
 	
 		
 func _ready() -> void:
@@ -89,7 +92,14 @@ func _ready() -> void:
 	projectile_queue_semaphore = Semaphore.new()
 	projectile_queue_mutex = Mutex.new()
 	init_projectile_threads(4)
-	
+	SilentWolf.configure({
+		"api_key": "NjEA5QfoRr3HcjMx8DrpR41mvPdEUuYK8pbcwcGr",
+		"game_id": "GaTe",
+		"log_level": 1
+  	})
+	SilentWolf.configure_scores({
+		"open_scene_on_close": "res://scenes/MainPage.tscn"
+  	})
 #Projectile multithreading xd
 func _projectile_processing_thread(thread_name: String):
 	while true:
