@@ -28,9 +28,7 @@ func _ready():
 	set_navigation_poly()
 	new_game()
 	
-func game_over():
-	$ScoreTimer.stop()
-
+	
 func new_game():
 	GameGlobals.ROUND_TIMER.start()
 	Sound.play("BACKGROUND_MUSIC")

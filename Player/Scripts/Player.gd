@@ -36,10 +36,14 @@ var abilities: Dictionary = {
 		"duration": 0.0
 	}
 }
-	
+func game_over():
+	get_tree().paused = true
+	Scenes.switch_to(Scenes.GAME_OVER)
+
 func _ready():
 	ally_flag = GameGlobals.ALLY_FLAGS.player
 	self.add_to_group("Player")
+	self.health_component.died.connect(game_over)
 	self.health_component.init_health()
 	GameGlobals.enemy_death.connect(_on_enemy_killed)
 	state_machine.add_states([state_idle, state_move])
