@@ -25,12 +25,14 @@ func _ready():
 	GameGlobals.EFFECTS = get_node(^"/root/Main/Effects")
 	GameGlobals.ROUND_TIMER.wait_time = GameGlobals.GAME_TIME
 	GameGlobals.ROUND_TIMER.timeout.connect(_on_round_time_timeout)
+	GameGlobals.PLAYER.died.connect(game_over)
 	set_navigation_poly()
 	new_game()
 	
 func game_over():
-	$ScoreTimer.stop()
-
+	get_tree().paused = true
+	Scenes.switch_to(Scenes.GAME_OVER)
+	
 func new_game():
 	GameGlobals.ROUND_TIMER.start()
 	Sound.play("BACKGROUND_MUSIC")

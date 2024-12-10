@@ -3,6 +3,7 @@ class_name Player extends Entity
 signal level_up(level: int)
 signal exp_change()
 signal stat_change()
+signal died
 
 const MOTION_SPEED: float = 400.0
 
@@ -43,7 +44,7 @@ func _ready():
 	self.health_component.init_health()
 	GameGlobals.enemy_death.connect(_on_enemy_killed)
 	state_machine.add_states([state_idle, state_move])
-	
+	health_component.health_changed.connect(_on_health_changed)
 func _physics_process(_delta):
 	pass
 
@@ -132,3 +133,7 @@ func blink():
 	blink_effect.position = self.position
 	
 	abilities["blink"]["cooldown_left"] = abilities["blink"]["cooldown"]
+
+func _on_health_changed(previous_health: float, current_health: float, max_health: float) -> void:
+	if current_health <= 0:
+		died.emit()
