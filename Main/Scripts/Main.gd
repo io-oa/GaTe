@@ -9,7 +9,6 @@ const WAVE_UPDATE_INTERVAL: float = 20.0
 @onready var waves_resource: WavesResource = preload("res://Resources/Main/Waves.tres")
 @onready var wave_spawn_timer: float = waves_resource.spawn_interval
 @onready var wave_update_timer: float = 0.0
-@onready var health_component: Health = $Health
 
 var spawning_disabled = false
 
@@ -29,7 +28,6 @@ func _ready():
 	set_navigation_poly()
 	new_game()
 	
-
 	
 func new_game():
 	GameGlobals.ROUND_TIMER.start()
