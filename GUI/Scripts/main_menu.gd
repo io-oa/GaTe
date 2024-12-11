@@ -20,6 +20,7 @@ var player_name = ""
 
 
 func _ready() -> void:
+	GameGlobals.res_cursor()
 	Sound.play("MENU_MUSIC")
 	handle_connecting_signals()
 	load_player_name()

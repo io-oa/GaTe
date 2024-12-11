@@ -20,8 +20,13 @@ var _is_paused:bool = false:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		_is_paused = !_is_paused
+		if _is_paused:
+			GameGlobals.res_cursor()
+		else :
+			GameGlobals.set_cursor()
 
 func set_paused(value:bool) -> void:
+	GameGlobals.set_cursor()
 	_is_paused = value
 	get_tree().paused =_is_paused
 	visible = _is_paused

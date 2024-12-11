@@ -39,6 +39,7 @@ func _process(delta: float) -> void:
 		stat_display.visible = !stat_display.visible
 	
 func _ready() -> void:
+	GameGlobals.set_cursor()
 	exp_bar.value = player.current_level_points / player.points_to_next_level * 100
 	hp_bar.value = player.health_component.get_health_percentage()
 	level_display.text = resource.LEVEL_DISPLAY_TEXT % player.level
@@ -59,6 +60,7 @@ func _on_player_level_up(level: int):
 	level_display.text = resource.LEVEL_DISPLAY_TEXT % player.level
 	get_tree().paused = true
 	upgrade_choices_menu.visible = true
+	GameGlobals.res_cursor()
 	var excluded_upgrades: Array[String] = []
 	for i in range(player.auto_projectiles.projectile_scenes.size()):
 		var projectile_name: String = player.auto_projectiles.projectile_scenes[i].projectile_name.to_lower() 
@@ -81,6 +83,7 @@ func _on_enemy_killed(scaling: Node):
 	kill_counter.text = resource.KILL_COUNTER_TEXT % GameGlobals.enemies_killed
 	
 func _on_boss_death(boss: Entity):
+	GameGlobals.res_cursor()
 	var minutes: int = int((GameGlobals.MAX_BOSS_FIGHT_TIME - GameGlobals.ROUND_TIMER.time_left) / 60)
 	var	seconds: int = snappedi(((GameGlobals.MAX_BOSS_FIGHT_TIME - GameGlobals.ROUND_TIMER.time_left) - minutes * 60), 1)
 	GameGlobals.ROUND_TIMER.stop()
