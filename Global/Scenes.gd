@@ -6,4 +6,4 @@ const GAME_OVER: String = "res://Main/Game_over/game_over.tscn"
 
 func switch_to(scene_name: String):
 	var scene: PackedScene = load(scene_name)
-	get_tree().change_scene_to_packed(scene)
+	get_tree().call_deferred("change_scene_to_packed", scene)
