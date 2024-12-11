@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Attacks/Scripts/Projectile.gd" id="1_iastt"]
 [ext_resource type="PackedScene" uid="uid://dxilrpy122drq" path="res://Attacks/Projectiles/TestProjectile/TestProjectileImpact.tscn" id="2_ah4fp"]
-[ext_resource type="Texture2D" uid="uid://dfpddcaxln83j" path="res://Attacks/Projectiles/Assets/pj2_helix_beam_large_blue/spritesheet.png" id="3_dpcek"]
+[ext_resource type="Texture2D" uid="uid://dfpddcaxln83j" path="res://TestAssets/super-pixel-projectiles-pack-2-pixel-art-animated-projectiles/Super Pixel Projectiles Pack 2/spritesheet/pj2_helix_beam_large_blue/spritesheet.png" id="3_dpcek"]
 [ext_resource type="PackedScene" uid="uid://dn7pr30nu7c1q" path="res://Utilities/Components/Velocity.tscn" id="4_a0l3o"]
 [ext_resource type="AudioStream" uid="uid://chmemuqdgvf7l" path="res://Attacks/Projectiles/Assets/TECH WEAPON Gun Shot Zapper Short 14.ogg" id="5_m1gp7"]
 
