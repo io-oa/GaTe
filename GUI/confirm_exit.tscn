@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=3 uid="uid://ce4mhx2ho4nq1"]
+
+[ext_resource type="Script" path="res://GUI/confirm_exit.gd" id="1_de6p4"]
+
+[sub_resource type="SystemFont" id="SystemFont_7mv0g"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yi6ug"]
+bg_color = Color(0.963793, 0.350915, 0.854265, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0ybh"]
+bg_color = Color(0.6, 0.619608, 0.901961, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[node name="ConfirmExit" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_de6p4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(800, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.47788, 0.47788, 0.47788, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -208.0
+offset_top = 28.0
+offset_right = 208.0
+offset_bottom = 221.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("SystemFont_7mv0g")
+theme_override_font_sizes/font_size = 60
+text = "Are you sure
+ you want to exit?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -112.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+alignment = 1
+
+[node name="ButtonExit" type="Button" parent="ColorRect/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_7mv0g")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/hover = SubResource("StyleBoxFlat_yi6ug")
+theme_override_styles/normal = SubResource("StyleBoxFlat_i0ybh")
+text = "Exit"
+
+[node name="Separator" type="Control" parent="ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="ButtonCancel" type="Button" parent="ColorRect/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_7mv0g")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/hover = SubResource("StyleBoxFlat_yi6ug")
+theme_override_styles/normal = SubResource("StyleBoxFlat_i0ybh")
+text = "Cancel"

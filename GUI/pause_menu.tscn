@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cx701ugh168d6"]
+[gd_scene load_steps=8 format=3 uid="uid://cx701ugh168d6"]
 
 [ext_resource type="FontFile" uid="uid://btrmhyw8c5y4p" path="res://GUI/Assets/DungeonFont.ttf" id="1_d5ofy"]
 [ext_resource type="Script" path="res://GUI/Scripts/pause_menu.gd" id="1_ytvew"]
 [ext_resource type="PackedScene" uid="uid://bvdbn5drgd0lr" path="res://GUI/settings_menu.tscn" id="2_3o2qs"]
+[ext_resource type="PackedScene" uid="uid://ce4mhx2ho4nq1" path="res://GUI/confirm_exit.tscn" id="4_f05ut"]
 
 [sub_resource type="SystemFont" id="SystemFont_qogr6"]
 font_names = PackedStringArray("Impact")
@@ -120,5 +121,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_kx81j")
 text = "Exit"
 
 [node name="Settings_Menu" parent="." instance=ExtResource("2_3o2qs")]
+visible = false
+layout_mode = 1
+
+[node name="ConfirmExit" parent="." instance=ExtResource("4_f05ut")]
 visible = false
 layout_mode = 1
