@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://bl845e65mxvji" path="res://Enemy/Enemies/EarthElemental/EarthElemental.tscn" id="3_ealkw"]
 [ext_resource type="PackedScene" uid="uid://bqpkxht3mx8l8" path="res://Player/Player.tscn" id="4_bghvw"]
 [ext_resource type="PackedScene" uid="uid://drr2tlxww2kpa" path="res://Enemy/Enemies/FireElemental/FireElemental.tscn" id="4_qksm0"]
-[ext_resource type="PackedScene" uid="uid://cx701ugh168d6" path="res://GUI/pause_menu.tscn" id="5_jxyjf"]
+[ext_resource type="PackedScene" uid="uid://i6atcg4t4kna" path="res://GUI/pause_menu.tscn" id="5_jxyjf"]
 [ext_resource type="PackedScene" uid="uid://bl76xgpii4c1w" path="res://Enemy/Enemies/WaterElemental/WaterElemental.tscn" id="5_laiv8"]
-[ext_resource type="PackedScene" uid="uid://ba52freryk52u" path="res://HUD/HUD.tscn" id="8_2ihst"]
+[ext_resource type="PackedScene" uid="uid://ba52freryk52u" path="res://Main/HUD.tscn" id="8_2ihst"]
 [ext_resource type="PackedScene" uid="uid://dh5ordgthoc2p" path="res://Map/map.tscn" id="9_wlrpj"]
 
 
