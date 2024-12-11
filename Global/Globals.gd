@@ -26,6 +26,7 @@ var projectile_threads: Array[Thread]
 const INT64_MAX: int = (1 << 63) - 1
 const GAME_TIME: float = 60.0
 const MAX_BOSS_FIGHT_TIME: float = 180.0
+const cursor = preload("res://Player/Assets/crosshair.png")
 
 const MAP_VERTICES: PackedVector2Array = [
 		Vector2(-5000, -5000),	#	TOP LEFT
@@ -39,6 +40,11 @@ enum ALLY_FLAGS{
 	enemy = 1 << 1
 }
 	
+func set_cursor():
+	Input.set_custom_mouse_cursor(cursor,0,Vector2(16,16))
+
+func res_cursor():
+	Input.set_custom_mouse_cursor(null)
 
 func reset_vars():
 	in_boss_fight = false

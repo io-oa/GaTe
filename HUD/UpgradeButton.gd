@@ -40,6 +40,7 @@ func _on_button_press():
 			print("upgraded")
 	upgrade_choices.visible = false
 	get_tree().paused = false
+	GameGlobals.set_cursor()
 	audio.play()
 
 func set_properties(upgrade_name: String):
