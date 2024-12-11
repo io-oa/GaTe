@@ -1,0 +1,154 @@
+[gd_scene load_steps=23 format=3 uid="uid://b7toqdkyl4sn4"]
+
+[ext_resource type="Script" path="res://Enemy/Enemies/Bosses/Alien/Alien.gd" id="1_b2yhv"]
+[ext_resource type="PackedScene" uid="uid://cgrtst55jiw68" path="res://Enemy/EnemyInfo.tscn" id="2_e1f6t"]
+[ext_resource type="Texture2D" uid="uid://bodfbaa1xi134" path="res://Enemy/Enemies/Bosses/Alien/Assets/alien.png" id="3_s3ngt"]
+[ext_resource type="PackedScene" uid="uid://i2til2fybjly" path="res://Attacks/Attack.tscn" id="4_i2m0s"]
+[ext_resource type="PackedScene" uid="uid://cbga7i58u2kgb" path="res://Attacks/Projectiles/AlienFireball/AlienFireball.tscn" id="5_5dvwv"]
+[ext_resource type="Script" path="res://Attacks/ProjectileSceneWrapper.gd" id="6_podhf"]
+[ext_resource type="PackedScene" uid="uid://b4821q1nhproh" path="res://Utilities/Components/Hurtbox.tscn" id="7_5id2k"]
+[ext_resource type="Texture2D" uid="uid://co60oyg2xbujc" path="res://Enemy/Enemies/Bosses/Alien/Assets/Projectile_9_Green_Large.png" id="7_6vdyn"]
+[ext_resource type="PackedScene" uid="uid://d4mwx2hyy320a" path="res://Attacks/Projectiles/AlienMissile/AlienMissile.tscn" id="7_f11o7"]
+[ext_resource type="PackedScene" uid="uid://dhve04b56rgnu" path="res://Utilities/Components/Health.tscn" id="8_qgb7e"]
+[ext_resource type="PackedScene" uid="uid://ba1urcsrxx757" path="res://Utilities/Components/Pathfinding.tscn" id="9_xe68p"]
+[ext_resource type="PackedScene" uid="uid://dn7pr30nu7c1q" path="res://Utilities/Components/Velocity.tscn" id="10_ku3ft"]
+[ext_resource type="PackedScene" uid="uid://dkco3mn1qyxib" path="res://Utilities/Components/GameScaling.tscn" id="11_6jgs7"]
+
+[sub_resource type="Animation" id="Animation_47cpg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kwuyq"]
+resource_name = "hover"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -30)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5xvpd"]
+_data = {
+"RESET": SubResource("Animation_47cpg"),
+"hover": SubResource("Animation_kwuyq")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ux088"]
+radius = 0.0
+height = 2.0
+
+[sub_resource type="Resource" id="Resource_g5tiu"]
+script = ExtResource("6_podhf")
+projectile = ExtResource("5_5dvwv")
+cooldown = 0.0
+duplicate_x = false
+follow_attack_direction = false
+spread_around = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_matv2"]
+size = Vector2(3148, 76)
+
+[sub_resource type="Resource" id="Resource_txkb8"]
+script = ExtResource("6_podhf")
+projectile = ExtResource("7_f11o7")
+cooldown = 0.25
+duplicate_x = false
+follow_attack_direction = true
+spread_around = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o70bk"]
+size = Vector2(0, 0)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a3fhh"]
+radius = 153.87
+height = 328.64
+
+[node name="Alien" type="CharacterBody2D"]
+script = ExtResource("1_b2yhv")
+attack_range = 1500.0
+
+[node name="EnemyInfo" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_e1f6t")]
+health_component = NodePath("../Health")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5xvpd")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_s3ngt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ux088")
+
+[node name="BlinkAttack" parent="." instance=ExtResource("4_i2m0s")]
+projectile_scenes = Array[Resource]([SubResource("Resource_g5tiu")])
+
+[node name="LaserAttack" parent="." instance=ExtResource("4_i2m0s")]
+damage = 20.0
+attack_timer = 3.0
+lock_position_on_fire = false
+
+[node name="CollisionShape2D" parent="LaserAttack" index="0"]
+position = Vector2(1564, 0)
+shape = SubResource("RectangleShape2D_matv2")
+
+[node name="Sprite2D" type="Sprite2D" parent="LaserAttack"]
+position = Vector2(0.00195313, 0.00909042)
+rotation = 1.5708
+scale = Vector2(1, 33.1964)
+texture = ExtResource("7_6vdyn")
+offset = Vector2(-0.00909042, -46.554)
+
+[node name="BasicAttack" parent="." instance=ExtResource("4_i2m0s")]
+damage = 0.0
+attack_timer = 0.25
+projectile_scenes = Array[Resource]([SubResource("Resource_txkb8")])
+
+[node name="CollisionShape2D" parent="BasicAttack" index="0"]
+shape = SubResource("RectangleShape2D_o70bk")
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_5id2k")]
+rotation = 1.5708
+health_component = NodePath("../Health")
+hurtbox_shape = SubResource("CapsuleShape2D_a3fhh")
+
+[node name="Health" parent="." instance=ExtResource("8_qgb7e")]
+max_health = 2000.0
+
+[node name="Pathfinding" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("9_xe68p")]
+velocity_component = NodePath("../Velocity")
+wave_amplitude = 5.0
+wave_frequency = 1.0
+
+[node name="Velocity" parent="." instance=ExtResource("10_ku3ft")]
+
+[node name="GameScaling" parent="." instance=ExtResource("11_6jgs7")]
+points_on_kill = 100
+
+[connection signal="died" from="Health" to="." method="_on_death"]
+[connection signal="health_changed" from="Health" to="." method="_on_health_health_changed"]
+[connection signal="health_changed" from="Health" to="." method="_on_health_changed"]
+
+[editable path="LaserAttack"]
+[editable path="BasicAttack"]

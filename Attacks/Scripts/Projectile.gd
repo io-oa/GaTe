@@ -20,16 +20,16 @@ var travelled: float = 0
 
 var modifiers: Dictionary
 	
-func spawn(position: Vector2, projectile_rotation: float, ally_flag: int, modifiers: Dictionary) -> void:
+func spawn(pos: Vector2, projectile_rotation: float, ally_flag: int, modifiers: Dictionary) -> void:
 	self.modifiers = modifiers
 	self.apply_attacker_modifiers()
 	self.attacker_ally_flag = ally_flag
-	self.start_position = position
+	self.start_position = pos
 	self.global_rotation = projectile_rotation + randf_range(-spread, spread)
 	if not rotate_sprite:
 		self.travel_animation.global_rotation = 0
 	self.global_position = self.start_position
-	velocity_component.maximizeVelocity(Vector2(1, 0).rotated(self.global_rotation))
+	velocity_component.maximizeVelocity(Vector2.RIGHT.rotated(self.global_rotation))
 	travel_animation.play("travelling")
 	if audio:
 		audio.play()
@@ -46,7 +46,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if self.attacker_ally_flag == area.get_parent().ally_flag:
 		return
 	if area is Hurtbox and max_hits != GameGlobals.INT64_MAX:
-		hits_remaining -= 1
+		hits_remaining = max(0, hits_remaining - 1)
 	if impact_scene:
 		var impact_effect = impact_scene.instantiate()
 		GameGlobals.EFFECTS.add_child(impact_effect)

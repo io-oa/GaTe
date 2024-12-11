@@ -52,7 +52,7 @@ animations = [{
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_7jykh")
-max_hits = 2
+max_hits = 1
 impact_scene = ExtResource("2_1mba2")
 rotate_sprite = false
 
@@ -68,10 +68,10 @@ debug_color = Color(0.744847, 0.185992, 0.198257, 0.42)
 
 [node name="TravelAnimation" type="AnimatedSprite2D" parent="."]
 z_index = 1
-position = Vector2(-2.86102e-06, -1.90735e-06)
 scale = Vector2(0.579375, 0.579375)
 sprite_frames = SubResource("SpriteFrames_pu2pr")
 animation = &"travelling"
+offset = Vector2(0, -34.52)
 
 [node name="Velocity" parent="." instance=ExtResource("4_b7gl5")]
 max_speed = 400.0

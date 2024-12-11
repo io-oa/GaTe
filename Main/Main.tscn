@@ -10,30 +10,27 @@
 [ext_resource type="PackedScene" uid="uid://ba52freryk52u" path="res://Main/HUD.tscn" id="8_2ihst"]
 [ext_resource type="PackedScene" uid="uid://dh5ordgthoc2p" path="res://Map/map.tscn" id="9_wlrpj"]
 
+
 [sub_resource type="Curve2D" id="Curve2D_isdsk"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1152, 648, 0, 0, 0, 0, 0, 648, 0, 0, 0, 0, 0, 0)
 }
 point_count = 5
 
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_aj34n"]
+
 vertices = PackedVector2Array(-5000, -5000, -5000, 5000, 5000, 5000, 5000, -5000)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_xlgft")
-enemy_scenes = Array[PackedScene]([ExtResource("2_rxnlu"), ExtResource("3_ealkw"), ExtResource("4_qksm0"), ExtResource("5_laiv8")])
 
 [node name="Mapa" parent="." instance=ExtResource("9_wlrpj")]
 
-[node name="MobTimer" type="Timer" parent="."]
-wait_time = 0.5
-
-[node name="ScoreTimer" type="Timer" parent="."]
-
-[node name="StartTimer" type="Timer" parent="."]
-wait_time = 2.0
+[node name="RoundTimer" type="Timer" parent="."]
+wait_time = 600.0
 one_shot = true
 
 [node name="StartPosition" type="Marker2D" parent="."]
@@ -44,8 +41,11 @@ gizmo_extents = 109.1
 curve = SubResource("Curve2D_isdsk")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+
 position = Vector2(68.8039, 0)
 progress = 68.8059
+
+
 
 [node name="Player" parent="." instance=ExtResource("4_bghvw")]
 position = Vector2(1706, 292)
@@ -55,7 +55,9 @@ position = Vector2(1706, 292)
 [node name="Effects" type="Node" parent="."]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+
 navigation_polygon = SubResource("NavigationPolygon_aj34n")
+
 
 [node name="HUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_2ihst")]
 player = NodePath("../Player")
@@ -63,6 +65,7 @@ player = NodePath("../Player")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Pause_Menu" parent="CanvasLayer" instance=ExtResource("5_jxyjf")]
+
 
 [node name="Collision" type="StaticBody2D" parent="."]
 
@@ -72,3 +75,4 @@ polygon = PackedVector2Array(-8, 13, 3331, 2, 3331, 2561, -2244, 2561, -2244, -2
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+

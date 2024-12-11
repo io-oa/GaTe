@@ -1,17 +1,52 @@
-[gd_scene load_steps=8 format=3 uid="uid://rhtpubdlpi6l"]
+[gd_scene load_steps=16 format=3 uid="uid://rhtpubdlpi6l"]
 
-[ext_resource type="Texture2D" uid="uid://dbhcd6jbv6e5i" path="res://GUI/Assets/Main_Menu_BG.jpg" id="1_hs8ys"]
 [ext_resource type="Script" path="res://GUI/Scripts/main_menu.gd" id="1_trlu1"]
 [ext_resource type="FontFile" uid="uid://btrmhyw8c5y4p" path="res://GUI/Assets/DungeonFont.ttf" id="2_at1x2"]
+[ext_resource type="Texture2D" uid="uid://cedfp0ha2kadq" path="res://GUI/Assets/Animation/wizard_frame_1.png" id="2_ee01b"]
+[ext_resource type="Texture2D" uid="uid://bnxc6vughu0q6" path="res://GUI/Assets/Background.jpg" id="2_k0rha"]
+[ext_resource type="Texture2D" uid="uid://dlucshs3kt7md" path="res://GUI/Assets/Animation/wizard_frame_2.png" id="3_jlu5y"]
+[ext_resource type="Texture2D" uid="uid://dqnildmk2ugpo" path="res://GUI/Assets/Animation/wizard_frame_3.png" id="4_bfw0k"]
 [ext_resource type="PackedScene" uid="uid://bvdbn5drgd0lr" path="res://GUI/settings_menu.tscn" id="4_dqxhn"]
-[ext_resource type="AudioStream" uid="uid://c3hbi6f2cnqj5" path="res://GUI/Assets/Main_Menu_Music.mp3" id="5_phntf"]
-[ext_resource type="PackedScene" uid="uid://cx5bok4sq6oan" path="res://GUI/leaderboard.tscn" id="5_tmmj3"]
+[ext_resource type="AudioStream" uid="uid://c3hbi6f2cnqj5" path="res://Main/Music/Main_Menu_Music.mp3" id="5_phntf"]
+[ext_resource type="Texture2D" uid="uid://cessuwd1otnu3" path="res://GUI/Assets/Animation/wizard_frame_4.png" id="5_rihit"]
+[ext_resource type="PackedScene" uid="uid://b2h8ok8yfc7wb" path="res://addons/silent_wolf/Scores/Leaderboard.tscn" id="9_4ijgb"]
+[ext_resource type="PackedScene" uid="uid://c3ha44wpqenvj" path="res://GUI/credits.tscn" id="10_g5xm3"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_0ca71"]
+frames = 4
+frame_0/texture = ExtResource("2_ee01b")
+frame_0/duration = 0.3
+frame_1/texture = ExtResource("3_jlu5y")
+frame_1/duration = 0.3
+frame_2/texture = ExtResource("4_bfw0k")
+frame_2/duration = 0.3
+frame_3/texture = ExtResource("5_rihit")
+frame_3/duration = 0.3
 
 [sub_resource type="SystemFont" id="SystemFont_j575n"]
 font_names = PackedStringArray("Impact")
 subpixel_positioning = 0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjeap"]
+bg_color = Color(0.963793, 0.350915, 0.854265, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fq37c"]
+bg_color = Color(0.6, 0.619608, 0.901961, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
 [node name="Main_Menu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,8 +62,45 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_hs8ys")
+texture = ExtResource("2_k0rha")
 expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="TextureRect"]
+layout_mode = 2
+offset_left = 286.0
+offset_top = 126.0
+offset_right = 1493.0
+offset_bottom = 1168.0
+grow_vertical = 2
+size_flags_horizontal = 4
+texture = SubResource("AnimatedTexture_0ca71")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 60
+
+[node name="Seperator" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("2_at1x2")
+theme_override_font_sizes/font_size = 240
+text = "GaTe"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -37,86 +109,106 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 60
-
-[node name="Seperator" type="Control" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 10
-theme_override_constants/shadow_offset_y = 10
-theme_override_constants/outline_size = 24
-theme_override_fonts/font = ExtResource("2_at1x2")
-theme_override_font_sizes/font_size = 90
-text = "GaTe"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_constants/margin_left = -850
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 450
+theme_override_constants/margin_bottom = 30
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 8
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 30
 alignment = 1
 
 [node name="Seperator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="Start_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 32)
+custom_minimum_size = Vector2(570, 120)
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_j575n")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 90
+theme_override_styles/hover = SubResource("StyleBoxFlat_wjeap")
+theme_override_styles/normal = SubResource("StyleBoxFlat_fq37c")
 text = "Start Game
 "
 
 [node name="Leaderboard_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 32)
+custom_minimum_size = Vector2(570, 120)
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_j575n")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 90
+theme_override_styles/hover = SubResource("StyleBoxFlat_wjeap")
+theme_override_styles/normal = SubResource("StyleBoxFlat_fq37c")
 text = "Leaderboard"
 
 [node name="Settings_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 32)
+custom_minimum_size = Vector2(570, 120)
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_j575n")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 90
+theme_override_styles/hover = SubResource("StyleBoxFlat_wjeap")
+theme_override_styles/normal = SubResource("StyleBoxFlat_fq37c")
 text = "Enter Settings
 "
 
 [node name="Credits_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 32)
+custom_minimum_size = Vector2(570, 120)
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_j575n")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 90
+theme_override_styles/hover = SubResource("StyleBoxFlat_wjeap")
+theme_override_styles/normal = SubResource("StyleBoxFlat_fq37c")
 text = "Show Credits
 "
 
 [node name="Exit_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 32)
+custom_minimum_size = Vector2(570, 120)
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_j575n")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 90
+theme_override_styles/hover = SubResource("StyleBoxFlat_wjeap")
+theme_override_styles/normal = SubResource("StyleBoxFlat_fq37c")
 text = "Exit"
+
+[node name="NicknameContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/NicknameContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/NicknameContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_fq37c")
+text = "Nickname"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/NicknameContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+
+[node name="SaveConfirmationDialog" type="AcceptDialog" parent="MarginContainer"]
+title = ""
+initial_position = 2
+size = Vector2i(400, 270)
+dialog_text = "Nickname has been saved!"
+dialog_close_on_escape = false
 
 [node name="Settings_Menu" parent="." instance=ExtResource("4_dqxhn")]
 visible = false
 layout_mode = 1
 
-[node name="Leaderboard" parent="." instance=ExtResource("5_tmmj3")]
+[node name="Leaderboard" parent="." instance=ExtResource("9_4ijgb")]
+visible = false
+
+[node name="Credits" parent="." instance=ExtResource("10_g5xm3")]
 visible = false
 layout_mode = 1
 

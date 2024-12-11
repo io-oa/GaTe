@@ -4,7 +4,6 @@ extends Control
 @onready var exit_button: Button = $MarginContainer/HBoxContainer/VBoxContainer/Exit_Button
 @onready var margin_container: MarginContainer = $MarginContainer
 @onready var settings_menu: SettingsMenu = $Settings_Menu
-@export var main_menu_path: String = "res://GUI/main_menu.tscn"
 
 func _ready() -> void:
 	handle_connecting_signals()
@@ -21,8 +20,13 @@ var _is_paused:bool = false:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		_is_paused = !_is_paused
+		if _is_paused:
+			GameGlobals.res_cursor()
+		else :
+			GameGlobals.set_cursor()
 
 func set_paused(value:bool) -> void:
+	GameGlobals.set_cursor()
 	_is_paused = value
 	get_tree().paused =_is_paused
 	visible = _is_paused
@@ -39,6 +43,4 @@ func on_exit_settings() -> void:
 	settings_menu.visible = false
 	
 func on_exit_pressed() -> void:
-	_is_paused = false
-	get_tree().paused = false
-	get_tree().change_scene_to_file(main_menu_path)
+	Scenes.switch_to(Scenes.MAIN_MENU)

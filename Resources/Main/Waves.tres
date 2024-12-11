@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c6xvkdxihaqj4"]
+
+[ext_resource type="Script" path="res://Resources/Main/Waves.gd" id="1_3bsl4"]
+
+[resource]
+script = ExtResource("1_3bsl4")

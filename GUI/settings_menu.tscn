@@ -37,7 +37,7 @@ layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 12
 theme_override_fonts/font = SubResource("SystemFont_voda7")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 90
 text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -47,9 +47,9 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Exit_Settings_Button" type="Button" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 45)
+custom_minimum_size = Vector2(300, 120)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 80
 text = "Exit"
