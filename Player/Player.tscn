@@ -12,10 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://duhegav1hscke" path="res://Attacks/Projectiles/TestProjectile/TestProjectile.tscn" id="6_a7vnv"]
 [ext_resource type="Script" path="res://Attacks/ProjectileSceneWrapper.gd" id="7_3328b"]
 
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_131rb"]
-radius = 0.01
-
 [sub_resource type="Gradient" id="662"]
 offsets = PackedFloat32Array(0.00558659, 0.441341, 0.659218)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
@@ -435,6 +431,9 @@ spread_around = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccugu"]
 size = Vector2(0, 0)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_lppis"]
+radius = 16.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tltck"]
 radius = 19.84
 height = 59.39
@@ -446,10 +445,6 @@ script = ExtResource("2")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="blink"]
 stream = ExtResource("2_idxpp")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 20)
-shape = SubResource("RectangleShape2D_f0ajs")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0.129412, 0.0745098, 0.192157, 0.647059)
@@ -468,16 +463,17 @@ texture = ExtResource("4_2pbpn")
 offset = Vector2(87.7242, 0)
 
 [node name="BasicAttack" parent="." instance=ExtResource("5_8sati")]
-
 attack_timer = 1.0
-
 projectile_scenes = Array[Resource]([SubResource("Resource_n876p")])
 
 [node name="CollisionShape2D" parent="BasicAttack" index="0"]
 shape = SubResource("RectangleShape2D_ccugu")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_lppis")
+
 [node name="AutomaticProjectiles" parent="." instance=ExtResource("5_8sati")]
-visible = false
 damage = 0.0
 attack_timer = 0.05
 
