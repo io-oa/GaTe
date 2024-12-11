@@ -16,7 +16,7 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_kc7tr"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_aj34n"]
 vertices = PackedVector2Array(-5000, -5000, -5000, 5000, 5000, 5000, 5000, -5000)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 
@@ -44,8 +44,8 @@ gizmo_extents = 109.1
 curve = SubResource("Curve2D_isdsk")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
-position = Vector2(240.998, 0)
-progress = 240.999
+position = Vector2(68.8039, 0)
+progress = 68.8059
 
 [node name="Player" parent="." instance=ExtResource("4_bghvw")]
 position = Vector2(1706, 292)
@@ -55,7 +55,7 @@ position = Vector2(1706, 292)
 [node name="Effects" type="Node" parent="."]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_kc7tr")
+navigation_polygon = SubResource("NavigationPolygon_aj34n")
 
 [node name="HUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_2ihst")]
 player = NodePath("../Player")
@@ -63,6 +63,11 @@ player = NodePath("../Player")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Pause_Menu" parent="CanvasLayer" instance=ExtResource("5_jxyjf")]
+
+[node name="Collision" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collision"]
+polygon = PackedVector2Array(-8, 13, 3331, 2, 3331, 2561, -2244, 2561, -2244, -2, -52, 16, -46, -1154, -3499, -1244, -3518, 3570, 4792, 3570, 4773, -916, 59, -1154, -36, -136)
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
