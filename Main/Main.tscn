@@ -1,15 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://oxvwmxpk4tp7"]
 
 [ext_resource type="Script" path="res://Main/Scripts/Main.gd" id="1_xlgft"]
-[ext_resource type="PackedScene" uid="uid://bkywwow0itulc" path="res://Enemy/Enemies/AirElemental/AirElemental.tscn" id="2_rxnlu"]
-[ext_resource type="PackedScene" uid="uid://bl845e65mxvji" path="res://Enemy/Enemies/EarthElemental/EarthElemental.tscn" id="3_ealkw"]
 [ext_resource type="PackedScene" uid="uid://bqpkxht3mx8l8" path="res://Player/Player.tscn" id="4_bghvw"]
-[ext_resource type="PackedScene" uid="uid://drr2tlxww2kpa" path="res://Enemy/Enemies/FireElemental/FireElemental.tscn" id="4_qksm0"]
 [ext_resource type="PackedScene" uid="uid://cx701ugh168d6" path="res://GUI/pause_menu.tscn" id="5_jxyjf"]
-[ext_resource type="PackedScene" uid="uid://bl76xgpii4c1w" path="res://Enemy/Enemies/WaterElemental/WaterElemental.tscn" id="5_laiv8"]
 [ext_resource type="PackedScene" uid="uid://ba52freryk52u" path="res://HUD/HUD.tscn" id="8_2ihst"]
 [ext_resource type="PackedScene" uid="uid://dh5ordgthoc2p" path="res://Map/map.tscn" id="9_wlrpj"]
-
 
 [sub_resource type="Curve2D" id="Curve2D_isdsk"]
 _data = {
@@ -17,11 +12,21 @@ _data = {
 }
 point_count = 5
 
-
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_aj34n"]
-
 vertices = PackedVector2Array(-5000, -5000, -5000, 5000, 5000, 5000, 5000, -5000)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boekr"]
+size = Vector2(16022, 4089)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ng28p"]
+size = Vector2(5655, 8244)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyol0"]
+size = Vector2(15405, 3174)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3rl1y"]
+size = Vector2(4488, 8941)
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
@@ -41,11 +46,8 @@ gizmo_extents = 109.1
 curve = SubResource("Curve2D_isdsk")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
-
 position = Vector2(68.8039, 0)
 progress = 68.8059
-
-
 
 [node name="Player" parent="." instance=ExtResource("4_bghvw")]
 position = Vector2(1706, 292)
@@ -55,9 +57,7 @@ position = Vector2(1706, 292)
 [node name="Effects" type="Node" parent="."]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-
 navigation_polygon = SubResource("NavigationPolygon_aj34n")
-
 
 [node name="HUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_2ihst")]
 player = NodePath("../Player")
@@ -66,13 +66,21 @@ player = NodePath("../Player")
 
 [node name="Pause_Menu" parent="CanvasLayer" instance=ExtResource("5_jxyjf")]
 
-
 [node name="Collision" type="StaticBody2D" parent="."]
+position = Vector2(2686, 20)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collision"]
-polygon = PackedVector2Array(-8, 13, 3331, 2, 3331, 2561, -2244, 2561, -2244, -2, -52, 16, -46, -1154, -3499, -1244, -3518, 3570, 4792, 3570, 4773, -916, 59, -1154, -36, -136)
+[node name="Top" type="CollisionShape2D" parent="Collision"]
+position = Vector2(1344, -2023)
+shape = SubResource("RectangleShape2D_boekr")
 
-[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
-[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
-[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[node name="Right" type="CollisionShape2D" parent="Collision"]
+position = Vector2(3453.5, 1594)
+shape = SubResource("RectangleShape2D_ng28p")
 
+[node name="Bottom" type="CollisionShape2D" parent="Collision"]
+position = Vector2(-366.5, 4116)
+shape = SubResource("RectangleShape2D_jyol0")
+
+[node name="Left" type="CollisionShape2D" parent="Collision"]
+position = Vector2(-7136, 368.5)
+shape = SubResource("RectangleShape2D_3rl1y")

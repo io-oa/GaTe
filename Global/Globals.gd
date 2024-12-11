@@ -29,10 +29,10 @@ const MAX_BOSS_FIGHT_TIME: float = 180.0
 const cursor = preload("res://Player/Assets/crosshair.png")
 
 const MAP_VERTICES: PackedVector2Array = [
-		Vector2(-5000, -5000),	#	TOP LEFT
-		Vector2(-5000, 5000),	#	BOTTOM LEFT
-		Vector2(5000, 5000),	#	BOTTOM RIGHT
-		Vector2(5000, -5000)	#	TOP RIGHT
+	Vector2(-2200, 0),        # TOP LEFT
+	Vector2(-2200, 2500),     # BOTTOM LEFT
+	Vector2(3300, 2500),      # BOTTOM RIGHT
+	Vector2(3300, 0)          # TOP RIGHT
 ]
 
 enum ALLY_FLAGS{
