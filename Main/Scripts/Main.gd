@@ -7,7 +7,8 @@ const WAVE_UPDATE_INTERVAL: float = 20.0
 
 @onready var navigation_region: NavigationRegion2D = $NavigationRegion2D
 @onready var waves_resource: WavesResource = preload("res://Resources/Main/Waves.tres")
-@onready var wave_spawn_timer: float = waves_resource.spawn_interval
+#@onready var wave_spawn_timer: float = waves_resource.spawn_interval
+@onready var wave_spawn_timer: float = 1.0
 @onready var wave_update_timer: float = 0.0
 
 var spawning_disabled = false

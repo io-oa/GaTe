@@ -28,8 +28,6 @@ SaveManager="*res://Global/SaveManager.gd"
 Scenes="*res://Global/Scenes.gd"
 Sound="*res://Global/Sound.gd"
 SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
-Leaderboards="*res://addons/quiver_leaderboards/leaderboards.tscn"
-PlayerAccounts="*res://addons/quiver_player_accounts/player_accounts.tscn"
 
 [display]
 

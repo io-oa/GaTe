@@ -23,7 +23,7 @@ func _on_area_entered(area: Area2D) -> void:
 			health_component.damage(area.damage)
 
 #Projectile
-func _on_body_entered(body: CharacterBody2D) -> void:
+func _on_body_entered(body: Node2D) -> void:
 	if body is not Projectile:
 		return
 	if not GameGlobals.is_ally(body.attacker_ally_flag, self.get_parent().ally_flag):
