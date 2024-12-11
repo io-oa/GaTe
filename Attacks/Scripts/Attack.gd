@@ -74,6 +74,6 @@ func prepare_projectile(projectile_scene_wrapper: ProjectileSceneWrapper, pos: V
 	var new_projectile = projectile_scene_wrapper.projectile.instantiate()
 	GameGlobals.PROJECTILES.add_child.call_deferred(new_projectile)
 	if flip_h:
-		new_projectile.set_scale.call_deferred(Vector2(new_projectile.scale.x, -new_projectile.scale.y))
-	new_projectile.spawn.call_deferred(pos, proj_rotation, ally_flag, stat_modifiers)
+		new_projectile.call_deferred("set_scale", Vector2(new_projectile.scale.x, -new_projectile.scale.y))
+	new_projectile.call_deferred("spawn", pos, proj_rotation, ally_flag, stat_modifiers)
 	

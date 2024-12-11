@@ -17,6 +17,8 @@ mono_crash.*.json
 *.tmp
 TestModels/
 TestAssets/
-*.exe
+GateTesting.exe
+GaTe.console.exe
+GateTesting.pck
+GateTesting.console.exe
 .vscode/
-*.pck
