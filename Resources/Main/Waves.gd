@@ -1,7 +1,7 @@
 class_name WavesResource extends Resource
 
 var max_waves_spawned: int = 1
-var spawn_interval: float = 1.0
+var spawn_interval: float = 5.0
 
 var waves = {
 	"water_elementals": {
