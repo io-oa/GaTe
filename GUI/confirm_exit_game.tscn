@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckotgcow7t7uq"]
+
+[ext_resource type="PackedScene" uid="uid://ce4mhx2ho4nq1" path="res://GUI/confirm_exit.tscn" id="1_drfsd"]
+
+[node name="ConfirmExit" instance=ExtResource("1_drfsd")]
+
+[node name="ColorRect" parent="." index="0"]
+color = Color(0.829459, 0.439453, 0, 0.717647)

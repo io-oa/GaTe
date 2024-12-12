@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://rhtpubdlpi6l"]
+[gd_scene load_steps=17 format=3 uid="uid://rhtpubdlpi6l"]
 
 [ext_resource type="Script" path="res://GUI/Scripts/main_menu.gd" id="1_trlu1"]
 [ext_resource type="FontFile" uid="uid://btrmhyw8c5y4p" path="res://GUI/Assets/DungeonFont.ttf" id="2_at1x2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cessuwd1otnu3" path="res://GUI/Assets/Animation/wizard_frame_4.png" id="5_rihit"]
 [ext_resource type="PackedScene" uid="uid://b2h8ok8yfc7wb" path="res://addons/silent_wolf/Scores/Leaderboard.tscn" id="9_4ijgb"]
 [ext_resource type="PackedScene" uid="uid://c3ha44wpqenvj" path="res://GUI/credits.tscn" id="10_g5xm3"]
+[ext_resource type="PackedScene" uid="uid://ckotgcow7t7uq" path="res://GUI/confirm_exit_game.tscn" id="12_uwb7y"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_0ca71"]
 frames = 4
@@ -216,3 +217,7 @@ layout_mode = 1
 stream = ExtResource("5_phntf")
 autoplay = true
 bus = &"Music"
+
+[node name="ConfirmExit" parent="." instance=ExtResource("12_uwb7y")]
+visible = false
+layout_mode = 1
