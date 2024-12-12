@@ -14,6 +14,7 @@ extends Control
 @onready var texture_rect: TextureRect = $TextureRect/TextureRect2
 @onready var label: VBoxContainer = $VBoxContainer
 @onready var save_confirmation_dialog: AcceptDialog = $MarginContainer/SaveConfirmationDialog
+@onready var confirm_exit: ConfirmExit = $ConfirmExit
 @export var start_level = preload("res://Main/Main.tscn")
 const PLAYER_NAME_FILE = "user://player_name.save"
 var player_name = ""
@@ -102,5 +103,12 @@ func save_player_name() -> void:
 	file.close()
 
 func on_exit_pressed() -> void:
-	get_tree().paused = true
-	OS.kill.call_deferred(OS.get_process_id())
+	confirm_exit.visible = true
+	var is_confirmed = await confirm_exit.prompt()
+	if is_confirmed:
+		get_tree().paused = true
+		OS.kill.call_deferred(OS.get_process_id())
+	else:
+		confirm_exit.visible = false
+	
+	
